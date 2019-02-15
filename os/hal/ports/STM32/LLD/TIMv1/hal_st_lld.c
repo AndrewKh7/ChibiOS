@@ -144,6 +144,12 @@
 
 #if OSAL_ST_MODE == OSAL_ST_MODE_PERIODIC
 
+#if defined(STM32_CORE_CK)
+#define SYSTICK_CK                          STM32_CORE_CK
+#else
+#define SYSTICK_CK                          STM32_HCLK
+#endif
+
 #if STM32_HCLK % OSAL_ST_FREQUENCY != 0
 #error "the selected ST frequency is not obtainable because integer rounding"
 #endif
