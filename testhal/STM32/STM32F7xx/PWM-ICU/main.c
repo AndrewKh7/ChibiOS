@@ -103,7 +103,7 @@ int main(void) {
    */
   pwmStart(&PWMD1, &pwmcfg);
   pwmEnablePeriodicNotification(&PWMD1);
-  palSetLineMode(LINE_ARD_D5, PAL_MODE_ALTERNATE(1));
+  palSetLineMode(PAL_LINE(GPIOA,8), PAL_MODE_ALTERNATE(1));
 
   /*
    * Starting ICU driver 2.
