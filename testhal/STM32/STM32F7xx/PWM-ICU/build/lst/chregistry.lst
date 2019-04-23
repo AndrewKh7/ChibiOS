@@ -1,4 +1,4 @@
-ARM GAS  C:\Users\Andry\AppData\Local\Temp\ccoyubWj.s 			page 1
+ARM GAS  C:\Users\Andry\AppData\Local\Temp\ccCTh0oX.s 			page 1
 
 
    1              		.cpu cortex-m7
@@ -12,7 +12,7 @@ ARM GAS  C:\Users\Andry\AppData\Local\Temp\ccoyubWj.s 			page 1
    9              		.eabi_attribute 34, 1
   10              		.eabi_attribute 18, 4
   11              		.file	"chregistry.c"
-  12              		.section	.gnu.lto_.inline.45379b44,"",%progbits
+  12              		.section	.gnu.lto_.inline.4a11063f,"",%progbits
   13 0000 789C6D8D 		.ascii	"x\234m\215\273\015\3020\024E\217\177Q\022;\002\001\242"
   13      BB0DC230 
   13      14458F7F 
@@ -54,11 +54,11 @@ ARM GAS  C:\Users\Andry\AppData\Local\Temp\ccoyubWj.s 			page 1
   21      F1059B51 
   21      1803
   22              		.text
-  23              		.section	.gnu.lto_port_lock.45379b44,"",%progbits
+  23              		.section	.gnu.lto_port_lock.4a11063f,"",%progbits
   24 0000 789C7D92 		.ascii	"x\234}\222\313k\023Q\024\306\3577w\022C\255\257\205"
   24      CB6B1351 
   24      14C6EF37 
-ARM GAS  C:\Users\Andry\AppData\Local\Temp\ccoyubWj.s 			page 2
+ARM GAS  C:\Users\Andry\AppData\Local\Temp\ccCTh0oX.s 			page 2
 
 
   24      771243AD 
@@ -118,7 +118,7 @@ ARM GAS  C:\Users\Andry\AppData\Local\Temp\ccoyubWj.s 			page 1
   35      DDFC5370 
   35      BD8F3731 
   35      560F
-ARM GAS  C:\Users\Andry\AppData\Local\Temp\ccoyubWj.s 			page 3
+ARM GAS  C:\Users\Andry\AppData\Local\Temp\ccCTh0oX.s 			page 3
 
 
   36 00ef 0515E966 		.ascii	"\005\025\351f\254(\271\316qR\3037p\246Z\3771\331\334"
@@ -178,7 +178,7 @@ ARM GAS  C:\Users\Andry\AppData\Local\Temp\ccoyubWj.s 			page 1
   47      D88E6ED8 
   47      9665A7F5 
   47      8C
-ARM GAS  C:\Users\Andry\AppData\Local\Temp\ccoyubWj.s 			page 4
+ARM GAS  C:\Users\Andry\AppData\Local\Temp\ccCTh0oX.s 			page 4
 
 
   48 01ce 9DCD39FA 		.ascii	"\235\3159\372\261\366D[\242_7\272\015;kv\364\035\265"
@@ -208,7 +208,7 @@ ARM GAS  C:\Users\Andry\AppData\Local\Temp\ccoyubWj.s 			page 1
   52      D25F2494 
   53 022d B0       		.ascii	"\260"
   54              		.text
-  55              		.section	.gnu.lto_port_unlock.45379b44,"",%progbits
+  55              		.section	.gnu.lto_port_unlock.4a11063f,"",%progbits
   56 0000 789C6D50 		.ascii	"x\234mPKk\023Q\030\375\316|\223T\252\025]\270\353\""
   56      4B6B1351 
   56      18FDCE7C 
@@ -238,7 +238,7 @@ ARM GAS  C:\Users\Andry\AppData\Local\Temp\ccoyubWj.s 			page 1
   61      F731D9C4 
   61      04836443 
   61      8A04
-ARM GAS  C:\Users\Andry\AppData\Local\Temp\ccoyubWj.s 			page 5
+ARM GAS  C:\Users\Andry\AppData\Local\Temp\ccCTh0oX.s 			page 5
 
 
   62 006c AA1AA8E2 		.ascii	"\252\032\250\342\012/06j;+\306\340\242\222\210\256-"
@@ -298,7 +298,7 @@ ARM GAS  C:\Users\Andry\AppData\Local\Temp\ccoyubWj.s 			page 1
   73      B41EC21A 
   73      D2A42B9F 
   73      9BED
-ARM GAS  C:\Users\Andry\AppData\Local\Temp\ccoyubWj.s 			page 6
+ARM GAS  C:\Users\Andry\AppData\Local\Temp\ccCTh0oX.s 			page 6
 
 
   74 0140 855EADF0 		.ascii	"\205^\255\3609\314\246V\206\365\370/\356\254\277\372"
@@ -342,7 +342,7 @@ ARM GAS  C:\Users\Andry\AppData\Local\Temp\ccoyubWj.s 			page 1
   82      407F0141 
   82      5BA533
   83              		.text
-  84              		.section	.gnu.lto_chThdGetWorkingAreaX.45379b44,"",%progbits
+  84              		.section	.gnu.lto_chThdGetWorkingAreaX.4a11063f,"",%progbits
   85 0000 789C6550 		.ascii	"x\234eP\315+DQ\024?\277w\2367\311\307\216,f1\013\037"
   85      CD2B4451 
   85      143FBF77 
@@ -358,7 +358,7 @@ ARM GAS  C:\Users\Andry\AppData\Local\Temp\ccoyubWj.s 			page 1
   87      C1C68214 
   87      62CA5269 
   87      38F79194 
-ARM GAS  C:\Users\Andry\AppData\Local\Temp\ccoyubWj.s 			page 7
+ARM GAS  C:\Users\Andry\AppData\Local\Temp\ccCTh0oX.s 			page 7
 
 
   88 0042 BAE7DE73 		.ascii	"\272\347\336s\356\357w\316\357\234c\021\321\000\210"
@@ -418,7 +418,7 @@ ARM GAS  C:\Users\Andry\AppData\Local\Temp\ccoyubWj.s 			page 1
   99      7F16D093 
   99      B33FC0EE 
   99      FEC9A155 
-ARM GAS  C:\Users\Andry\AppData\Local\Temp\ccoyubWj.s 			page 8
+ARM GAS  C:\Users\Andry\AppData\Local\Temp\ccCTh0oX.s 			page 8
 
 
   99      C0
@@ -446,7 +446,7 @@ ARM GAS  C:\Users\Andry\AppData\Local\Temp\ccoyubWj.s 			page 1
  104      32E23D5F 
  104      F3E0801A 
  105              		.text
- 106              		.section	.gnu.lto_chRegGetThreadNameX.45379b44,"",%progbits
+ 106              		.section	.gnu.lto_chRegGetThreadNameX.4a11063f,"",%progbits
  107 0000 789C6550 		.ascii	"x\234ePK/CQ\020\236\357\316u\305saea\321\005i\212\364"
  107      4B2F4351 
  107      109EEFCE 
@@ -478,7 +478,7 @@ ARM GAS  C:\Users\Andry\AppData\Local\Temp\ccoyubWj.s 			page 1
  112      257CCAC5 
  113 0073 2E2B7508 		.ascii	".+u\010\270$|\310g\342\345\236y\245\302*=\371\\\232"
  113      B8247CC8 
-ARM GAS  C:\Users\Andry\AppData\Local\Temp\ccoyubWj.s 			page 9
+ARM GAS  C:\Users\Andry\AppData\Local\Temp\ccCTh0oX.s 			page 9
 
 
  113      67E2E59E 
@@ -538,7 +538,7 @@ ARM GAS  C:\Users\Andry\AppData\Local\Temp\ccoyubWj.s 			page 1
  124      1F1D
  125 0147 CD191201 		.ascii	"\315\031\022\001\222\036\334^\257\375{:\272\354@\320"
  125      921EDC5E 
-ARM GAS  C:\Users\Andry\AppData\Local\Temp\ccoyubWj.s 			page 10
+ARM GAS  C:\Users\Andry\AppData\Local\Temp\ccCTh0oX.s 			page 10
 
 
  125      AFFD7B3A 
@@ -552,7 +552,7 @@ ARM GAS  C:\Users\Andry\AppData\Local\Temp\ccoyubWj.s 			page 1
  127      7E01C5BE 
  127      80F0
  128              		.text
- 129              		.section	.gnu.lto_chSysLock.45379b44,"",%progbits
+ 129              		.section	.gnu.lto_chSysLock.4a11063f,"",%progbits
  130 0000 789C6363 		.ascii	"x\234cc``8\011\304*@,\012\304\014\314\014\214L\014@"
  130      60603809 
  130      C42A402C 
@@ -598,7 +598,7 @@ ARM GAS  C:\Users\Andry\AppData\Local\Temp\ccoyubWj.s 			page 1
  139      41D5BD63 
  139      6C5AF07E 
  139      3D235821 
-ARM GAS  C:\Users\Andry\AppData\Local\Temp\ccoyubWj.s 			page 11
+ARM GAS  C:\Users\Andry\AppData\Local\Temp\ccCTh0oX.s 			page 11
 
 
  139      0874804C 
@@ -612,7 +612,7 @@ ARM GAS  C:\Users\Andry\AppData\Local\Temp\ccoyubWj.s 			page 1
  141      00B3E6
  142 00d4 48E5     		.ascii	"H\345"
  143              		.text
- 144              		.section	.gnu.lto_chSysUnlock.45379b44,"",%progbits
+ 144              		.section	.gnu.lto_chSysUnlock.4a11063f,"",%progbits
  145 0000 789C8D94 		.ascii	"x\234\215\224\317k\023A\024\307\347\273ow\223\032\023"
  145      CF6B1341 
  145      14C7E7BB 
@@ -658,7 +658,7 @@ ARM GAS  C:\Users\Andry\AppData\Local\Temp\ccoyubWj.s 			page 1
  153      5044B7
  154 00a5 E07D1FEF 		.ascii	"\340}\037\357m\344\343\246\356m\232PbQ\026\004\257\334"
  154      6DE4E3A6 
-ARM GAS  C:\Users\Andry\AppData\Local\Temp\ccoyubWj.s 			page 12
+ARM GAS  C:\Users\Andry\AppData\Local\Temp\ccCTh0oX.s 			page 12
 
 
  154      EE6D9A50 
@@ -718,7 +718,7 @@ ARM GAS  C:\Users\Andry\AppData\Local\Temp\ccoyubWj.s 			page 1
  165      67CF4FB6 
  165      1EE4AEC3 
  166 0178 07D37602 		.ascii	"\007\323v\002\366\270\015X\2655\030\360D\202\251\033"
-ARM GAS  C:\Users\Andry\AppData\Local\Temp\ccoyubWj.s 			page 13
+ARM GAS  C:\Users\Andry\AppData\Local\Temp\ccCTh0oX.s 			page 13
 
 
  166      F6B80D58 
@@ -778,13 +778,13 @@ ARM GAS  C:\Users\Andry\AppData\Local\Temp\ccoyubWj.s 			page 1
  177      9E93E78E 
  178 024c 1DB77A7A 		.ascii	"\035\267zzS\347S\311^\361\027\013\225g\323"
  178      53E753C9 
-ARM GAS  C:\Users\Andry\AppData\Local\Temp\ccoyubWj.s 			page 14
+ARM GAS  C:\Users\Andry\AppData\Local\Temp\ccCTh0oX.s 			page 14
 
 
  178      5EF1170B 
  178      9567D3
  179              		.text
- 180              		.section	.gnu.lto_chRegFirstThread.45379b44,"",%progbits
+ 180              		.section	.gnu.lto_chRegFirstThread.4a11063f,"",%progbits
  181 0000 789C8592 		.ascii	"x\234\205\222\313k\023Q\024\306\3577'\235<\252]\210"
  181      CB6B1351 
  181      14C6EF37 
@@ -838,7 +838,7 @@ ARM GAS  C:\Users\Andry\AppData\Local\Temp\ccoyubWj.s 			page 1
  191      B20E7129 
  191      E6407F57 
  191      2B497F53 
-ARM GAS  C:\Users\Andry\AppData\Local\Temp\ccoyubWj.s 			page 15
+ARM GAS  C:\Users\Andry\AppData\Local\Temp\ccCTh0oX.s 			page 15
 
 
  191      EB97
@@ -898,7 +898,7 @@ ARM GAS  C:\Users\Andry\AppData\Local\Temp\ccoyubWj.s 			page 1
  203      13E20E45 
  203      D9309A81 
  203      74B7F8E2 
-ARM GAS  C:\Users\Andry\AppData\Local\Temp\ccoyubWj.s 			page 16
+ARM GAS  C:\Users\Andry\AppData\Local\Temp\ccCTh0oX.s 			page 16
 
 
  203      F5
@@ -940,7 +940,7 @@ ARM GAS  C:\Users\Andry\AppData\Local\Temp\ccoyubWj.s 			page 1
  211      BF00D985 
  211      F9C8
  212              		.text
- 213              		.section	.gnu.lto_chRegNextThread.45379b44,"",%progbits
+ 213              		.section	.gnu.lto_chRegNextThread.4a11063f,"",%progbits
  214 0000 789C9554 		.ascii	"x\234\225TKO\023Q\024\276g\356tZ:P\301\230h\0101M\024"
  214      4B4F1351 
  214      14BE67EE 
@@ -958,7 +958,7 @@ ARM GAS  C:\Users\Andry\AppData\Local\Temp\ccoyubWj.s 			page 1
  217 003b 0A0B04E3 		.ascii	"\012\013\004\343B\203\241\010$F\323DA\364;wFQ\20216"
  217      4283A108 
  217      2446D344 
-ARM GAS  C:\Users\Andry\AppData\Local\Temp\ccoyubWj.s 			page 17
+ARM GAS  C:\Users\Andry\AppData\Local\Temp\ccCTh0oX.s 			page 17
 
 
  217      41F43B77 
@@ -1018,7 +1018,7 @@ ARM GAS  C:\Users\Andry\AppData\Local\Temp\ccoyubWj.s 			page 1
  229 010d 43FADBA6 		.ascii	"C\372\333\246\265\272\034C\247V*\264\341\0112\300\250"
  229      B5BA1C43 
  229      A7562AB4 
-ARM GAS  C:\Users\Andry\AppData\Local\Temp\ccoyubWj.s 			page 18
+ARM GAS  C:\Users\Andry\AppData\Local\Temp\ccCTh0oX.s 			page 18
 
 
  229      E10932C0 
@@ -1078,7 +1078,7 @@ ARM GAS  C:\Users\Andry\AppData\Local\Temp\ccoyubWj.s 			page 1
  240      2EF6B8EF 
  241 01e8 F58ACF59 		.ascii	"\365\212\317Y\314\316`6\213:\325r\344\354\313\255\376"
  241      CCCE6036 
-ARM GAS  C:\Users\Andry\AppData\Local\Temp\ccoyubWj.s 			page 19
+ARM GAS  C:\Users\Andry\AppData\Local\Temp\ccCTh0oX.s 			page 19
 
 
  241      8B3AD572 
@@ -1138,7 +1138,7 @@ ARM GAS  C:\Users\Andry\AppData\Local\Temp\ccoyubWj.s 			page 1
  252      C3E21FEB 
  252      8F
  253 02c2 AFAF3F41 		.ascii	"\257\257?A\241\030o*ty\335\003\261\362\267\003\001\373"
-ARM GAS  C:\Users\Andry\AppData\Local\Temp\ccoyubWj.s 			page 20
+ARM GAS  C:\Users\Andry\AppData\Local\Temp\ccCTh0oX.s 			page 20
 
 
  253      A1186F2A 
@@ -1175,7 +1175,7 @@ ARM GAS  C:\Users\Andry\AppData\Local\Temp\ccoyubWj.s 			page 1
  260      CA4FFD00 
  260      3ADEA126 
  261              		.text
- 262              		.section	.gnu.lto_chRegFindThreadByName.45379b44,"",%progbits
+ 262              		.section	.gnu.lto_chRegFindThreadByName.4a11063f,"",%progbits
  263 0000 789C5D53 		.ascii	"x\234]S\315k\023Q\020\177\363\346\355n\3224\251\340"
  263      CD6B1351 
  263      107FF3E6 
@@ -1198,7 +1198,7 @@ ARM GAS  C:\Users\Andry\AppData\Local\Temp\ccoyubWj.s 			page 1
  267 0048 50140B46 		.ascii	"P\024\013Fg6[5>vgg\346\375~3\277\367\261\246\020\342"
  267      67365B35 
  267      3E766767 
-ARM GAS  C:\Users\Andry\AppData\Local\Temp\ccoyubWj.s 			page 21
+ARM GAS  C:\Users\Andry\AppData\Local\Temp\ccCTh0oX.s 			page 21
 
 
  267      E6FD7E33 
@@ -1258,7 +1258,7 @@ ARM GAS  C:\Users\Andry\AppData\Local\Temp\ccoyubWj.s 			page 1
  279      D2D55795 
  279      E858BED8 
  279      A925FE2F 
-ARM GAS  C:\Users\Andry\AppData\Local\Temp\ccoyubWj.s 			page 22
+ARM GAS  C:\Users\Andry\AppData\Local\Temp\ccCTh0oX.s 			page 22
 
 
  279      043310
@@ -1318,7 +1318,7 @@ ARM GAS  C:\Users\Andry\AppData\Local\Temp\ccoyubWj.s 			page 1
  291      CDD56B0B 
  291      3E38E2CF 
  291      9690AE
-ARM GAS  C:\Users\Andry\AppData\Local\Temp\ccoyubWj.s 			page 23
+ARM GAS  C:\Users\Andry\AppData\Local\Temp\ccCTh0oX.s 			page 23
 
 
  292 0206 33AED275 		.ascii	"3\256\322u\036!\025k\364\0338\334\205\304+\222\246\246"
@@ -1341,7 +1341,7 @@ ARM GAS  C:\Users\Andry\AppData\Local\Temp\ccoyubWj.s 			page 1
  295      39FD1B
  296 024b 0ED7E70A 		.ascii	"\016\327\347\012"
  297              		.text
- 298              		.section	.gnu.lto_chRegFindThreadByPointer.45379b44,"",%progbits
+ 298              		.section	.gnu.lto_chRegFindThreadByPointer.4a11063f,"",%progbits
  299 0000 789C5D52 		.ascii	"x\234]R\317k\023Q\020\236y\263\3736&i/\236\224\034\004"
  299      CF6B1351 
  299      109E79B3 
@@ -1378,7 +1378,7 @@ ARM GAS  C:\Users\Andry\AppData\Local\Temp\ccoyubWj.s 			page 1
  306 007b C743641A 		.ascii	"\307Cd\032B^\221\343j\017\363\202\350\255+t\215p\251"
  306      425E91E3 
  306      6A0FF382 
-ARM GAS  C:\Users\Andry\AppData\Local\Temp\ccoyubWj.s 			page 24
+ARM GAS  C:\Users\Andry\AppData\Local\Temp\ccCTh0oX.s 			page 24
 
 
  306      E8AD2B74 
@@ -1438,7 +1438,7 @@ ARM GAS  C:\Users\Andry\AppData\Local\Temp\ccoyubWj.s 			page 1
  318 014e 2770D15E 		.ascii	"'p\321^lILjaabz\334\023%>y\254\243Zm\255z\371\237&\024"
  318      6C494C6A 
  318      6161627A 
-ARM GAS  C:\Users\Andry\AppData\Local\Temp\ccoyubWj.s 			page 25
+ARM GAS  C:\Users\Andry\AppData\Local\Temp\ccCTh0oX.s 			page 25
 
 
  318      DC13253E 
@@ -1493,12 +1493,12 @@ ARM GAS  C:\Users\Andry\AppData\Local\Temp\ccoyubWj.s 			page 1
  329      73C3BF01 
  329      15C7CAAB 
  330              		.text
- 331              		.section	.gnu.lto_chRegFindThreadByWorkingArea.45379b44,"",%progbits
+ 331              		.section	.gnu.lto_chRegFindThreadByWorkingArea.4a11063f,"",%progbits
  332 0000 789C5D52 		.ascii	"x\234]RKk\023Q\024>\347\236y\244!I7n\224,\004\215! "
  332      4B6B1351 
  332      143EE79E 
  332      79A42149 
-ARM GAS  C:\Users\Andry\AppData\Local\Temp\ccoyubWj.s 			page 26
+ARM GAS  C:\Users\Andry\AppData\Local\Temp\ccCTh0oX.s 			page 26
 
 
  332      376E942C 
@@ -1558,7 +1558,7 @@ ARM GAS  C:\Users\Andry\AppData\Local\Temp\ccoyubWj.s 			page 1
  344      3FEC54E6 
  344      8394F0A9 
  345 00ec 875ED6BE 		.ascii	"\207^\326\276\332\261\262\317}Q[7^\320\015m\260)^\353"
-ARM GAS  C:\Users\Andry\AppData\Local\Temp\ccoyubWj.s 			page 27
+ARM GAS  C:\Users\Andry\AppData\Local\Temp\ccCTh0oX.s 			page 27
 
 
  345      DAB1B2CF 
@@ -1618,7 +1618,7 @@ ARM GAS  C:\Users\Andry\AppData\Local\Temp\ccoyubWj.s 			page 1
  356 01b6 2B6ABC64 		.ascii	"+j\274d\366l'WmC\375\266\001G\222\341\255U\333\001\261"
  356      F66C2757 
  356      6D43FDB6 
-ARM GAS  C:\Users\Andry\AppData\Local\Temp\ccoyubWj.s 			page 28
+ARM GAS  C:\Users\Andry\AppData\Local\Temp\ccCTh0oX.s 			page 28
 
 
  356      014792E1 
@@ -1652,7 +1652,7 @@ ARM GAS  C:\Users\Andry\AppData\Local\Temp\ccoyubWj.s 			page 1
  362      DEDFD06C 
  362      D6D5
  363              		.text
- 364              		.section	.gnu.lto_ch_debug.45379b44,"",%progbits
+ 364              		.section	.gnu.lto_ch_debug.4a11063f,"",%progbits
  365 0000 789C2D8E 		.ascii	"x\234-\216]K\002Q\020\206\317\354qM\333\365#\210\350"
  365      5D4B0251 
  365      1086CFEC 
@@ -1678,7 +1678,7 @@ ARM GAS  C:\Users\Andry\AppData\Local\Temp\ccoyubWj.s 			page 1
  369      53E2256A 
  369      2C6AC514 
  369      D639D4C8 
-ARM GAS  C:\Users\Andry\AppData\Local\Temp\ccoyubWj.s 			page 29
+ARM GAS  C:\Users\Andry\AppData\Local\Temp\ccCTh0oX.s 			page 29
 
 
  370 0067 B3CEA27E 		.ascii	"\263\316\242~\324\223-/\353\014j\256\330\015\260\031"
@@ -1738,7 +1738,7 @@ ARM GAS  C:\Users\Andry\AppData\Local\Temp\ccoyubWj.s 			page 1
  381      12C6E098 
  381      E08202C1 
  382 0136 0D478471 		.ascii	"\015G\204q\310\0234\310\021t\260\010\036\310\022\274"
-ARM GAS  C:\Users\Andry\AppData\Local\Temp\ccoyubWj.s 			page 30
+ARM GAS  C:\Users\Andry\AppData\Local\Temp\ccCTh0oX.s 			page 30
 
 
  382      C81334C8 
@@ -1750,7 +1750,7 @@ ARM GAS  C:\Users\Andry\AppData\Local\Temp\ccoyubWj.s 			page 1
  383      84A0F807 
  384 0156 62CF99A8 		.ascii	"b\317\231\250"
  385              		.text
- 386              		.section	.gnu.lto_.symbol_nodes.45379b44,"",%progbits
+ 386              		.section	.gnu.lto_.symbol_nodes.4a11063f,"",%progbits
  387 0000 789C5D8D 		.ascii	"x\234]\215AN\3030\020E\377\214\343\020\223\204\266p"
  387      414EC330 
  387      1045FF8C 
@@ -1798,7 +1798,7 @@ ARM GAS  C:\Users\Andry\AppData\Local\Temp\ccoyubWj.s 			page 1
  396      02E8BE7F 
  396      C91423F4 
  396      21ED2476 
-ARM GAS  C:\Users\Andry\AppData\Local\Temp\ccoyubWj.s 			page 31
+ARM GAS  C:\Users\Andry\AppData\Local\Temp\ccCTh0oX.s 			page 31
 
 
  396      3B46
@@ -1820,7 +1820,7 @@ ARM GAS  C:\Users\Andry\AppData\Local\Temp\ccoyubWj.s 			page 1
  400      03ECF383 
  400      BB
  401              		.text
- 402              		.section	.gnu.lto_.refs.45379b44,"",%progbits
+ 402              		.section	.gnu.lto_.refs.4a11063f,"",%progbits
  403 0000 789C15C8 		.ascii	"x\234\025\310\261\001\000 \010\004\261\363\225G\\\302"
  403      B1010020 
  403      0804B1F3 
@@ -1833,7 +1833,7 @@ ARM GAS  C:\Users\Andry\AppData\Local\Temp\ccoyubWj.s 			page 1
  405 0022 4B27790C 		.ascii	"K'y\014\331\000\245"
  405      D900A5
  406              		.text
- 407              		.section	.gnu.lto_.decls.45379b44,"",%progbits
+ 407              		.section	.gnu.lto_.decls.4a11063f,"",%progbits
  408 0000 789CBD7C 		.ascii	"x\234\275|\011TTY\232f\334\270/\002\0106S\355:\236>"
  408      09545459 
  408      9A66DCB8 
@@ -1858,7 +1858,7 @@ ARM GAS  C:\Users\Andry\AppData\Local\Temp\ccoyubWj.s 			page 1
  412      F645C115 
  412      4470614B 
  412      98FF2E2F 
-ARM GAS  C:\Users\Andry\AppData\Local\Temp\ccoyubWj.s 			page 32
+ARM GAS  C:\Users\Andry\AppData\Local\Temp\ccCTh0oX.s 			page 32
 
 
  413 0067 73CE996E 		.ascii	"s\316\231nN\376\276w\337\373\357\377\177\377r\367\027"
@@ -1918,7 +1918,7 @@ ARM GAS  C:\Users\Andry\AppData\Local\Temp\ccoyubWj.s 			page 1
  424      E0FA7F80 
  424      7601E9E0 
  424      DD2D25C3 
-ARM GAS  C:\Users\Andry\AppData\Local\Temp\ccoyubWj.s 			page 33
+ARM GAS  C:\Users\Andry\AppData\Local\Temp\ccCTh0oX.s 			page 33
 
 
  424      D3
@@ -1978,7 +1978,7 @@ ARM GAS  C:\Users\Andry\AppData\Local\Temp\ccoyubWj.s 			page 1
  435      7BC24A76 
  435      B08AB54B 
  436 021d 37817E88 		.ascii	"7\201~\210\230\216\223\300wI\311t\346\301\365<P\005"
-ARM GAS  C:\Users\Andry\AppData\Local\Temp\ccoyubWj.s 			page 34
+ARM GAS  C:\Users\Andry\AppData\Local\Temp\ccCTh0oX.s 			page 34
 
 
  436      988E93C0 
@@ -2038,7 +2038,7 @@ ARM GAS  C:\Users\Andry\AppData\Local\Temp\ccoyubWj.s 			page 1
  447      549B8E92 
  447      7A87424D 
  447      EB94
-ARM GAS  C:\Users\Andry\AppData\Local\Temp\ccoyubWj.s 			page 35
+ARM GAS  C:\Users\Andry\AppData\Local\Temp\ccCTh0oX.s 			page 35
 
 
  448 02f4 E80FDF43 		.ascii	"\350\017\337C\347\321fT\211 \005P\025\332\004\377\006"
@@ -2098,7 +2098,7 @@ ARM GAS  C:\Users\Andry\AppData\Local\Temp\ccoyubWj.s 			page 1
  460 03bf 869A9C3E 		.ascii	"\206\232\234>V\240Zp\335%p\035jD\236\244\022\261\002"
  460      56A05A70 
  460      DD25701D 
-ARM GAS  C:\Users\Andry\AppData\Local\Temp\ccoyubWj.s 			page 36
+ARM GAS  C:\Users\Andry\AppData\Local\Temp\ccCTh0oX.s 			page 36
 
 
  460      6A449EA4 
@@ -2158,7 +2158,7 @@ ARM GAS  C:\Users\Andry\AppData\Local\Temp\ccoyubWj.s 			page 1
  471      ED88CB
  472 049f 186F7545 		.ascii	"\030ouEM\003\007\271\015\212\241w\323F\335\360\005\366"
  472      4D0307B9 
-ARM GAS  C:\Users\Andry\AppData\Local\Temp\ccoyubWj.s 			page 37
+ARM GAS  C:\Users\Andry\AppData\Local\Temp\ccCTh0oX.s 			page 37
 
 
  472      0D8AA177 
@@ -2218,7 +2218,7 @@ ARM GAS  C:\Users\Andry\AppData\Local\Temp\ccoyubWj.s 			page 1
  483      92EE627E 
  483      BA4CC0B9 
  484 057b 4CC7D9F8 		.ascii	"L\307\331\370\245$7IG\333;\347h\262\317\202\216\247"
-ARM GAS  C:\Users\Andry\AppData\Local\Temp\ccoyubWj.s 			page 38
+ARM GAS  C:\Users\Andry\AppData\Local\Temp\ccCTh0oX.s 			page 38
 
 
  484      A5243749 
@@ -2278,7 +2278,7 @@ ARM GAS  C:\Users\Andry\AppData\Local\Temp\ccoyubWj.s 			page 1
  495      6C09DF4F 
  495      027A40A9 
  496 0652 FB946683 		.ascii	"\373\224f\2036s{`\240\3106\341M\012\364\356f\264\015"
-ARM GAS  C:\Users\Andry\AppData\Local\Temp\ccoyubWj.s 			page 39
+ARM GAS  C:\Users\Andry\AppData\Local\Temp\ccCTh0oX.s 			page 39
 
 
  496      36737B60 
@@ -2338,7 +2338,7 @@ ARM GAS  C:\Users\Andry\AppData\Local\Temp\ccoyubWj.s 			page 1
  507      067D234B 
  507      1A4F9634 
  507      A987C7
-ARM GAS  C:\Users\Andry\AppData\Local\Temp\ccoyubWj.s 			page 40
+ARM GAS  C:\Users\Andry\AppData\Local\Temp\ccCTh0oX.s 			page 40
 
 
  508 0729 129DF015 		.ascii	"\022\235\360\025\006+\371y\331\242y\334*\0155\275\026"
@@ -2398,7 +2398,7 @@ ARM GAS  C:\Users\Andry\AppData\Local\Temp\ccoyubWj.s 			page 1
  519      531BE79D 
  519      349CFBC0 
  520 0806 ABB847E7 		.ascii	"\253\270G\347V\352]\344F\025X\030Uh6\352r[h\2763NfF"
-ARM GAS  C:\Users\Andry\AppData\Local\Temp\ccoyubWj.s 			page 41
+ARM GAS  C:\Users\Andry\AppData\Local\Temp\ccCTh0oX.s 			page 41
 
 
  520      56EA5DE4 
@@ -2458,7 +2458,7 @@ ARM GAS  C:\Users\Andry\AppData\Local\Temp\ccoyubWj.s 			page 1
  531      8F2C626D 
  531      EDB57B7F 
  531      77E4EA3E 
-ARM GAS  C:\Users\Andry\AppData\Local\Temp\ccoyubWj.s 			page 42
+ARM GAS  C:\Users\Andry\AppData\Local\Temp\ccCTh0oX.s 			page 42
 
 
  531      D3212F6A 
@@ -2518,7 +2518,7 @@ ARM GAS  C:\Users\Andry\AppData\Local\Temp\ccoyubWj.s 			page 1
  543      A8147476 
  543      D84E116E 
  543      6C3E33B6 
-ARM GAS  C:\Users\Andry\AppData\Local\Temp\ccoyubWj.s 			page 43
+ARM GAS  C:\Users\Andry\AppData\Local\Temp\ccCTh0oX.s 			page 43
 
 
  543      C3D2
@@ -2578,7 +2578,7 @@ ARM GAS  C:\Users\Andry\AppData\Local\Temp\ccoyubWj.s 			page 1
  555 0a8f B41F681F 		.ascii	"\264\037h\037\320,\244\352\023\240)\240I\240A\240\001"
  555      D02CA4EA 
  555      13A029A0 
-ARM GAS  C:\Users\Andry\AppData\Local\Temp\ccoyubWj.s 			page 44
+ARM GAS  C:\Users\Andry\AppData\Local\Temp\ccCTh0oX.s 			page 44
 
 
  555      49A041A0 
@@ -2638,7 +2638,7 @@ ARM GAS  C:\Users\Andry\AppData\Local\Temp\ccoyubWj.s 			page 1
  567      5937B6CC 
  567      BBB17B96 
  567      DD187B79 
-ARM GAS  C:\Users\Andry\AppData\Local\Temp\ccoyubWj.s 			page 45
+ARM GAS  C:\Users\Andry\AppData\Local\Temp\ccCTh0oX.s 			page 45
 
 
  567      2D459597 
@@ -2698,7 +2698,7 @@ ARM GAS  C:\Users\Andry\AppData\Local\Temp\ccoyubWj.s 			page 1
  579      3F0F6FE7 
  579      48FD9720 
  579      709E4764 
-ARM GAS  C:\Users\Andry\AppData\Local\Temp\ccoyubWj.s 			page 46
+ARM GAS  C:\Users\Andry\AppData\Local\Temp\ccCTh0oX.s 			page 46
 
 
  580 0c50 22B20896 		.ascii	"\"\262\010\226-H\226\021\307g\250\236\314\3347\231\342"
@@ -2758,7 +2758,7 @@ ARM GAS  C:\Users\Andry\AppData\Local\Temp\ccoyubWj.s 			page 1
  591      92F5CC61 
  591      F54A64E1 
  591      C7CC7C58 
-ARM GAS  C:\Users\Andry\AppData\Local\Temp\ccoyubWj.s 			page 47
+ARM GAS  C:\Users\Andry\AppData\Local\Temp\ccCTh0oX.s 			page 47
 
 
  591      16A213B6 
@@ -2818,7 +2818,7 @@ ARM GAS  C:\Users\Andry\AppData\Local\Temp\ccoyubWj.s 			page 1
  603 0df5 A96007BC 		.ascii	"\251`\007\274\314\340\234ol8+\210\347dM\252\251\250"
  603      CCE09C6F 
  603      6C382B88 
-ARM GAS  C:\Users\Andry\AppData\Local\Temp\ccoyubWj.s 			page 48
+ARM GAS  C:\Users\Andry\AppData\Local\Temp\ccCTh0oX.s 			page 48
 
 
  603      E7644DAA 
@@ -2878,7 +2878,7 @@ ARM GAS  C:\Users\Andry\AppData\Local\Temp\ccoyubWj.s 			page 1
  615 0ecd 121971E9 		.ascii	"\022\031q\351\221;\216s\246X\226o\037JRsI\017\177ja"
  615      913B8E73 
  615      A658966F 
-ARM GAS  C:\Users\Andry\AppData\Local\Temp\ccoyubWj.s 			page 49
+ARM GAS  C:\Users\Andry\AppData\Local\Temp\ccCTh0oX.s 			page 49
 
 
  615      1F4A5273 
@@ -2938,7 +2938,7 @@ ARM GAS  C:\Users\Andry\AppData\Local\Temp\ccoyubWj.s 			page 1
  627      AE0995D4 
  627      840AD1
  628 0faf 84E30B43 		.ascii	"\204\343\013C\207T\034A\177\201j\356\032E\000L\250\\"
-ARM GAS  C:\Users\Andry\AppData\Local\Temp\ccoyubWj.s 			page 50
+ARM GAS  C:\Users\Andry\AppData\Local\Temp\ccCTh0oX.s 			page 50
 
 
  628      87541C41 
@@ -2998,7 +2998,7 @@ ARM GAS  C:\Users\Andry\AppData\Local\Temp\ccoyubWj.s 			page 1
  640      75FEDD40 
  640      ED017A30 
  640      BC74FE
-ARM GAS  C:\Users\Andry\AppData\Local\Temp\ccoyubWj.s 			page 51
+ARM GAS  C:\Users\Andry\AppData\Local\Temp\ccCTh0oX.s 			page 51
 
 
  641 108a 1CDF2635 		.ascii	"\034\337&5\021\206\2663)Q|w\250\226\034$\037\235h\233"
@@ -3058,7 +3058,7 @@ ARM GAS  C:\Users\Andry\AppData\Local\Temp\ccoyubWj.s 			page 1
  652      D1467670 
  652      F464F966 
  652      950B4EA1 
-ARM GAS  C:\Users\Andry\AppData\Local\Temp\ccoyubWj.s 			page 52
+ARM GAS  C:\Users\Andry\AppData\Local\Temp\ccCTh0oX.s 			page 52
 
 
  652      1070FC93 
@@ -3118,7 +3118,7 @@ ARM GAS  C:\Users\Andry\AppData\Local\Temp\ccoyubWj.s 			page 1
  664      E77B6253 
  664      349BF1F2 
  664      6969A186 
-ARM GAS  C:\Users\Andry\AppData\Local\Temp\ccoyubWj.s 			page 53
+ARM GAS  C:\Users\Andry\AppData\Local\Temp\ccCTh0oX.s 			page 53
 
 
  664      2C3F8049 
@@ -3178,7 +3178,7 @@ ARM GAS  C:\Users\Andry\AppData\Local\Temp\ccoyubWj.s 			page 1
  676      471E671B 
  676      4798C036 
  676      632200
-ARM GAS  C:\Users\Andry\AppData\Local\Temp\ccoyubWj.s 			page 54
+ARM GAS  C:\Users\Andry\AppData\Local\Temp\ccCTh0oX.s 			page 54
 
 
  677 1311 C77EC071 		.ascii	"\307~\300q\000h\037P\270 \337\242\030*rck#\222}S`,\251"
@@ -3238,7 +3238,7 @@ ARM GAS  C:\Users\Andry\AppData\Local\Temp\ccoyubWj.s 			page 1
  688      4C674F06 
  688      ACCE894F 
  689 13eb 1440A35C 		.ascii	"\024@\243\\\351\010\300\034\306\2268\337\345-?g\260"
-ARM GAS  C:\Users\Andry\AppData\Local\Temp\ccoyubWj.s 			page 55
+ARM GAS  C:\Users\Andry\AppData\Local\Temp\ccCTh0oX.s 			page 55
 
 
  689      E908C01C 
@@ -3298,7 +3298,7 @@ ARM GAS  C:\Users\Andry\AppData\Local\Temp\ccoyubWj.s 			page 1
  700 14c2 DE2C9F12 		.ascii	"\336,\237\0224\3227Rtvg\366c\026\021H\342~\\\240#\366"
  700      34D23752 
  700      747667F6 
-ARM GAS  C:\Users\Andry\AppData\Local\Temp\ccoyubWj.s 			page 56
+ARM GAS  C:\Users\Andry\AppData\Local\Temp\ccCTh0oX.s 			page 56
 
 
  700      63161148 
@@ -3358,7 +3358,7 @@ ARM GAS  C:\Users\Andry\AppData\Local\Temp\ccoyubWj.s 			page 1
  711      E16AD66D 
  711      B9
  712 15a8 2917160A 		.ascii	")\027\026\012:\356o\312\241n\276\211]P7\347\267;<\264"
-ARM GAS  C:\Users\Andry\AppData\Local\Temp\ccoyubWj.s 			page 57
+ARM GAS  C:\Users\Andry\AppData\Local\Temp\ccCTh0oX.s 			page 57
 
 
  712      3AEE6FCA 
@@ -3418,7 +3418,7 @@ ARM GAS  C:\Users\Andry\AppData\Local\Temp\ccoyubWj.s 			page 1
  723      DA918E
  724 1681 2E808B2C 		.ascii	".\200\213,\024\324\226U\235u\301\367\230eO\227\322*"
  724      14D49655 
-ARM GAS  C:\Users\Andry\AppData\Local\Temp\ccoyubWj.s 			page 58
+ARM GAS  C:\Users\Andry\AppData\Local\Temp\ccCTh0oX.s 			page 58
 
 
  724      9D75C1F7 
@@ -3478,7 +3478,7 @@ ARM GAS  C:\Users\Andry\AppData\Local\Temp\ccoyubWj.s 			page 1
  736 1754 A22535CE 		.ascii	"\242%5\316\246\005uR\342@\217#D\236|Kb{V\321\016j:\271"
  736      A6057552 
  736      E2408F23 
-ARM GAS  C:\Users\Andry\AppData\Local\Temp\ccoyubWj.s 			page 59
+ARM GAS  C:\Users\Andry\AppData\Local\Temp\ccCTh0oX.s 			page 59
 
 
  736      449E7C4B 
@@ -3538,7 +3538,7 @@ ARM GAS  C:\Users\Andry\AppData\Local\Temp\ccoyubWj.s 			page 1
  748      5F838215 
  748      B7E5C91A 
  748      607F3168 
-ARM GAS  C:\Users\Andry\AppData\Local\Temp\ccoyubWj.s 			page 60
+ARM GAS  C:\Users\Andry\AppData\Local\Temp\ccCTh0oX.s 			page 60
 
 
  748      75F8
@@ -3598,7 +3598,7 @@ ARM GAS  C:\Users\Andry\AppData\Local\Temp\ccoyubWj.s 			page 1
  760      D0B36BA8 
  761 1916 3923417F 		.ascii	"9#A\177\"\265\347U\237\233\314\002J[\210\023\260Ct\330"
  761      22B5E755 
-ARM GAS  C:\Users\Andry\AppData\Local\Temp\ccoyubWj.s 			page 61
+ARM GAS  C:\Users\Andry\AppData\Local\Temp\ccCTh0oX.s 			page 61
 
 
  761      9F9BCC02 
@@ -3658,7 +3658,7 @@ ARM GAS  C:\Users\Andry\AppData\Local\Temp\ccoyubWj.s 			page 1
  772      6B7274D0 
  773 19f7 769EFF4E 		.ascii	"v\236\377N\307\231,0\013/\226\253\354.\033\203U|\331"
  773      C7992C30 
-ARM GAS  C:\Users\Andry\AppData\Local\Temp\ccoyubWj.s 			page 62
+ARM GAS  C:\Users\Andry\AppData\Local\Temp\ccCTh0oX.s 			page 62
 
 
  773      0B2F96AB 
@@ -3718,7 +3718,7 @@ ARM GAS  C:\Users\Andry\AppData\Local\Temp\ccoyubWj.s 			page 1
  784      CE
  785 1acf 06AB25E1 		.ascii	"\006\253%\341\007\341I4\261:\206Z]\377\250)L\215#\326"
  785      07E14934 
-ARM GAS  C:\Users\Andry\AppData\Local\Temp\ccoyubWj.s 			page 63
+ARM GAS  C:\Users\Andry\AppData\Local\Temp\ccCTh0oX.s 			page 63
 
 
  785      B13A865A 
@@ -3778,7 +3778,7 @@ ARM GAS  C:\Users\Andry\AppData\Local\Temp\ccoyubWj.s 			page 1
  796      4E4D70B4 
  796      CE0689
  797 1ba8 FD248DEF 		.ascii	"\375$\215\357\0111\276-\275\305Q\356\370\024U\2641}"
-ARM GAS  C:\Users\Andry\AppData\Local\Temp\ccoyubWj.s 			page 64
+ARM GAS  C:\Users\Andry\AppData\Local\Temp\ccCTh0oX.s 			page 64
 
 
  797      0931BE2D 
@@ -3838,7 +3838,7 @@ ARM GAS  C:\Users\Andry\AppData\Local\Temp\ccoyubWj.s 			page 1
  808      A7CD327C 
  808      89B6F0C9 
  809 1c84 F7C625B1 		.ascii	"\367\306%\261\331\252\325b\255\277fV*\320a\325ftHEw"
-ARM GAS  C:\Users\Andry\AppData\Local\Temp\ccoyubWj.s 			page 65
+ARM GAS  C:\Users\Andry\AppData\Local\Temp\ccCTh0oX.s 			page 65
 
 
  809      D9AAD562 
@@ -3898,7 +3898,7 @@ ARM GAS  C:\Users\Andry\AppData\Local\Temp\ccoyubWj.s 			page 1
  820      852AAEA7 
  820      BD359541 
  820      0B646E30 
-ARM GAS  C:\Users\Andry\AppData\Local\Temp\ccoyubWj.s 			page 66
+ARM GAS  C:\Users\Andry\AppData\Local\Temp\ccCTh0oX.s 			page 66
 
 
  820      3D13AFB6 
@@ -3958,7 +3958,7 @@ ARM GAS  C:\Users\Andry\AppData\Local\Temp\ccoyubWj.s 			page 1
  832      6A8129F3 
  832      7530877E 
  832      87491315 
-ARM GAS  C:\Users\Andry\AppData\Local\Temp\ccoyubWj.s 			page 67
+ARM GAS  C:\Users\Andry\AppData\Local\Temp\ccCTh0oX.s 			page 67
 
 
  832      DD50FD
@@ -4018,7 +4018,7 @@ ARM GAS  C:\Users\Andry\AppData\Local\Temp\ccoyubWj.s 			page 1
  844      240E7389 
  844      C354E2B9 
  844      73C3EFCB 
-ARM GAS  C:\Users\Andry\AppData\Local\Temp\ccoyubWj.s 			page 68
+ARM GAS  C:\Users\Andry\AppData\Local\Temp\ccCTh0oX.s 			page 68
 
 
  844      7913
@@ -4078,7 +4078,7 @@ ARM GAS  C:\Users\Andry\AppData\Local\Temp\ccoyubWj.s 			page 1
  856      973AE3BF 
  856      04EABF
  857 1ff4 F00DD8F5 		.ascii	"\360\015\330\365\013\275\316\3533G\370\307"
-ARM GAS  C:\Users\Andry\AppData\Local\Temp\ccoyubWj.s 			page 69
+ARM GAS  C:\Users\Andry\AppData\Local\Temp\ccCTh0oX.s 			page 69
 
 
  857      0BBDCEEB 
@@ -4138,7 +4138,7 @@ ARM GAS  C:\Users\Andry\AppData\Local\Temp\ccoyubWj.s 			page 1
  869 20c0 4C2140F7 		.ascii	"L!@\367\225Q\025\2707@\247W\375)H\027\244[\347\275["
  869      955115B8 
  869      3740A757 
-ARM GAS  C:\Users\Andry\AppData\Local\Temp\ccoyubWj.s 			page 70
+ARM GAS  C:\Users\Andry\AppData\Local\Temp\ccCTh0oX.s 			page 70
 
 
  869      FD294817 
@@ -4198,7 +4198,7 @@ ARM GAS  C:\Users\Andry\AppData\Local\Temp\ccoyubWj.s 			page 1
  880      F7
  881 219d DF03DBC5 		.ascii	"\337\003\333\305\033\215\301\370\205\227\237\357\256"
  881      1B8DC1F8 
-ARM GAS  C:\Users\Andry\AppData\Local\Temp\ccoyubWj.s 			page 71
+ARM GAS  C:\Users\Andry\AppData\Local\Temp\ccCTh0oX.s 			page 71
 
 
  881      85979FEF 
@@ -4258,7 +4258,7 @@ ARM GAS  C:\Users\Andry\AppData\Local\Temp\ccoyubWj.s 			page 1
  893      AB3770B5 
  893      36DC67DD 
  893      772ADC
-ARM GAS  C:\Users\Andry\AppData\Local\Temp\ccoyubWj.s 			page 72
+ARM GAS  C:\Users\Andry\AppData\Local\Temp\ccCTh0oX.s 			page 72
 
 
  894 2272 69A5DF40 		.ascii	"i\245\337@(X\235\277\340B\002|X\371\357\277&\3407\255"
@@ -4318,7 +4318,7 @@ ARM GAS  C:\Users\Andry\AppData\Local\Temp\ccoyubWj.s 			page 1
  905      4A5AF26E 
  905      70AB1A70 
  905      19020330 
-ARM GAS  C:\Users\Andry\AppData\Local\Temp\ccoyubWj.s 			page 73
+ARM GAS  C:\Users\Andry\AppData\Local\Temp\ccCTh0oX.s 			page 73
 
 
  905      80511A
@@ -4378,7 +4378,7 @@ ARM GAS  C:\Users\Andry\AppData\Local\Temp\ccoyubWj.s 			page 1
  917      EA476740 
  917      465215C6 
  917      20A323B9 
-ARM GAS  C:\Users\Andry\AppData\Local\Temp\ccoyubWj.s 			page 74
+ARM GAS  C:\Users\Andry\AppData\Local\Temp\ccCTh0oX.s 			page 74
 
 
  918 2420 A72304B9 		.ascii	"\247#\004\271\241c\001\275\243\003\200\013\273\373\302"
@@ -4425,7 +4425,7 @@ ARM GAS  C:\Users\Andry\AppData\Local\Temp\ccoyubWj.s 			page 1
  928 24b9 FF1799D3 		.ascii	"\377\027\231\323q\263"
  928      71B3
  929              		.text
- 930              		.section	.gnu.lto_.symtab.45379b44,"",%progbits
+ 930              		.section	.gnu.lto_.symtab.4a11063f,"",%progbits
  931 0000 63685265 		.ascii	"chRegFirstThread\000"
  931      67466972 
  931      73745468 
@@ -4438,7 +4438,7 @@ ARM GAS  C:\Users\Andry\AppData\Local\Temp\ccoyubWj.s 			page 1
  935      00000000 
  936 001c 9F010000 		.ascii	"\237\001\000\000"
  937 0020 63685265 		.ascii	"chRegNextThread\000"
-ARM GAS  C:\Users\Andry\AppData\Local\Temp\ccoyubWj.s 			page 75
+ARM GAS  C:\Users\Andry\AppData\Local\Temp\ccCTh0oX.s 			page 75
 
 
  937      674E6578 
@@ -4498,7 +4498,7 @@ ARM GAS  C:\Users\Andry\AppData\Local\Temp\ccoyubWj.s 			page 1
  970 00d5 00       		.ascii	"\000"
  971 00d6 00000000 		.ascii	"\000\000\000\000\000\000\000\000"
  971      00000000 
-ARM GAS  C:\Users\Andry\AppData\Local\Temp\ccoyubWj.s 			page 76
+ARM GAS  C:\Users\Andry\AppData\Local\Temp\ccCTh0oX.s 			page 76
 
 
  972 00de 7F020000 		.ascii	"\177\002\000\000"
@@ -4558,7 +4558,7 @@ ARM GAS  C:\Users\Andry\AppData\Local\Temp\ccoyubWj.s 			page 1
  1001      6F70656E 
  1001      61636327 
  1001      20272D6D 
-ARM GAS  C:\Users\Andry\AppData\Local\Temp\ccoyubWj.s 			page 77
+ARM GAS  C:\Users\Andry\AppData\Local\Temp\ccCTh0oX.s 			page 77
 
 
  1001      6370753D 
@@ -4581,7 +4581,7 @@ ARM GAS  C:\Users\Andry\AppData\Local\Temp\ccoyubWj.s 			page 1
  1006              		.comm	__gnu_lto_v1,1,1
  1007              		.comm	__gnu_lto_slim,1,1
  1008              		.ident	"GCC: (GNU Tools for Arm Embedded Processors 7-2017-q4-major) 7.2.1 20170904 (release) [ARM
-ARM GAS  C:\Users\Andry\AppData\Local\Temp\ccoyubWj.s 			page 78
+ARM GAS  C:\Users\Andry\AppData\Local\Temp\ccCTh0oX.s 			page 78
 
 
 DEFINED SYMBOLS

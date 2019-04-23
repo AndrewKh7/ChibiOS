@@ -59,7 +59,7 @@ Reset_Handler:
 
                 /* Early initialization.*/
                 bl      __early_init
-  200228:	f004 faaa 	bl	204780 <__early_init>
+  200228:	f004 fada 	bl	2047e0 <__early_init>
 
 #if CRT0_INIT_STACKS == TRUE
                 ldr     r0, =CRT0_STACKS_FILL_PATTERN
@@ -185,7 +185,7 @@ endinitloop:
 
                 /* Main program invocation, r0 contains the returned value.*/
                 bl      main
-  200288:	f004 fad2 	bl	204830 <main>
+  200288:	f004 fb02 	bl	204890 <main>
 
 #if CRT0_CALL_DESTRUCTORS == TRUE
                 /* Destructors invocation.*/
@@ -225,7 +225,7 @@ endfiniloop:
                 ldr     r1, =__process_stack_base__
   2002b0:	20000400 	.word	0x20000400
                 ldr     r1, =_textdata_start
-  2002b4:	08004ee4 	.word	0x08004ee4
+  2002b4:	08004f54 	.word	0x08004f54
                 ldr     r2, =_data_start
   2002b8:	20010000 	.word	0x20010000
                 ldr     r3, =_data_end
@@ -233,7 +233,7 @@ endfiniloop:
                 ldr     r1, =_bss_start
   2002c0:	20000800 	.word	0x20000800
                 ldr     r2, =_bss_end
-  2002c4:	2000125c 	.word	0x2000125c
+  2002c4:	20001278 	.word	0x20001278
                 ldr     r4, =__init_array_start
   2002c8:	00200200 	.word	0x00200200
                 ldr     r5, =__init_array_end
@@ -576,8 +576,8 @@ void __init_ram_areas(void) {
 }
   200448:	b004      	add	sp, #16
   20044a:	4770      	bx	lr
-  20044c:	08004940 	.word	0x08004940
-  200450:	080049c0 	.word	0x080049c0
+  20044c:	080049a4 	.word	0x080049a4
+  200450:	08004a24 	.word	0x08004a24
 	...
 
 00200460 <BusFault_Handler>:
@@ -853,14 +853,14 @@ static inline void port_wait_for_interrupt(void) {
   2005d2:	bf00      	nop
 	...
 
-002005e0 <st_lld_get_counter.lto_priv.185>:
+002005e0 <st_lld_get_counter.lto_priv.192>:
  *
  * @notapi
  */
 static inline systime_t st_lld_get_counter(void) {
 
   return (systime_t)STM32_ST_TIM->CNT;
-  2005e0:	4b01      	ldr	r3, [pc, #4]	; (2005e8 <st_lld_get_counter.lto_priv.185+0x8>)
+  2005e0:	4b01      	ldr	r3, [pc, #4]	; (2005e8 <st_lld_get_counter.lto_priv.192+0x8>)
   2005e2:	6a5b      	ldr	r3, [r3, #36]	; 0x24
 }
   2005e4:	4618      	mov	r0, r3
@@ -868,7 +868,7 @@ static inline systime_t st_lld_get_counter(void) {
   2005e8:	40000c00 	.word	0x40000c00
   2005ec:	00000000 	.word	0x00000000
 
-002005f0 <port_timer_stop_alarm.lto_priv.253>:
+002005f0 <port_timer_stop_alarm.lto_priv.260>:
 /**
  * @brief   Stops the alarm interrupt.
  *
@@ -883,7 +883,7 @@ static inline void port_timer_stop_alarm(void) {
   2005f6:	bd08      	pop	{r3, pc}
 	...
 
-00200600 <port_timer_set_alarm.lto_priv.251>:
+00200600 <port_timer_set_alarm.lto_priv.258>:
  *
  * @param[in] time      the time to be set for the next alarm
  *
@@ -903,7 +903,7 @@ static inline void port_timer_set_alarm(systime_t time) {
   200612:	bf00      	nop
 	...
 
-00200620 <port_timer_get_time.lto_priv.180>:
+00200620 <port_timer_get_time.lto_priv.187>:
  *
  * @return              The system time.
  *
@@ -913,7 +913,7 @@ static inline systime_t port_timer_get_time(void) {
   200620:	b508      	push	{r3, lr}
 
   return stGetCounter();
-  200622:	f7ff ffdd 	bl	2005e0 <st_lld_get_counter.lto_priv.185>
+  200622:	f7ff ffdd 	bl	2005e0 <st_lld_get_counter.lto_priv.192>
   200626:	4603      	mov	r3, r0
 }
   200628:	4618      	mov	r0, r3
@@ -977,7 +977,7 @@ static inline void chSysUnlockFromISR(void) {
   20065c:	0000      	movs	r0, r0
 	...
 
-00200660 <chVTGetSystemTimeX.lto_priv.167>:
+00200660 <chVTGetSystemTimeX.lto_priv.174>:
  *
  * @return              The system time in ticks.
  *
@@ -990,7 +990,7 @@ static inline systime_t chVTGetSystemTimeX(void) {
   return ch.vtlist.systime;
 #else /* CH_CFG_ST_TIMEDELTA > 0 */
   return port_timer_get_time();
-  200662:	f7ff ffdd 	bl	200620 <port_timer_get_time.lto_priv.180>
+  200662:	f7ff ffdd 	bl	200620 <port_timer_get_time.lto_priv.187>
   200666:	4603      	mov	r3, r0
 #endif /* CH_CFG_ST_TIMEDELTA > 0 */
 }
@@ -1021,7 +1021,7 @@ static inline void chVTDoTickI(void) {
   20067a:	69db      	ldr	r3, [r3, #28]
   20067c:	9303      	str	r3, [sp, #12]
   now = chVTGetSystemTimeX();
-  20067e:	f7ff ffef 	bl	200660 <chVTGetSystemTimeX.lto_priv.167>
+  20067e:	f7ff ffef 	bl	200660 <chVTGetSystemTimeX.lto_priv.174>
   200682:	9002      	str	r0, [sp, #8]
   200684:	e02a      	b.n	2006dc <chVTDoTickI+0x6c>
      all deltas.*/
@@ -1065,7 +1065,7 @@ static inline void chVTDoTickI(void) {
   2006b6:	4293      	cmp	r3, r2
   2006b8:	d101      	bne.n	2006be <chVTDoTickI+0x4e>
       port_timer_stop_alarm();
-  2006ba:	f7ff ff99 	bl	2005f0 <port_timer_stop_alarm.lto_priv.253>
+  2006ba:	f7ff ff99 	bl	2005f0 <port_timer_stop_alarm.lto_priv.260>
     }
 
     /* Leaving the system critical zone in order to execute the callback
@@ -1094,7 +1094,7 @@ static inline void chVTDoTickI(void) {
   2006d2:	69db      	ldr	r3, [r3, #28]
   2006d4:	9303      	str	r3, [sp, #12]
     now = chVTGetSystemTimeX();
-  2006d6:	f7ff ffc3 	bl	200660 <chVTGetSystemTimeX.lto_priv.167>
+  2006d6:	f7ff ffc3 	bl	200660 <chVTGetSystemTimeX.lto_priv.174>
   2006da:	9002      	str	r0, [sp, #8]
   while (vtp->delta <= (systime_t)(now - ch.vtlist.lasttime)) {
   2006dc:	9b03      	ldr	r3, [sp, #12]
@@ -1140,10 +1140,10 @@ static inline void chVTDoTickI(void) {
   200712:	9b01      	ldr	r3, [sp, #4]
   200714:	4413      	add	r3, r2
   200716:	4618      	mov	r0, r3
-  200718:	f7ff ff72 	bl	200600 <port_timer_set_alarm.lto_priv.251>
+  200718:	f7ff ff72 	bl	200600 <port_timer_set_alarm.lto_priv.258>
 
   chDbgAssert((chVTGetSystemTimeX() - ch.vtlist.lasttime) <=
-  20071c:	f7ff ffa0 	bl	200660 <chVTGetSystemTimeX.lto_priv.167>
+  20071c:	f7ff ffa0 	bl	200660 <chVTGetSystemTimeX.lto_priv.174>
   200720:	4602      	mov	r2, r0
   200722:	4b08      	ldr	r3, [pc, #32]	; (200744 <chVTDoTickI+0xd4>)
   200724:	6a9b      	ldr	r3, [r3, #40]	; 0x28
@@ -1166,7 +1166,7 @@ static inline void chVTDoTickI(void) {
   200740:	f85d fb04 	ldr.w	pc, [sp], #4
   200744:	200008d8 	.word	0x200008d8
   200748:	200008f4 	.word	0x200008f4
-  20074c:	080049e0 	.word	0x080049e0
+  20074c:	08004a44 	.word	0x08004a44
 
 00200750 <_idle_thread>:
  *          that this thread is executed only if there are no other ready
@@ -1284,10 +1284,10 @@ void chSysInit(void) {
 }
   2007b6:	bd08      	pop	{r3, pc}
   2007b8:	200008d8 	.word	0x200008d8
-  2007bc:	08004afc 	.word	0x08004afc
+  2007bc:	08004b60 	.word	0x08004b60
   2007c0:	20001118 	.word	0x20001118
   2007c4:	20000400 	.word	0x20000400
-  2007c8:	080049c8 	.word	0x080049c8
+  2007c8:	08004a2c 	.word	0x08004a2c
   2007cc:	00000000 	.word	0x00000000
 
 002007d0 <chSysHalt>:
@@ -1415,7 +1415,7 @@ void _dbg_check_enable(void) {
   200868:	bd08      	pop	{r3, pc}
   20086a:	bf00      	nop
   20086c:	200008d8 	.word	0x200008d8
-  200870:	080049ec 	.word	0x080049ec
+  200870:	08004a50 	.word	0x08004a50
 	...
 
 00200880 <_dbg_check_lock>:
@@ -1447,7 +1447,7 @@ void _dbg_check_lock(void) {
 }
   20089e:	bd08      	pop	{r3, pc}
   2008a0:	200008d8 	.word	0x200008d8
-  2008a4:	080049f4 	.word	0x080049f4
+  2008a4:	08004a58 	.word	0x08004a58
 	...
 
 002008b0 <_dbg_check_unlock>:
@@ -1479,7 +1479,7 @@ void _dbg_check_unlock(void) {
 }
   2008ce:	bd08      	pop	{r3, pc}
   2008d0:	200008d8 	.word	0x200008d8
-  2008d4:	080049fc 	.word	0x080049fc
+  2008d4:	08004a60 	.word	0x08004a60
 	...
 
 002008e0 <_dbg_check_lock_from_isr>:
@@ -1511,7 +1511,7 @@ void _dbg_check_lock_from_isr(void) {
 }
   2008fe:	bd08      	pop	{r3, pc}
   200900:	200008d8 	.word	0x200008d8
-  200904:	08004a04 	.word	0x08004a04
+  200904:	08004a68 	.word	0x08004a68
 	...
 
 00200910 <_dbg_check_unlock_from_isr>:
@@ -1543,7 +1543,7 @@ void _dbg_check_unlock_from_isr(void) {
 }
   20092e:	bd08      	pop	{r3, pc}
   200930:	200008d8 	.word	0x200008d8
-  200934:	08004a0c 	.word	0x08004a0c
+  200934:	08004a70 	.word	0x08004a70
 	...
 
 00200940 <_dbg_check_enter_isr>:
@@ -1581,7 +1581,7 @@ void _dbg_check_enter_isr(void) {
 }
   20096a:	bd08      	pop	{r3, pc}
   20096c:	200008d8 	.word	0x200008d8
-  200970:	08004a14 	.word	0x08004a14
+  200970:	08004a78 	.word	0x08004a78
 	...
 
 00200980 <_dbg_check_leave_isr>:
@@ -1619,7 +1619,7 @@ void _dbg_check_leave_isr(void) {
 }
   2009aa:	bd08      	pop	{r3, pc}
   2009ac:	200008d8 	.word	0x200008d8
-  2009b0:	08004a1c 	.word	0x08004a1c
+  2009b0:	08004a80 	.word	0x08004a80
 	...
 
 002009c0 <chDbgCheckClassI>:
@@ -1648,7 +1648,7 @@ void chDbgCheckClassI(void) {
   2009d8:	bd08      	pop	{r3, pc}
   2009da:	bf00      	nop
   2009dc:	200008d8 	.word	0x200008d8
-  2009e0:	08004a24 	.word	0x08004a24
+  2009e0:	08004a88 	.word	0x08004a88
 	...
 
 002009f0 <chDbgCheckClassS>:
@@ -1677,7 +1677,7 @@ void chDbgCheckClassS(void) {
   200a08:	bd08      	pop	{r3, pc}
   200a0a:	bf00      	nop
   200a0c:	200008d8 	.word	0x200008d8
-  200a10:	08004a2c 	.word	0x08004a2c
+  200a10:	08004a90 	.word	0x08004a90
 	...
 
 00200a20 <port_lock.lto_priv.56>:
@@ -1727,14 +1727,14 @@ static inline void port_unlock_from_isr(void) {
   200a66:	bd08      	pop	{r3, pc}
 	...
 
-00200a70 <port_rt_get_counter_value.lto_priv.249>:
+00200a70 <port_rt_get_counter_value.lto_priv.256>:
  *
  * @return              The realtime counter value.
  */
 static inline rtcnt_t port_rt_get_counter_value(void) {
 
   return DWT->CYCCNT;
-  200a70:	4b01      	ldr	r3, [pc, #4]	; (200a78 <port_rt_get_counter_value.lto_priv.249+0x8>)
+  200a70:	4b01      	ldr	r3, [pc, #4]	; (200a78 <port_rt_get_counter_value.lto_priv.256+0x8>)
   200a72:	685b      	ldr	r3, [r3, #4]
 }
   200a74:	4618      	mov	r0, r3
@@ -1742,9 +1742,9 @@ static inline rtcnt_t port_rt_get_counter_value(void) {
   200a78:	e0001000 	.word	0xe0001000
   200a7c:	00000000 	.word	0x00000000
 
-00200a80 <st_lld_get_counter.lto_priv.186>:
+00200a80 <st_lld_get_counter.lto_priv.193>:
   return (systime_t)STM32_ST_TIM->CNT;
-  200a80:	4b01      	ldr	r3, [pc, #4]	; (200a88 <st_lld_get_counter.lto_priv.186+0x8>)
+  200a80:	4b01      	ldr	r3, [pc, #4]	; (200a88 <st_lld_get_counter.lto_priv.193+0x8>)
   200a82:	6a5b      	ldr	r3, [r3, #36]	; 0x24
 }
   200a84:	4618      	mov	r0, r3
@@ -1752,11 +1752,11 @@ static inline rtcnt_t port_rt_get_counter_value(void) {
   200a88:	40000c00 	.word	0x40000c00
   200a8c:	00000000 	.word	0x00000000
 
-00200a90 <port_timer_get_time.lto_priv.181>:
+00200a90 <port_timer_get_time.lto_priv.188>:
 static inline systime_t port_timer_get_time(void) {
   200a90:	b508      	push	{r3, lr}
   return stGetCounter();
-  200a92:	f7ff fff5 	bl	200a80 <st_lld_get_counter.lto_priv.186>
+  200a92:	f7ff fff5 	bl	200a80 <st_lld_get_counter.lto_priv.193>
   200a96:	4603      	mov	r3, r0
 }
   200a98:	4618      	mov	r0, r3
@@ -1764,11 +1764,11 @@ static inline systime_t port_timer_get_time(void) {
   200a9c:	0000      	movs	r0, r0
 	...
 
-00200aa0 <chVTGetSystemTimeX.lto_priv.168>:
+00200aa0 <chVTGetSystemTimeX.lto_priv.175>:
 static inline systime_t chVTGetSystemTimeX(void) {
   200aa0:	b508      	push	{r3, lr}
   return port_timer_get_time();
-  200aa2:	f7ff fff5 	bl	200a90 <port_timer_get_time.lto_priv.181>
+  200aa2:	f7ff fff5 	bl	200a90 <port_timer_get_time.lto_priv.188>
   200aa6:	4603      	mov	r3, r0
 }
   200aa8:	4618      	mov	r0, r3
@@ -1788,12 +1788,12 @@ static NOINLINE void trace_next(void) {
   ch.dbg.trace_buffer.ptr->time    = chVTGetSystemTimeX();
   200ab2:	4b0f      	ldr	r3, [pc, #60]	; (200af0 <trace_next+0x40>)
   200ab4:	6bdc      	ldr	r4, [r3, #60]	; 0x3c
-  200ab6:	f7ff fff3 	bl	200aa0 <chVTGetSystemTimeX.lto_priv.168>
+  200ab6:	f7ff fff3 	bl	200aa0 <chVTGetSystemTimeX.lto_priv.175>
   200aba:	4603      	mov	r3, r0
   200abc:	6063      	str	r3, [r4, #4]
 #if PORT_SUPPORTS_RT == TRUE
   ch.dbg.trace_buffer.ptr->rtstamp = chSysGetRealtimeCounterX();
-  200abe:	f7ff ffd7 	bl	200a70 <port_rt_get_counter_value.lto_priv.249>
+  200abe:	f7ff ffd7 	bl	200a70 <port_rt_get_counter_value.lto_priv.256>
   200ac2:	4601      	mov	r1, r0
   200ac4:	4b0a      	ldr	r3, [pc, #40]	; (200af0 <trace_next+0x40>)
   200ac6:	6bda      	ldr	r2, [r3, #60]	; 0x3c
@@ -2084,9 +2084,9 @@ void _trace_halt(const char *reason) {
   200c90:	200008d8 	.word	0x200008d8
 	...
 
-00200ca0 <st_lld_get_counter.lto_priv.187>:
+00200ca0 <st_lld_get_counter.lto_priv.194>:
   return (systime_t)STM32_ST_TIM->CNT;
-  200ca0:	4b01      	ldr	r3, [pc, #4]	; (200ca8 <st_lld_get_counter.lto_priv.187+0x8>)
+  200ca0:	4b01      	ldr	r3, [pc, #4]	; (200ca8 <st_lld_get_counter.lto_priv.194+0x8>)
   200ca2:	6a5b      	ldr	r3, [r3, #36]	; 0x24
 }
   200ca4:	4618      	mov	r0, r3
@@ -2108,7 +2108,7 @@ static inline void port_timer_start_alarm(systime_t time) {
   200cc2:	bf00      	nop
 	...
 
-00200cd0 <port_timer_stop_alarm.lto_priv.254>:
+00200cd0 <port_timer_stop_alarm.lto_priv.261>:
 static inline void port_timer_stop_alarm(void) {
   200cd0:	b508      	push	{r3, lr}
   stStopAlarm();
@@ -2117,7 +2117,7 @@ static inline void port_timer_stop_alarm(void) {
   200cd6:	bd08      	pop	{r3, pc}
 	...
 
-00200ce0 <port_timer_set_alarm.lto_priv.252>:
+00200ce0 <port_timer_set_alarm.lto_priv.259>:
 static inline void port_timer_set_alarm(systime_t time) {
   200ce0:	b500      	push	{lr}
   200ce2:	b083      	sub	sp, #12
@@ -2131,11 +2131,11 @@ static inline void port_timer_set_alarm(systime_t time) {
   200cf2:	bf00      	nop
 	...
 
-00200d00 <port_timer_get_time.lto_priv.182>:
+00200d00 <port_timer_get_time.lto_priv.189>:
 static inline systime_t port_timer_get_time(void) {
   200d00:	b508      	push	{r3, lr}
   return stGetCounter();
-  200d02:	f7ff ffcd 	bl	200ca0 <st_lld_get_counter.lto_priv.187>
+  200d02:	f7ff ffcd 	bl	200ca0 <st_lld_get_counter.lto_priv.194>
   200d06:	4603      	mov	r3, r0
 }
   200d08:	4618      	mov	r0, r3
@@ -2143,11 +2143,11 @@ static inline systime_t port_timer_get_time(void) {
   200d0c:	0000      	movs	r0, r0
 	...
 
-00200d10 <chVTGetSystemTimeX.lto_priv.169>:
+00200d10 <chVTGetSystemTimeX.lto_priv.176>:
 static inline systime_t chVTGetSystemTimeX(void) {
   200d10:	b508      	push	{r3, lr}
   return port_timer_get_time();
-  200d12:	f7ff fff5 	bl	200d00 <port_timer_get_time.lto_priv.182>
+  200d12:	f7ff fff5 	bl	200d00 <port_timer_get_time.lto_priv.189>
   200d16:	4603      	mov	r3, r0
 }
   200d18:	4618      	mov	r0, r3
@@ -2230,7 +2230,7 @@ void chVTDoSetI(virtual_timer_t *vtp, systime_t delay,
 #if CH_CFG_ST_TIMEDELTA > 0
   {
     systime_t now = chVTGetSystemTimeX();
-  200d84:	f7ff ffc4 	bl	200d10 <chVTGetSystemTimeX.lto_priv.169>
+  200d84:	f7ff ffc4 	bl	200d10 <chVTGetSystemTimeX.lto_priv.176>
   200d88:	9005      	str	r0, [sp, #20]
 
     /* If the requested delay is lower than the minimum safe delta then it
@@ -2346,7 +2346,7 @@ void chVTDoSetI(virtual_timer_t *vtp, systime_t delay,
   200e14:	9b06      	ldr	r3, [sp, #24]
   200e16:	4413      	add	r3, r2
   200e18:	4618      	mov	r0, r3
-  200e1a:	f7ff ff61 	bl	200ce0 <port_timer_set_alarm.lto_priv.252>
+  200e1a:	f7ff ff61 	bl	200ce0 <port_timer_set_alarm.lto_priv.259>
   200e1e:	e00e      	b.n	200e3e <chVTDoSetI+0xee>
 
   /* The delta list is scanned in order to find the correct position for
@@ -2423,7 +2423,7 @@ void chVTDoSetI(virtual_timer_t *vtp, systime_t delay,
   200e80:	b009      	add	sp, #36	; 0x24
   200e82:	f85d fb04 	ldr.w	pc, [sp], #4
   200e86:	bf00      	nop
-  200e88:	08004a34 	.word	0x08004a34
+  200e88:	08004a98 	.word	0x08004a98
   200e8c:	200008d8 	.word	0x200008d8
   200e90:	200008f4 	.word	0x200008f4
 	...
@@ -2529,7 +2529,7 @@ void chVTDoResetI(virtual_timer_t *vtp) {
   200f22:	4293      	cmp	r3, r2
   200f24:	d102      	bne.n	200f2c <chVTDoResetI+0x8c>
     port_timer_stop_alarm();
-  200f26:	f7ff fed3 	bl	200cd0 <port_timer_stop_alarm.lto_priv.254>
+  200f26:	f7ff fed3 	bl	200cd0 <port_timer_stop_alarm.lto_priv.261>
   200f2a:	e02b      	b.n	200f84 <chVTDoResetI+0xe4>
 
     return;
@@ -2552,7 +2552,7 @@ void chVTDoResetI(virtual_timer_t *vtp) {
 
   /* Distance in ticks between the last alarm event and current time.*/
   nowdelta = chVTGetSystemTimeX() - ch.vtlist.lasttime;
-  200f3e:	f7ff fee7 	bl	200d10 <chVTGetSystemTimeX.lto_priv.169>
+  200f3e:	f7ff fee7 	bl	200d10 <chVTGetSystemTimeX.lto_priv.176>
   200f42:	4602      	mov	r2, r0
   200f44:	4b12      	ldr	r3, [pc, #72]	; (200f90 <chVTDoResetI+0xf0>)
   200f46:	6a9b      	ldr	r3, [r3, #40]	; 0x28
@@ -2599,7 +2599,7 @@ void chVTDoResetI(virtual_timer_t *vtp) {
   200f76:	9b03      	ldr	r3, [sp, #12]
   200f78:	4413      	add	r3, r2
   200f7a:	4618      	mov	r0, r3
-  200f7c:	f7ff feb0 	bl	200ce0 <port_timer_set_alarm.lto_priv.252>
+  200f7c:	f7ff feb0 	bl	200ce0 <port_timer_set_alarm.lto_priv.259>
   200f80:	e000      	b.n	200f84 <chVTDoResetI+0xe4>
       vtp->next->delta += vtp->delta;
   200f82:	bf00      	nop
@@ -2608,7 +2608,7 @@ void chVTDoResetI(virtual_timer_t *vtp) {
   200f84:	b005      	add	sp, #20
   200f86:	f85d fb04 	ldr.w	pc, [sp], #4
   200f8a:	bf00      	nop
-  200f8c:	08004a40 	.word	0x08004a40
+  200f8c:	08004aa4 	.word	0x08004aa4
   200f90:	200008d8 	.word	0x200008d8
   200f94:	200008f4 	.word	0x200008f4
 	...
@@ -2660,7 +2660,7 @@ static inline void port_unlock_from_isr(void) {
   200fe6:	bd08      	pop	{r3, pc}
 	...
 
-00200ff0 <queue_init.lto_priv.172>:
+00200ff0 <queue_init.lto_priv.179>:
  *
  * @param[in] tqp       pointer to the threads queue object
  *
@@ -2683,7 +2683,7 @@ static inline void queue_init(threads_queue_t *tqp) {
   201002:	4770      	bx	lr
 	...
 
-00201010 <queue_fifo_remove.lto_priv.221>:
+00201010 <queue_fifo_remove.lto_priv.228>:
   tp->queue.prev             = tqp->prev;
   tp->queue.prev->queue.next = tp;
   tqp->prev                  = tp;
@@ -2717,7 +2717,7 @@ static inline thread_t *queue_fifo_remove(threads_queue_t *tqp) {
   201032:	bf00      	nop
 	...
 
-00201040 <queue_dequeue.lto_priv.242>:
+00201040 <queue_dequeue.lto_priv.249>:
   tqp->prev->queue.next = (thread_t *)tqp;
 
   return tp;
@@ -2859,7 +2859,7 @@ void _scheduler_init(void) {
 
   queue_init(&ch.rlist.queue);
   2010f2:	4806      	ldr	r0, [pc, #24]	; (20110c <_scheduler_init+0x1c>)
-  2010f4:	f7ff ff7c 	bl	200ff0 <queue_init.lto_priv.172>
+  2010f4:	f7ff ff7c 	bl	200ff0 <queue_init.lto_priv.179>
   ch.rlist.prio = NOPRIO;
   2010f8:	4b04      	ldr	r3, [pc, #16]	; (20110c <_scheduler_init+0x1c>)
   2010fa:	2200      	movs	r2, #0
@@ -2957,7 +2957,7 @@ thread_t *chSchReadyI(thread_t *tp) {
   20117c:	4618      	mov	r0, r3
   20117e:	b005      	add	sp, #20
   201180:	f85d fb04 	ldr.w	pc, [sp], #4
-  201184:	08004a60 	.word	0x08004a60
+  201184:	08004ac4 	.word	0x08004ac4
   201188:	200008d8 	.word	0x200008d8
   20118c:	00000000 	.word	0x00000000
 
@@ -3040,7 +3040,7 @@ thread_t *chSchReadyAheadI(thread_t *tp) {
   2011fc:	4618      	mov	r0, r3
   2011fe:	b005      	add	sp, #20
   201200:	f85d fb04 	ldr.w	pc, [sp], #4
-  201204:	08004a6c 	.word	0x08004a6c
+  201204:	08004ad0 	.word	0x08004ad0
   201208:	200008d8 	.word	0x200008d8
   20120c:	00000000 	.word	0x00000000
 
@@ -3075,7 +3075,7 @@ void chSchGoSleepS(tstate_t newstate) {
   /* Next thread in ready list becomes current.*/
   currp = queue_fifo_remove(&ch.rlist.queue);
   20122e:	4814      	ldr	r0, [pc, #80]	; (201280 <chSchGoSleepS+0x70>)
-  201230:	f7ff feee 	bl	201010 <queue_fifo_remove.lto_priv.221>
+  201230:	f7ff feee 	bl	201010 <queue_fifo_remove.lto_priv.228>
   201234:	4602      	mov	r2, r0
   201236:	4b12      	ldr	r3, [pc, #72]	; (201280 <chSchGoSleepS+0x70>)
   201238:	619a      	str	r2, [r3, #24]
@@ -3119,7 +3119,7 @@ void chSchGoSleepS(tstate_t newstate) {
   20127c:	bd10      	pop	{r4, pc}
   20127e:	bf00      	nop
   201280:	200008d8 	.word	0x200008d8
-  201284:	08004a50 	.word	0x08004a50
+  201284:	08004ab4 	.word	0x08004ab4
 	...
 
 00201290 <wakeup>:
@@ -3182,7 +3182,7 @@ static void wakeup(void *p) {
     /* States requiring dequeuing.*/
     (void) queue_dequeue(tp);
   2012ea:	9803      	ldr	r0, [sp, #12]
-  2012ec:	f7ff fea8 	bl	201040 <queue_dequeue.lto_priv.242>
+  2012ec:	f7ff fea8 	bl	201040 <queue_dequeue.lto_priv.249>
     break;
   default:
     /* Any other state, nothing to do.*/
@@ -3375,8 +3375,8 @@ void chSchWakeupS(thread_t *ntp, msg_t msg) {
   201410:	b004      	add	sp, #16
   201412:	bd10      	pop	{r4, pc}
   201414:	200008d8 	.word	0x200008d8
-  201418:	08004a80 	.word	0x08004a80
-  20141c:	08004a50 	.word	0x08004a50
+  201418:	08004ae4 	.word	0x08004ae4
+  20141c:	08004ab4 	.word	0x08004ab4
 
 00201420 <chSchRescheduleS>:
  * @details If a thread with a higher priority than the current thread is in
@@ -3460,7 +3460,7 @@ void chSchDoRescheduleAhead(void) {
   /* Picks the first thread from the ready queue and makes it current.*/
   currp = queue_fifo_remove(&ch.rlist.queue);
   20147a:	4816      	ldr	r0, [pc, #88]	; (2014d4 <chSchDoRescheduleAhead+0x64>)
-  20147c:	f7ff fdc8 	bl	201010 <queue_fifo_remove.lto_priv.221>
+  20147c:	f7ff fdc8 	bl	201010 <queue_fifo_remove.lto_priv.228>
   201480:	4602      	mov	r2, r0
   201482:	4b14      	ldr	r3, [pc, #80]	; (2014d4 <chSchDoRescheduleAhead+0x64>)
   201484:	619a      	str	r2, [r3, #24]
@@ -3510,7 +3510,7 @@ void chSchDoRescheduleAhead(void) {
   2014d0:	bd10      	pop	{r4, pc}
   2014d2:	bf00      	nop
   2014d4:	200008d8 	.word	0x200008d8
-  2014d8:	08004a50 	.word	0x08004a50
+  2014d8:	08004ab4 	.word	0x08004ab4
   2014dc:	00000000 	.word	0x00000000
 
 002014e0 <chSchDoReschedule>:
@@ -3530,7 +3530,7 @@ void chSchDoReschedule(void) {
   /* Picks the first thread from the ready queue and makes it current.*/
   currp = queue_fifo_remove(&ch.rlist.queue);
   2014ea:	4816      	ldr	r0, [pc, #88]	; (201544 <chSchDoReschedule+0x64>)
-  2014ec:	f7ff fd90 	bl	201010 <queue_fifo_remove.lto_priv.221>
+  2014ec:	f7ff fd90 	bl	201010 <queue_fifo_remove.lto_priv.228>
   2014f0:	4602      	mov	r2, r0
   2014f2:	4b14      	ldr	r3, [pc, #80]	; (201544 <chSchDoReschedule+0x64>)
   2014f4:	619a      	str	r2, [r3, #24]
@@ -3581,7 +3581,7 @@ void chSchDoReschedule(void) {
   201540:	bd10      	pop	{r4, pc}
   201542:	bf00      	nop
   201544:	200008d8 	.word	0x200008d8
-  201548:	08004a50 	.word	0x08004a50
+  201548:	08004ab4 	.word	0x08004ab4
   20154c:	00000000 	.word	0x00000000
 
 00201550 <port_lock.lto_priv.58>:
@@ -3647,7 +3647,7 @@ static inline bool list_notempty(threads_list_t *tlp) {
   2015ac:	0000      	movs	r0, r0
 	...
 
-002015b0 <queue_init.lto_priv.173>:
+002015b0 <queue_init.lto_priv.180>:
 static inline void queue_init(threads_queue_t *tqp) {
   2015b0:	b082      	sub	sp, #8
   2015b2:	9001      	str	r0, [sp, #4]
@@ -3664,7 +3664,7 @@ static inline void queue_init(threads_queue_t *tqp) {
   2015c2:	4770      	bx	lr
 	...
 
-002015d0 <queue_notempty.lto_priv.238>:
+002015d0 <queue_notempty.lto_priv.245>:
 static inline bool queue_notempty(const threads_queue_t *tqp) {
   2015d0:	b082      	sub	sp, #8
   2015d2:	9001      	str	r0, [sp, #4]
@@ -3708,7 +3708,7 @@ static inline thread_t *list_remove(threads_list_t *tlp) {
   20160c:	0000      	movs	r0, r0
 	...
 
-00201610 <queue_insert.lto_priv.227>:
+00201610 <queue_insert.lto_priv.234>:
 static inline void queue_insert(thread_t *tp, threads_queue_t *tqp) {
   201610:	b082      	sub	sp, #8
   201612:	9001      	str	r0, [sp, #4]
@@ -3737,7 +3737,7 @@ static inline void queue_insert(thread_t *tp, threads_queue_t *tqp) {
   201636:	bf00      	nop
 	...
 
-00201640 <queue_fifo_remove.lto_priv.222>:
+00201640 <queue_fifo_remove.lto_priv.229>:
 static inline thread_t *queue_fifo_remove(threads_queue_t *tqp) {
   201640:	b084      	sub	sp, #16
   201642:	9001      	str	r0, [sp, #4]
@@ -3764,7 +3764,7 @@ static inline thread_t *queue_fifo_remove(threads_queue_t *tqp) {
   201662:	bf00      	nop
 	...
 
-00201670 <chSysLock.lto_priv.133>:
+00201670 <chSysLock.lto_priv.142>:
 static inline void chSysLock(void) {
   201670:	b508      	push	{r3, lr}
   port_lock();
@@ -3776,36 +3776,36 @@ static inline void chSysLock(void) {
   20167c:	0000      	movs	r0, r0
 	...
 
-00201680 <chSysUnlock.lto_priv.97>:
+00201680 <chSysUnlock.lto_priv.106>:
 static inline void chSysUnlock(void) {
   201680:	b508      	push	{r3, lr}
   _dbg_check_unlock();
   201682:	f7ff f915 	bl	2008b0 <_dbg_check_unlock>
   chDbgAssert((ch.rlist.queue.next == (thread_t *)&ch.rlist.queue) ||
-  201686:	4b09      	ldr	r3, [pc, #36]	; (2016ac <chSysUnlock.lto_priv.97+0x2c>)
+  201686:	4b09      	ldr	r3, [pc, #36]	; (2016ac <chSysUnlock.lto_priv.106+0x2c>)
   201688:	681b      	ldr	r3, [r3, #0]
-  20168a:	4a08      	ldr	r2, [pc, #32]	; (2016ac <chSysUnlock.lto_priv.97+0x2c>)
+  20168a:	4a08      	ldr	r2, [pc, #32]	; (2016ac <chSysUnlock.lto_priv.106+0x2c>)
   20168c:	4293      	cmp	r3, r2
-  20168e:	d00a      	beq.n	2016a6 <chSysUnlock.lto_priv.97+0x26>
-  201690:	4b06      	ldr	r3, [pc, #24]	; (2016ac <chSysUnlock.lto_priv.97+0x2c>)
+  20168e:	d00a      	beq.n	2016a6 <chSysUnlock.lto_priv.106+0x26>
+  201690:	4b06      	ldr	r3, [pc, #24]	; (2016ac <chSysUnlock.lto_priv.106+0x2c>)
   201692:	699b      	ldr	r3, [r3, #24]
   201694:	689a      	ldr	r2, [r3, #8]
-  201696:	4b05      	ldr	r3, [pc, #20]	; (2016ac <chSysUnlock.lto_priv.97+0x2c>)
+  201696:	4b05      	ldr	r3, [pc, #20]	; (2016ac <chSysUnlock.lto_priv.106+0x2c>)
   201698:	681b      	ldr	r3, [r3, #0]
   20169a:	689b      	ldr	r3, [r3, #8]
   20169c:	429a      	cmp	r2, r3
-  20169e:	d202      	bcs.n	2016a6 <chSysUnlock.lto_priv.97+0x26>
-  2016a0:	4803      	ldr	r0, [pc, #12]	; (2016b0 <chSysUnlock.lto_priv.97+0x30>)
+  20169e:	d202      	bcs.n	2016a6 <chSysUnlock.lto_priv.106+0x26>
+  2016a0:	4803      	ldr	r0, [pc, #12]	; (2016b0 <chSysUnlock.lto_priv.106+0x30>)
   2016a2:	f7ff f895 	bl	2007d0 <chSysHalt>
   port_unlock();
   2016a6:	f7ff ff63 	bl	201570 <port_unlock.lto_priv.34>
 }
   2016aa:	bd08      	pop	{r3, pc}
   2016ac:	200008d8 	.word	0x200008d8
-  2016b0:	08004aa8 	.word	0x08004aa8
+  2016b0:	08004b0c 	.word	0x08004b0c
 	...
 
-002016c0 <chThdGetWorkingAreaX.lto_priv.246>:
+002016c0 <chThdGetWorkingAreaX.lto_priv.253>:
  * @param[in] tp        pointer to the thread
  * @return              The working area base pointer.
  *
@@ -3849,7 +3849,7 @@ static inline void chThdSleepS(systime_t time) {
 }
   2016ea:	b003      	add	sp, #12
   2016ec:	f85d fb04 	ldr.w	pc, [sp], #4
-  2016f0:	08004adc 	.word	0x08004adc
+  2016f0:	08004b40 	.word	0x08004b40
 	...
 
 00201700 <chThdDoDequeueNextI>:
@@ -3867,7 +3867,7 @@ static inline void chThdDoDequeueNextI(threads_queue_t *tqp, msg_t msg) {
 
   chDbgAssert(queue_notempty(tqp), "empty queue");
   201708:	9801      	ldr	r0, [sp, #4]
-  20170a:	f7ff ff61 	bl	2015d0 <queue_notempty.lto_priv.238>
+  20170a:	f7ff ff61 	bl	2015d0 <queue_notempty.lto_priv.245>
   20170e:	4603      	mov	r3, r0
   201710:	f083 0301 	eor.w	r3, r3, #1
   201714:	b2db      	uxtb	r3, r3
@@ -3878,7 +3878,7 @@ static inline void chThdDoDequeueNextI(threads_queue_t *tqp, msg_t msg) {
 
   tp = queue_fifo_remove(tqp);
   201720:	9801      	ldr	r0, [sp, #4]
-  201722:	f7ff ff8d 	bl	201640 <queue_fifo_remove.lto_priv.222>
+  201722:	f7ff ff8d 	bl	201640 <queue_fifo_remove.lto_priv.229>
   201726:	9003      	str	r0, [sp, #12]
 
   chDbgAssert(tp->state == CH_STATE_QUEUED, "invalid state");
@@ -3900,7 +3900,7 @@ static inline void chThdDoDequeueNextI(threads_queue_t *tqp, msg_t msg) {
   201744:	b005      	add	sp, #20
   201746:	f85d fb04 	ldr.w	pc, [sp], #4
   20174a:	bf00      	nop
-  20174c:	08004ae8 	.word	0x08004ae8
+  20174c:	08004b4c 	.word	0x08004b4c
 
 00201750 <_thread_init>:
  * @param[in] prio      the priority level for the new thread
@@ -3988,7 +3988,7 @@ thread_t *_thread_init(thread_t *tp, const char *name, tprio_t prio) {
   2017b6:	9b03      	ldr	r3, [sp, #12]
   2017b8:	332c      	adds	r3, #44	; 0x2c
   2017ba:	4618      	mov	r0, r3
-  2017bc:	f7ff fef8 	bl	2015b0 <queue_init.lto_priv.173>
+  2017bc:	f7ff fef8 	bl	2015b0 <queue_init.lto_priv.180>
 #endif
 #if CH_DBG_STATISTICS == TRUE
   chTMObjectInit(&tp->stats);
@@ -4153,7 +4153,7 @@ thread_t *chThdCreateSuspendedI(const thread_descriptor_t *tdp) {
   2018b0:	b005      	add	sp, #20
   2018b2:	f85d fb04 	ldr.w	pc, [sp], #4
   2018b6:	bf00      	nop
-  2018b8:	08004a90 	.word	0x08004a90
+  2018b8:	08004af4 	.word	0x08004af4
   2018bc:	002002e9 	.word	0x002002e9
 
 002018c0 <chThdCreate>:
@@ -4198,7 +4198,7 @@ thread_t *chThdCreate(const thread_descriptor_t *tdp) {
 #endif
 
   chSysLock();
-  2018ec:	f7ff fec0 	bl	201670 <chSysLock.lto_priv.133>
+  2018ec:	f7ff fec0 	bl	201670 <chSysLock.lto_priv.142>
   tp = chThdCreateSuspendedI(tdp);
   2018f0:	9801      	ldr	r0, [sp, #4]
   2018f2:	f7ff ff85 	bl	201800 <chThdCreateSuspendedI>
@@ -4208,7 +4208,7 @@ thread_t *chThdCreate(const thread_descriptor_t *tdp) {
   2018fa:	9803      	ldr	r0, [sp, #12]
   2018fc:	f7ff fd40 	bl	201380 <chSchWakeupS>
   chSysUnlock();
-  201900:	f7ff febe 	bl	201680 <chSysUnlock.lto_priv.97>
+  201900:	f7ff febe 	bl	201680 <chSysUnlock.lto_priv.106>
 
   return tp;
   201904:	9b03      	ldr	r3, [sp, #12]
@@ -4217,7 +4217,7 @@ thread_t *chThdCreate(const thread_descriptor_t *tdp) {
   201908:	b005      	add	sp, #20
   20190a:	f85d fb04 	ldr.w	pc, [sp], #4
   20190e:	bf00      	nop
-  201910:	08004ab4 	.word	0x08004ab4
+  201910:	08004b18 	.word	0x08004b18
 	...
 
 00201920 <chThdRelease>:
@@ -4232,7 +4232,7 @@ void chThdRelease(thread_t *tp) {
   201924:	9001      	str	r0, [sp, #4]
 
   chSysLock();
-  201926:	f7ff fea3 	bl	201670 <chSysLock.lto_priv.133>
+  201926:	f7ff fea3 	bl	201670 <chSysLock.lto_priv.142>
   chDbgAssert(tp->refs > (trefs_t)0, "not referenced");
   20192a:	9b01      	ldr	r3, [sp, #4]
   20192c:	f893 3022 	ldrb.w	r3, [r3, #34]	; 0x22
@@ -4272,7 +4272,7 @@ void chThdRelease(thread_t *tp) {
   20196e:	6952      	ldr	r2, [r2, #20]
   201970:	615a      	str	r2, [r3, #20]
     chSysUnlock();
-  201972:	f7ff fe85 	bl	201680 <chSysUnlock.lto_priv.97>
+  201972:	f7ff fe85 	bl	201680 <chSysUnlock.lto_priv.106>
 
 #if CH_CFG_USE_DYNAMIC == TRUE
     switch (tp->flags & CH_FLAG_MODE_MASK) {
@@ -4292,7 +4292,7 @@ void chThdRelease(thread_t *tp) {
   201988:	e014      	b.n	2019b4 <chThdRelease+0x94>
       chHeapFree(chThdGetWorkingAreaX(tp));
   20198a:	9801      	ldr	r0, [sp, #4]
-  20198c:	f7ff fe98 	bl	2016c0 <chThdGetWorkingAreaX.lto_priv.246>
+  20198c:	f7ff fe98 	bl	2016c0 <chThdGetWorkingAreaX.lto_priv.253>
   201990:	4603      	mov	r3, r0
   201992:	4618      	mov	r0, r3
   201994:	f000 fd24 	bl	2023e0 <chHeapFree>
@@ -4302,7 +4302,7 @@ void chThdRelease(thread_t *tp) {
   20199a:	9b01      	ldr	r3, [sp, #4]
   20199c:	6c1c      	ldr	r4, [r3, #64]	; 0x40
   20199e:	9801      	ldr	r0, [sp, #4]
-  2019a0:	f7ff fe8e 	bl	2016c0 <chThdGetWorkingAreaX.lto_priv.246>
+  2019a0:	f7ff fe8e 	bl	2016c0 <chThdGetWorkingAreaX.lto_priv.253>
   2019a4:	4603      	mov	r3, r0
   2019a6:	4619      	mov	r1, r3
   2019a8:	4620      	mov	r0, r4
@@ -4315,11 +4315,11 @@ void chThdRelease(thread_t *tp) {
     return;
   }
   chSysUnlock();
-  2019b0:	f7ff fe66 	bl	201680 <chSysUnlock.lto_priv.97>
+  2019b0:	f7ff fe66 	bl	201680 <chSysUnlock.lto_priv.106>
 }
   2019b4:	b002      	add	sp, #8
   2019b6:	bd10      	pop	{r4, pc}
-  2019b8:	08004ac0 	.word	0x08004ac0
+  2019b8:	08004b24 	.word	0x08004b24
   2019bc:	00000000 	.word	0x00000000
 
 002019c0 <chThdExit>:
@@ -4334,7 +4334,7 @@ void chThdExit(msg_t msg) {
   2019c4:	9001      	str	r0, [sp, #4]
 
   chSysLock();
-  2019c6:	f7ff fe53 	bl	201670 <chSysLock.lto_priv.133>
+  2019c6:	f7ff fe53 	bl	201670 <chSysLock.lto_priv.142>
   chThdExitS(msg);
   2019ca:	9801      	ldr	r0, [sp, #4]
   2019cc:	f000 f808 	bl	2019e0 <chThdExitS>
@@ -4432,7 +4432,7 @@ void chThdExitS(msg_t msg) {
   201a4e:	b005      	add	sp, #20
   201a50:	f85d fb04 	ldr.w	pc, [sp], #4
   201a54:	200008d8 	.word	0x200008d8
-  201a58:	08004ad0 	.word	0x08004ad0
+  201a58:	08004b34 	.word	0x08004b34
   201a5c:	00000000 	.word	0x00000000
 
 00201a60 <chThdSleep>:
@@ -4447,12 +4447,12 @@ void chThdSleep(systime_t time) {
   201a64:	9001      	str	r0, [sp, #4]
 
   chSysLock();
-  201a66:	f7ff fe03 	bl	201670 <chSysLock.lto_priv.133>
+  201a66:	f7ff fe03 	bl	201670 <chSysLock.lto_priv.142>
   chThdSleepS(time);
   201a6a:	9801      	ldr	r0, [sp, #4]
   201a6c:	f7ff fe30 	bl	2016d0 <chThdSleepS>
   chSysUnlock();
-  201a70:	f7ff fe06 	bl	201680 <chSysUnlock.lto_priv.97>
+  201a70:	f7ff fe06 	bl	201680 <chSysUnlock.lto_priv.106>
 }
   201a74:	b003      	add	sp, #12
   201a76:	f85d fb04 	ldr.w	pc, [sp], #4
@@ -4486,7 +4486,7 @@ msg_t chThdEnqueueTimeoutS(threads_queue_t *tqp, systime_t timeout) {
   201a96:	699b      	ldr	r3, [r3, #24]
   201a98:	9901      	ldr	r1, [sp, #4]
   201a9a:	4618      	mov	r0, r3
-  201a9c:	f7ff fdb8 	bl	201610 <queue_insert.lto_priv.227>
+  201a9c:	f7ff fdb8 	bl	201610 <queue_insert.lto_priv.234>
 
   return chSchGoSleepTimeoutS(CH_STATE_QUEUED, timeout);
   201aa0:	9900      	ldr	r1, [sp, #0]
@@ -4515,7 +4515,7 @@ void chThdDequeueNextI(threads_queue_t *tqp, msg_t msg) {
 
   if (queue_notempty(tqp)) {
   201ac8:	9801      	ldr	r0, [sp, #4]
-  201aca:	f7ff fd81 	bl	2015d0 <queue_notempty.lto_priv.238>
+  201aca:	f7ff fd81 	bl	2015d0 <queue_notempty.lto_priv.245>
   201ace:	4603      	mov	r3, r0
   201ad0:	2b00      	cmp	r3, #0
   201ad2:	d003      	beq.n	201adc <chThdDequeueNextI+0x1c>
@@ -4530,9 +4530,9 @@ void chThdDequeueNextI(threads_queue_t *tqp, msg_t msg) {
   201ae2:	bf00      	nop
 	...
 
-00201af0 <port_rt_get_counter_value.lto_priv.250>:
+00201af0 <port_rt_get_counter_value.lto_priv.257>:
   return DWT->CYCCNT;
-  201af0:	4b01      	ldr	r3, [pc, #4]	; (201af8 <port_rt_get_counter_value.lto_priv.250+0x8>)
+  201af0:	4b01      	ldr	r3, [pc, #4]	; (201af8 <port_rt_get_counter_value.lto_priv.257+0x8>)
   201af2:	685b      	ldr	r3, [r3, #4]
 }
   201af4:	4618      	mov	r0, r3
@@ -4702,7 +4702,7 @@ NOINLINE void chTMStartMeasurementX(time_measurement_t *tmp) {
   201c04:	9001      	str	r0, [sp, #4]
 
   tmp->last = chSysGetRealtimeCounterX();
-  201c06:	f7ff ff73 	bl	201af0 <port_rt_get_counter_value.lto_priv.250>
+  201c06:	f7ff ff73 	bl	201af0 <port_rt_get_counter_value.lto_priv.257>
   201c0a:	4602      	mov	r2, r0
   201c0c:	9b01      	ldr	r3, [sp, #4]
   201c0e:	609a      	str	r2, [r3, #8]
@@ -4724,7 +4724,7 @@ NOINLINE void chTMStopMeasurementX(time_measurement_t *tmp) {
   201c24:	9001      	str	r0, [sp, #4]
 
   tm_stop(tmp, chSysGetRealtimeCounterX(), ch.tm.offset);
-  201c26:	f7ff ff63 	bl	201af0 <port_rt_get_counter_value.lto_priv.250>
+  201c26:	f7ff ff63 	bl	201af0 <port_rt_get_counter_value.lto_priv.257>
   201c2a:	4601      	mov	r1, r0
   201c2c:	4b04      	ldr	r3, [pc, #16]	; (201c40 <chTMStopMeasurementX+0x20>)
   201c2e:	f8d3 3884 	ldr.w	r3, [r3, #2180]	; 0x884
@@ -4766,7 +4766,7 @@ static inline void port_unlock(void) {
   201c7c:	b002      	add	sp, #8
   201c7e:	4770      	bx	lr
 
-00201c80 <chSysLock.lto_priv.134>:
+00201c80 <chSysLock.lto_priv.143>:
 static inline void chSysLock(void) {
   201c80:	b508      	push	{r3, lr}
   port_lock();
@@ -4778,36 +4778,36 @@ static inline void chSysLock(void) {
   201c8c:	0000      	movs	r0, r0
 	...
 
-00201c90 <chSysUnlock.lto_priv.98>:
+00201c90 <chSysUnlock.lto_priv.107>:
 static inline void chSysUnlock(void) {
   201c90:	b508      	push	{r3, lr}
   _dbg_check_unlock();
   201c92:	f7fe fe0d 	bl	2008b0 <_dbg_check_unlock>
   chDbgAssert((ch.rlist.queue.next == (thread_t *)&ch.rlist.queue) ||
-  201c96:	4b09      	ldr	r3, [pc, #36]	; (201cbc <chSysUnlock.lto_priv.98+0x2c>)
+  201c96:	4b09      	ldr	r3, [pc, #36]	; (201cbc <chSysUnlock.lto_priv.107+0x2c>)
   201c98:	681b      	ldr	r3, [r3, #0]
-  201c9a:	4a08      	ldr	r2, [pc, #32]	; (201cbc <chSysUnlock.lto_priv.98+0x2c>)
+  201c9a:	4a08      	ldr	r2, [pc, #32]	; (201cbc <chSysUnlock.lto_priv.107+0x2c>)
   201c9c:	4293      	cmp	r3, r2
-  201c9e:	d00a      	beq.n	201cb6 <chSysUnlock.lto_priv.98+0x26>
-  201ca0:	4b06      	ldr	r3, [pc, #24]	; (201cbc <chSysUnlock.lto_priv.98+0x2c>)
+  201c9e:	d00a      	beq.n	201cb6 <chSysUnlock.lto_priv.107+0x26>
+  201ca0:	4b06      	ldr	r3, [pc, #24]	; (201cbc <chSysUnlock.lto_priv.107+0x2c>)
   201ca2:	699b      	ldr	r3, [r3, #24]
   201ca4:	689a      	ldr	r2, [r3, #8]
-  201ca6:	4b05      	ldr	r3, [pc, #20]	; (201cbc <chSysUnlock.lto_priv.98+0x2c>)
+  201ca6:	4b05      	ldr	r3, [pc, #20]	; (201cbc <chSysUnlock.lto_priv.107+0x2c>)
   201ca8:	681b      	ldr	r3, [r3, #0]
   201caa:	689b      	ldr	r3, [r3, #8]
   201cac:	429a      	cmp	r2, r3
-  201cae:	d202      	bcs.n	201cb6 <chSysUnlock.lto_priv.98+0x26>
-  201cb0:	4803      	ldr	r0, [pc, #12]	; (201cc0 <chSysUnlock.lto_priv.98+0x30>)
+  201cae:	d202      	bcs.n	201cb6 <chSysUnlock.lto_priv.107+0x26>
+  201cb0:	4803      	ldr	r0, [pc, #12]	; (201cc0 <chSysUnlock.lto_priv.107+0x30>)
   201cb2:	f7fe fd8d 	bl	2007d0 <chSysHalt>
   port_unlock();
   201cb6:	f7ff ffdb 	bl	201c70 <port_unlock.lto_priv.35>
 }
   201cba:	bd08      	pop	{r3, pc}
   201cbc:	200008d8 	.word	0x200008d8
-  201cc0:	08004b14 	.word	0x08004b14
+  201cc0:	08004b78 	.word	0x08004b78
 	...
 
-00201cd0 <chThdGetWorkingAreaX.lto_priv.247>:
+00201cd0 <chThdGetWorkingAreaX.lto_priv.254>:
 static inline stkalign_t *chThdGetWorkingAreaX(thread_t *tp) {
   201cd0:	b082      	sub	sp, #8
   201cd2:	9001      	str	r0, [sp, #4]
@@ -4832,7 +4832,7 @@ thread_t *chRegFirstThread(void) {
   thread_t *tp;
 
   chSysLock();
-  201ce4:	f7ff ffcc 	bl	201c80 <chSysLock.lto_priv.134>
+  201ce4:	f7ff ffcc 	bl	201c80 <chSysLock.lto_priv.143>
   tp = ch.rlist.newer;
   201ce8:	4b08      	ldr	r3, [pc, #32]	; (201d0c <chRegFirstThread+0x2c>)
   201cea:	691b      	ldr	r3, [r3, #16]
@@ -4847,7 +4847,7 @@ thread_t *chRegFirstThread(void) {
   201cfa:	f883 2022 	strb.w	r2, [r3, #34]	; 0x22
 #endif
   chSysUnlock();
-  201cfe:	f7ff ffc7 	bl	201c90 <chSysUnlock.lto_priv.98>
+  201cfe:	f7ff ffc7 	bl	201c90 <chSysUnlock.lto_priv.107>
 
   return tp;
   201d02:	9b01      	ldr	r3, [sp, #4]
@@ -4870,7 +4870,7 @@ thread_t *chRegNextThread(thread_t *tp) {
   thread_t *ntp;
 
   chSysLock();
-  201d16:	f7ff ffb3 	bl	201c80 <chSysLock.lto_priv.134>
+  201d16:	f7ff ffb3 	bl	201c80 <chSysLock.lto_priv.143>
   ntp = tp->newer;
   201d1a:	9b01      	ldr	r3, [sp, #4]
   201d1c:	691b      	ldr	r3, [r3, #16]
@@ -4906,7 +4906,7 @@ thread_t *chRegNextThread(thread_t *tp) {
   }
 #endif
   chSysUnlock();
-  201d4e:	f7ff ff9f 	bl	201c90 <chSysUnlock.lto_priv.98>
+  201d4e:	f7ff ff9f 	bl	201c90 <chSysUnlock.lto_priv.107>
 #if CH_CFG_USE_DYNAMIC == TRUE
   chThdRelease(tp);
   201d52:	9801      	ldr	r0, [sp, #4]
@@ -4921,7 +4921,7 @@ thread_t *chRegNextThread(thread_t *tp) {
   201d5e:	f85d fb04 	ldr.w	pc, [sp], #4
   201d62:	bf00      	nop
   201d64:	200008d8 	.word	0x200008d8
-  201d68:	08004b20 	.word	0x08004b20
+  201d68:	08004b84 	.word	0x08004b84
   201d6c:	00000000 	.word	0x00000000
 
 00201d70 <chRegFindThreadByWorkingArea>:
@@ -4943,7 +4943,7 @@ thread_t *chRegFindThreadByWorkingArea(stkalign_t *wa) {
   do {
     if (chThdGetWorkingAreaX(ctp) == wa) {
   201d7c:	9803      	ldr	r0, [sp, #12]
-  201d7e:	f7ff ffa7 	bl	201cd0 <chThdGetWorkingAreaX.lto_priv.247>
+  201d7e:	f7ff ffa7 	bl	201cd0 <chThdGetWorkingAreaX.lto_priv.254>
   201d82:	4602      	mov	r2, r0
   201d84:	9b01      	ldr	r3, [sp, #4]
   201d86:	4293      	cmp	r3, r2
@@ -4999,7 +4999,7 @@ static inline void port_unlock(void) {
   201ddc:	b002      	add	sp, #8
   201dde:	4770      	bx	lr
 
-00201de0 <queue_init.lto_priv.175>:
+00201de0 <queue_init.lto_priv.182>:
 static inline void queue_init(threads_queue_t *tqp) {
   201de0:	b082      	sub	sp, #8
   201de2:	9001      	str	r0, [sp, #4]
@@ -5016,7 +5016,7 @@ static inline void queue_init(threads_queue_t *tqp) {
   201df2:	4770      	bx	lr
 	...
 
-00201e00 <queue_notempty.lto_priv.240>:
+00201e00 <queue_notempty.lto_priv.247>:
 static inline bool queue_notempty(const threads_queue_t *tqp) {
   201e00:	b082      	sub	sp, #8
   201e02:	9001      	str	r0, [sp, #4]
@@ -5037,7 +5037,7 @@ static inline bool queue_notempty(const threads_queue_t *tqp) {
   201e1c:	0000      	movs	r0, r0
 	...
 
-00201e20 <queue_prio_insert.lto_priv.236>:
+00201e20 <queue_prio_insert.lto_priv.243>:
 static inline void queue_prio_insert(thread_t *tp, threads_queue_t *tqp) {
   201e20:	b084      	sub	sp, #16
   201e22:	9001      	str	r0, [sp, #4]
@@ -5053,13 +5053,13 @@ static inline void queue_prio_insert(thread_t *tp, threads_queue_t *tqp) {
   201e30:	9a03      	ldr	r2, [sp, #12]
   201e32:	9b00      	ldr	r3, [sp, #0]
   201e34:	429a      	cmp	r2, r3
-  201e36:	d005      	beq.n	201e44 <queue_prio_insert.lto_priv.236+0x24>
+  201e36:	d005      	beq.n	201e44 <queue_prio_insert.lto_priv.243+0x24>
   201e38:	9b03      	ldr	r3, [sp, #12]
   201e3a:	689a      	ldr	r2, [r3, #8]
   201e3c:	9b01      	ldr	r3, [sp, #4]
   201e3e:	689b      	ldr	r3, [r3, #8]
   201e40:	429a      	cmp	r2, r3
-  201e42:	d2f2      	bcs.n	201e2a <queue_prio_insert.lto_priv.236+0xa>
+  201e42:	d2f2      	bcs.n	201e2a <queue_prio_insert.lto_priv.243+0xa>
   tp->queue.next             = cp;
   201e44:	9b01      	ldr	r3, [sp, #4]
   201e46:	9a03      	ldr	r2, [sp, #12]
@@ -5083,7 +5083,7 @@ static inline void queue_prio_insert(thread_t *tp, threads_queue_t *tqp) {
   201e62:	4770      	bx	lr
 	...
 
-00201e70 <queue_fifo_remove.lto_priv.224>:
+00201e70 <queue_fifo_remove.lto_priv.231>:
 static inline thread_t *queue_fifo_remove(threads_queue_t *tqp) {
   201e70:	b084      	sub	sp, #16
   201e72:	9001      	str	r0, [sp, #4]
@@ -5110,7 +5110,7 @@ static inline thread_t *queue_fifo_remove(threads_queue_t *tqp) {
   201e92:	bf00      	nop
 	...
 
-00201ea0 <queue_dequeue.lto_priv.243>:
+00201ea0 <queue_dequeue.lto_priv.250>:
 static inline thread_t *queue_dequeue(thread_t *tp) {
   201ea0:	b082      	sub	sp, #8
   201ea2:	9001      	str	r0, [sp, #4]
@@ -5133,7 +5133,7 @@ static inline thread_t *queue_dequeue(thread_t *tp) {
   201ebc:	b002      	add	sp, #8
   201ebe:	4770      	bx	lr
 
-00201ec0 <chSysLock.lto_priv.136>:
+00201ec0 <chSysLock.lto_priv.145>:
 static inline void chSysLock(void) {
   201ec0:	b508      	push	{r3, lr}
   port_lock();
@@ -5145,33 +5145,33 @@ static inline void chSysLock(void) {
   201ecc:	0000      	movs	r0, r0
 	...
 
-00201ed0 <chSysUnlock.lto_priv.100>:
+00201ed0 <chSysUnlock.lto_priv.109>:
 static inline void chSysUnlock(void) {
   201ed0:	b508      	push	{r3, lr}
   _dbg_check_unlock();
   201ed2:	f7fe fced 	bl	2008b0 <_dbg_check_unlock>
   chDbgAssert((ch.rlist.queue.next == (thread_t *)&ch.rlist.queue) ||
-  201ed6:	4b09      	ldr	r3, [pc, #36]	; (201efc <chSysUnlock.lto_priv.100+0x2c>)
+  201ed6:	4b09      	ldr	r3, [pc, #36]	; (201efc <chSysUnlock.lto_priv.109+0x2c>)
   201ed8:	681b      	ldr	r3, [r3, #0]
-  201eda:	4a08      	ldr	r2, [pc, #32]	; (201efc <chSysUnlock.lto_priv.100+0x2c>)
+  201eda:	4a08      	ldr	r2, [pc, #32]	; (201efc <chSysUnlock.lto_priv.109+0x2c>)
   201edc:	4293      	cmp	r3, r2
-  201ede:	d00a      	beq.n	201ef6 <chSysUnlock.lto_priv.100+0x26>
-  201ee0:	4b06      	ldr	r3, [pc, #24]	; (201efc <chSysUnlock.lto_priv.100+0x2c>)
+  201ede:	d00a      	beq.n	201ef6 <chSysUnlock.lto_priv.109+0x26>
+  201ee0:	4b06      	ldr	r3, [pc, #24]	; (201efc <chSysUnlock.lto_priv.109+0x2c>)
   201ee2:	699b      	ldr	r3, [r3, #24]
   201ee4:	689a      	ldr	r2, [r3, #8]
-  201ee6:	4b05      	ldr	r3, [pc, #20]	; (201efc <chSysUnlock.lto_priv.100+0x2c>)
+  201ee6:	4b05      	ldr	r3, [pc, #20]	; (201efc <chSysUnlock.lto_priv.109+0x2c>)
   201ee8:	681b      	ldr	r3, [r3, #0]
   201eea:	689b      	ldr	r3, [r3, #8]
   201eec:	429a      	cmp	r2, r3
-  201eee:	d202      	bcs.n	201ef6 <chSysUnlock.lto_priv.100+0x26>
-  201ef0:	4803      	ldr	r0, [pc, #12]	; (201f00 <chSysUnlock.lto_priv.100+0x30>)
+  201eee:	d202      	bcs.n	201ef6 <chSysUnlock.lto_priv.109+0x26>
+  201ef0:	4803      	ldr	r0, [pc, #12]	; (201f00 <chSysUnlock.lto_priv.109+0x30>)
   201ef2:	f7fe fc6d 	bl	2007d0 <chSysHalt>
   port_unlock();
   201ef6:	f7ff ff6b 	bl	201dd0 <port_unlock.lto_priv.37>
 }
   201efa:	bd08      	pop	{r3, pc}
   201efc:	200008d8 	.word	0x200008d8
-  201f00:	08004b40 	.word	0x08004b40
+  201f00:	08004ba4 	.word	0x08004ba4
 	...
 
 00201f10 <chMtxQueueNotEmptyS>:
@@ -5191,7 +5191,7 @@ static inline bool chMtxQueueNotEmptyS(mutex_t *mp) {
   return queue_notempty(&mp->queue);
   201f1a:	9b01      	ldr	r3, [sp, #4]
   201f1c:	4618      	mov	r0, r3
-  201f1e:	f7ff ff6f 	bl	201e00 <queue_notempty.lto_priv.240>
+  201f1e:	f7ff ff6f 	bl	201e00 <queue_notempty.lto_priv.247>
   201f22:	4603      	mov	r3, r0
 }
   201f24:	4618      	mov	r0, r3
@@ -5221,7 +5221,7 @@ void chMtxObjectInit(mutex_t *mp) {
   queue_init(&mp->queue);
   201f42:	9b01      	ldr	r3, [sp, #4]
   201f44:	4618      	mov	r0, r3
-  201f46:	f7ff ff4b 	bl	201de0 <queue_init.lto_priv.175>
+  201f46:	f7ff ff4b 	bl	201de0 <queue_init.lto_priv.182>
   mp->owner = NULL;
   201f4a:	9b01      	ldr	r3, [sp, #4]
   201f4c:	2200      	movs	r2, #0
@@ -5233,7 +5233,7 @@ void chMtxObjectInit(mutex_t *mp) {
   201f50:	b003      	add	sp, #12
   201f52:	f85d fb04 	ldr.w	pc, [sp], #4
   201f56:	bf00      	nop
-  201f58:	08004b30 	.word	0x08004b30
+  201f58:	08004b94 	.word	0x08004b94
   201f5c:	00000000 	.word	0x00000000
 
 00201f60 <chMtxLock>:
@@ -5248,12 +5248,12 @@ void chMtxLock(mutex_t *mp) {
   201f64:	9001      	str	r0, [sp, #4]
 
   chSysLock();
-  201f66:	f7ff ffab 	bl	201ec0 <chSysLock.lto_priv.136>
+  201f66:	f7ff ffab 	bl	201ec0 <chSysLock.lto_priv.145>
   chMtxLockS(mp);
   201f6a:	9801      	ldr	r0, [sp, #4]
   201f6c:	f000 f808 	bl	201f80 <chMtxLockS>
   chSysUnlock();
-  201f70:	f7ff ffae 	bl	201ed0 <chSysUnlock.lto_priv.100>
+  201f70:	f7ff ffae 	bl	201ed0 <chSysUnlock.lto_priv.109>
 }
   201f74:	b003      	add	sp, #12
   201f76:	f85d fb04 	ldr.w	pc, [sp], #4
@@ -5331,13 +5331,13 @@ void chMtxLockS(mutex_t *mp) {
   201fc6:	e02b      	b.n	202020 <chMtxLockS+0xa0>
           queue_prio_insert(queue_dequeue(tp), &tp->u.wtmtxp->queue);
   201fc8:	9803      	ldr	r0, [sp, #12]
-  201fca:	f7ff ff69 	bl	201ea0 <queue_dequeue.lto_priv.243>
+  201fca:	f7ff ff69 	bl	201ea0 <queue_dequeue.lto_priv.250>
   201fce:	4602      	mov	r2, r0
   201fd0:	9b03      	ldr	r3, [sp, #12]
   201fd2:	6a5b      	ldr	r3, [r3, #36]	; 0x24
   201fd4:	4619      	mov	r1, r3
   201fd6:	4610      	mov	r0, r2
-  201fd8:	f7ff ff22 	bl	201e20 <queue_prio_insert.lto_priv.236>
+  201fd8:	f7ff ff22 	bl	201e20 <queue_prio_insert.lto_priv.243>
           tp = tp->u.wtmtxp->owner;
   201fdc:	9b03      	ldr	r3, [sp, #12]
   201fde:	6a5b      	ldr	r3, [r3, #36]	; 0x24
@@ -5346,13 +5346,13 @@ void chMtxLockS(mutex_t *mp) {
   201fe4:	e016      	b.n	202014 <chMtxLockS+0x94>
           queue_prio_insert(queue_dequeue(tp), &tp->u.wtmtxp->queue);
   201fe6:	9803      	ldr	r0, [sp, #12]
-  201fe8:	f7ff ff5a 	bl	201ea0 <queue_dequeue.lto_priv.243>
+  201fe8:	f7ff ff5a 	bl	201ea0 <queue_dequeue.lto_priv.250>
   201fec:	4602      	mov	r2, r0
   201fee:	9b03      	ldr	r3, [sp, #12]
   201ff0:	6a5b      	ldr	r3, [r3, #36]	; 0x24
   201ff2:	4619      	mov	r1, r3
   201ff4:	4610      	mov	r0, r2
-  201ff6:	f7ff ff13 	bl	201e20 <queue_prio_insert.lto_priv.236>
+  201ff6:	f7ff ff13 	bl	201e20 <queue_prio_insert.lto_priv.243>
         default:
   201ffa:	e011      	b.n	202020 <chMtxLockS+0xa0>
           tp->state = CH_STATE_CURRENT;
@@ -5361,7 +5361,7 @@ void chMtxLockS(mutex_t *mp) {
   202000:	f883 2020 	strb.w	r2, [r3, #32]
           (void) chSchReadyI(queue_dequeue(tp));
   202004:	9803      	ldr	r0, [sp, #12]
-  202006:	f7ff ff4b 	bl	201ea0 <queue_dequeue.lto_priv.243>
+  202006:	f7ff ff4b 	bl	201ea0 <queue_dequeue.lto_priv.250>
   20200a:	4603      	mov	r3, r0
   20200c:	4618      	mov	r0, r3
   20200e:	f7ff f87f 	bl	201110 <chSchReadyI>
@@ -5383,7 +5383,7 @@ void chMtxLockS(mutex_t *mp) {
   202020:	9b01      	ldr	r3, [sp, #4]
   202022:	4619      	mov	r1, r3
   202024:	9802      	ldr	r0, [sp, #8]
-  202026:	f7ff fefb 	bl	201e20 <queue_prio_insert.lto_priv.236>
+  202026:	f7ff fefb 	bl	201e20 <queue_prio_insert.lto_priv.243>
       ctp->u.wtmtxp = mp;
   20202a:	9b02      	ldr	r3, [sp, #8]
   20202c:	9a01      	ldr	r2, [sp, #4]
@@ -5435,7 +5435,7 @@ void chMtxLockS(mutex_t *mp) {
   20206e:	f85d fb04 	ldr.w	pc, [sp], #4
   202072:	bf00      	nop
   202074:	200008d8 	.word	0x200008d8
-  202078:	08004b4c 	.word	0x08004b4c
+  202078:	08004bb0 	.word	0x08004bb0
   20207c:	00000000 	.word	0x00000000
 
 00202080 <chMtxUnlock>:
@@ -5462,7 +5462,7 @@ void chMtxUnlock(mutex_t *mp) {
   202094:	f7fe fb9c 	bl	2007d0 <chSysHalt>
 
   chSysLock();
-  202098:	f7ff ff12 	bl	201ec0 <chSysLock.lto_priv.136>
+  202098:	f7ff ff12 	bl	201ec0 <chSysLock.lto_priv.145>
 
   chDbgAssert(ctp->mtxlist != NULL, "owned mutexes list empty");
   20209c:	9b03      	ldr	r3, [sp, #12]
@@ -5571,7 +5571,7 @@ void chMtxUnlock(mutex_t *mp) {
       tp = queue_fifo_remove(&mp->queue);
   202120:	9b01      	ldr	r3, [sp, #4]
   202122:	4618      	mov	r0, r3
-  202124:	f7ff fea4 	bl	201e70 <queue_fifo_remove.lto_priv.224>
+  202124:	f7ff fea4 	bl	201e70 <queue_fifo_remove.lto_priv.231>
   202128:	9002      	str	r0, [sp, #8]
       mp->owner = tp;
   20212a:	9b01      	ldr	r3, [sp, #4]
@@ -5609,13 +5609,13 @@ void chMtxUnlock(mutex_t *mp) {
 #endif
 
   chSysUnlock();
-  202150:	f7ff febe 	bl	201ed0 <chSysUnlock.lto_priv.100>
+  202150:	f7ff febe 	bl	201ed0 <chSysUnlock.lto_priv.109>
 }
   202154:	b007      	add	sp, #28
   202156:	f85d fb04 	ldr.w	pc, [sp], #4
   20215a:	bf00      	nop
   20215c:	200008d8 	.word	0x200008d8
-  202160:	08004b58 	.word	0x08004b58
+  202160:	08004bbc 	.word	0x08004bbc
 	...
 
 00202170 <chEvtBroadcastFlagsI>:
@@ -5692,7 +5692,7 @@ void chEvtBroadcastFlagsI(event_source_t *esp, eventflags_t flags) {
   2021cc:	b005      	add	sp, #20
   2021ce:	f85d fb04 	ldr.w	pc, [sp], #4
   2021d2:	bf00      	nop
-  2021d4:	08004b64 	.word	0x08004b64
+  2021d4:	08004bc8 	.word	0x08004bc8
 	...
 
 002021e0 <chEvtSignalI>:
@@ -5767,7 +5767,7 @@ void chEvtSignalI(thread_t *tp, eventmask_t events) {
   202244:	b003      	add	sp, #12
   202246:	f85d fb04 	ldr.w	pc, [sp], #4
   20224a:	bf00      	nop
-  20224c:	08004b7c 	.word	0x08004b7c
+  20224c:	08004be0 	.word	0x08004be0
 
 00202250 <port_lock.lto_priv.67>:
 static inline void port_lock(void) {
@@ -5798,7 +5798,7 @@ static inline void port_unlock(void) {
   20227c:	b002      	add	sp, #8
   20227e:	4770      	bx	lr
 
-00202280 <chSysLock.lto_priv.142>:
+00202280 <chSysLock.lto_priv.151>:
 static inline void chSysLock(void) {
   202280:	b508      	push	{r3, lr}
   port_lock();
@@ -5810,33 +5810,33 @@ static inline void chSysLock(void) {
   20228c:	0000      	movs	r0, r0
 	...
 
-00202290 <chSysUnlock.lto_priv.106>:
+00202290 <chSysUnlock.lto_priv.115>:
 static inline void chSysUnlock(void) {
   202290:	b508      	push	{r3, lr}
   _dbg_check_unlock();
   202292:	f7fe fb0d 	bl	2008b0 <_dbg_check_unlock>
   chDbgAssert((ch.rlist.queue.next == (thread_t *)&ch.rlist.queue) ||
-  202296:	4b09      	ldr	r3, [pc, #36]	; (2022bc <chSysUnlock.lto_priv.106+0x2c>)
+  202296:	4b09      	ldr	r3, [pc, #36]	; (2022bc <chSysUnlock.lto_priv.115+0x2c>)
   202298:	681b      	ldr	r3, [r3, #0]
-  20229a:	4a08      	ldr	r2, [pc, #32]	; (2022bc <chSysUnlock.lto_priv.106+0x2c>)
+  20229a:	4a08      	ldr	r2, [pc, #32]	; (2022bc <chSysUnlock.lto_priv.115+0x2c>)
   20229c:	4293      	cmp	r3, r2
-  20229e:	d00a      	beq.n	2022b6 <chSysUnlock.lto_priv.106+0x26>
-  2022a0:	4b06      	ldr	r3, [pc, #24]	; (2022bc <chSysUnlock.lto_priv.106+0x2c>)
+  20229e:	d00a      	beq.n	2022b6 <chSysUnlock.lto_priv.115+0x26>
+  2022a0:	4b06      	ldr	r3, [pc, #24]	; (2022bc <chSysUnlock.lto_priv.115+0x2c>)
   2022a2:	699b      	ldr	r3, [r3, #24]
   2022a4:	689a      	ldr	r2, [r3, #8]
-  2022a6:	4b05      	ldr	r3, [pc, #20]	; (2022bc <chSysUnlock.lto_priv.106+0x2c>)
+  2022a6:	4b05      	ldr	r3, [pc, #20]	; (2022bc <chSysUnlock.lto_priv.115+0x2c>)
   2022a8:	681b      	ldr	r3, [r3, #0]
   2022aa:	689b      	ldr	r3, [r3, #8]
   2022ac:	429a      	cmp	r2, r3
-  2022ae:	d202      	bcs.n	2022b6 <chSysUnlock.lto_priv.106+0x26>
-  2022b0:	4803      	ldr	r0, [pc, #12]	; (2022c0 <chSysUnlock.lto_priv.106+0x30>)
+  2022ae:	d202      	bcs.n	2022b6 <chSysUnlock.lto_priv.115+0x26>
+  2022b0:	4803      	ldr	r0, [pc, #12]	; (2022c0 <chSysUnlock.lto_priv.115+0x30>)
   2022b2:	f7fe fa8d 	bl	2007d0 <chSysHalt>
   port_unlock();
   2022b6:	f7ff ffdb 	bl	202270 <port_unlock.lto_priv.43>
 }
   2022ba:	bd08      	pop	{r3, pc}
   2022bc:	200008d8 	.word	0x200008d8
-  2022c0:	08004bac 	.word	0x08004bac
+  2022c0:	08004c10 	.word	0x08004c10
 	...
 
 002022d0 <_core_init>:
@@ -5952,7 +5952,7 @@ void *chCoreAllocAlignedWithOffsetI(size_t size,
   202368:	b007      	add	sp, #28
   20236a:	f85d fb04 	ldr.w	pc, [sp], #4
   20236e:	bf00      	nop
-  202370:	08004b8c 	.word	0x08004b8c
+  202370:	08004bf0 	.word	0x08004bf0
   202374:	20001160 	.word	0x20001160
 	...
 
@@ -5971,7 +5971,7 @@ void *chCoreAllocAlignedWithOffset(size_t size,
   void *p;
 
   chSysLock();
-  20238a:	f7ff ff79 	bl	202280 <chSysLock.lto_priv.142>
+  20238a:	f7ff ff79 	bl	202280 <chSysLock.lto_priv.151>
   p = chCoreAllocAlignedWithOffsetI(size, align, offset);
   20238e:	9a01      	ldr	r2, [sp, #4]
   202390:	9902      	ldr	r1, [sp, #8]
@@ -5979,7 +5979,7 @@ void *chCoreAllocAlignedWithOffset(size_t size,
   202394:	f7ff ffac 	bl	2022f0 <chCoreAllocAlignedWithOffsetI>
   202398:	9005      	str	r0, [sp, #20]
   chSysUnlock();
-  20239a:	f7ff ff79 	bl	202290 <chSysUnlock.lto_priv.106>
+  20239a:	f7ff ff79 	bl	202290 <chSysUnlock.lto_priv.115>
 
   return p;
   20239e:	9b05      	ldr	r3, [sp, #20]
@@ -6208,7 +6208,7 @@ void chHeapFree(void *p) {
   2024e4:	b007      	add	sp, #28
   2024e6:	f85d fb04 	ldr.w	pc, [sp], #4
   2024ea:	bf00      	nop
-  2024ec:	08004bb8 	.word	0x08004bb8
+  2024ec:	08004c1c 	.word	0x08004c1c
 
 002024f0 <port_lock.lto_priv.68>:
 static inline void port_lock(void) {
@@ -6239,7 +6239,7 @@ static inline void port_unlock(void) {
   20251c:	b002      	add	sp, #8
   20251e:	4770      	bx	lr
 
-00202520 <chSysLock.lto_priv.143>:
+00202520 <chSysLock.lto_priv.152>:
 static inline void chSysLock(void) {
   202520:	b508      	push	{r3, lr}
   port_lock();
@@ -6251,33 +6251,33 @@ static inline void chSysLock(void) {
   20252c:	0000      	movs	r0, r0
 	...
 
-00202530 <chSysUnlock.lto_priv.107>:
+00202530 <chSysUnlock.lto_priv.116>:
 static inline void chSysUnlock(void) {
   202530:	b508      	push	{r3, lr}
   _dbg_check_unlock();
   202532:	f7fe f9bd 	bl	2008b0 <_dbg_check_unlock>
   chDbgAssert((ch.rlist.queue.next == (thread_t *)&ch.rlist.queue) ||
-  202536:	4b09      	ldr	r3, [pc, #36]	; (20255c <chSysUnlock.lto_priv.107+0x2c>)
+  202536:	4b09      	ldr	r3, [pc, #36]	; (20255c <chSysUnlock.lto_priv.116+0x2c>)
   202538:	681b      	ldr	r3, [r3, #0]
-  20253a:	4a08      	ldr	r2, [pc, #32]	; (20255c <chSysUnlock.lto_priv.107+0x2c>)
+  20253a:	4a08      	ldr	r2, [pc, #32]	; (20255c <chSysUnlock.lto_priv.116+0x2c>)
   20253c:	4293      	cmp	r3, r2
-  20253e:	d00a      	beq.n	202556 <chSysUnlock.lto_priv.107+0x26>
-  202540:	4b06      	ldr	r3, [pc, #24]	; (20255c <chSysUnlock.lto_priv.107+0x2c>)
+  20253e:	d00a      	beq.n	202556 <chSysUnlock.lto_priv.116+0x26>
+  202540:	4b06      	ldr	r3, [pc, #24]	; (20255c <chSysUnlock.lto_priv.116+0x2c>)
   202542:	699b      	ldr	r3, [r3, #24]
   202544:	689a      	ldr	r2, [r3, #8]
-  202546:	4b05      	ldr	r3, [pc, #20]	; (20255c <chSysUnlock.lto_priv.107+0x2c>)
+  202546:	4b05      	ldr	r3, [pc, #20]	; (20255c <chSysUnlock.lto_priv.116+0x2c>)
   202548:	681b      	ldr	r3, [r3, #0]
   20254a:	689b      	ldr	r3, [r3, #8]
   20254c:	429a      	cmp	r2, r3
-  20254e:	d202      	bcs.n	202556 <chSysUnlock.lto_priv.107+0x26>
-  202550:	4803      	ldr	r0, [pc, #12]	; (202560 <chSysUnlock.lto_priv.107+0x30>)
+  20254e:	d202      	bcs.n	202556 <chSysUnlock.lto_priv.116+0x26>
+  202550:	4803      	ldr	r0, [pc, #12]	; (202560 <chSysUnlock.lto_priv.116+0x30>)
   202552:	f7fe f93d 	bl	2007d0 <chSysHalt>
   port_unlock();
   202556:	f7ff ffdb 	bl	202510 <port_unlock.lto_priv.44>
 }
   20255a:	bd08      	pop	{r3, pc}
   20255c:	200008d8 	.word	0x200008d8
-  202560:	08004bc4 	.word	0x08004bc4
+  202560:	08004c28 	.word	0x08004c28
 	...
 
 00202570 <chPoolFreeI>:
@@ -6320,7 +6320,7 @@ void chPoolFreeI(memory_pool_t *mp, void *objp) {
   2025a0:	b005      	add	sp, #20
   2025a2:	f85d fb04 	ldr.w	pc, [sp], #4
   2025a6:	bf00      	nop
-  2025a8:	08004bd0 	.word	0x08004bd0
+  2025a8:	08004c34 	.word	0x08004c34
   2025ac:	00000000 	.word	0x00000000
 
 002025b0 <chPoolFree>:
@@ -6336,13 +6336,13 @@ void chPoolFree(memory_pool_t *mp, void *objp) {
   2025b6:	9100      	str	r1, [sp, #0]
 
   chSysLock();
-  2025b8:	f7ff ffb2 	bl	202520 <chSysLock.lto_priv.143>
+  2025b8:	f7ff ffb2 	bl	202520 <chSysLock.lto_priv.152>
   chPoolFreeI(mp, objp);
   2025bc:	9900      	ldr	r1, [sp, #0]
   2025be:	9801      	ldr	r0, [sp, #4]
   2025c0:	f7ff ffd6 	bl	202570 <chPoolFreeI>
   chSysUnlock();
-  2025c4:	f7ff ffb4 	bl	202530 <chSysUnlock.lto_priv.107>
+  2025c4:	f7ff ffb4 	bl	202530 <chSysUnlock.lto_priv.116>
 }
   2025c8:	b003      	add	sp, #12
   2025ca:	f85d fb04 	ldr.w	pc, [sp], #4
@@ -6597,7 +6597,7 @@ void halInit(void) {
 
   /* Board specific initialization.*/
   boardInit();
-  2026ec:	f002 f850 	bl	204790 <boardInit>
+  2026ec:	f002 f880 	bl	2047f0 <boardInit>
 /*
  *  The ST driver is a special case, it is only initialized if the OSAL is
  *  configured to require it.
@@ -6609,7 +6609,7 @@ void halInit(void) {
 }
   2026f4:	bd08      	pop	{r3, pc}
   2026f6:	bf00      	nop
-  2026f8:	08004db0 	.word	0x08004db0
+  2026f8:	08004e20 	.word	0x08004e20
   2026fc:	00000000 	.word	0x00000000
 
 00202700 <st_lld_start_alarm>:
@@ -6739,7 +6739,7 @@ void stStartAlarm(systime_t abstime) {
   20279c:	b003      	add	sp, #12
   20279e:	f85d fb04 	ldr.w	pc, [sp], #4
   2027a2:	bf00      	nop
-  2027a4:	08004bdc 	.word	0x08004bdc
+  2027a4:	08004c40 	.word	0x08004c40
 	...
 
 002027b0 <stStopAlarm>:
@@ -6784,7 +6784,7 @@ void stSetAlarm(systime_t abstime) {
 }
   2027e2:	b003      	add	sp, #12
   2027e4:	f85d fb04 	ldr.w	pc, [sp], #4
-  2027e8:	08004bec 	.word	0x08004bec
+  2027e8:	08004c50 	.word	0x08004c50
   2027ec:	00000000 	.word	0x00000000
 
 002027f0 <port_lock.lto_priv.71>:
@@ -6816,9 +6816,9 @@ static inline void port_unlock(void) {
   20281c:	b002      	add	sp, #8
   20281e:	4770      	bx	lr
 
-00202820 <st_lld_get_counter.lto_priv.189>:
+00202820 <st_lld_get_counter.lto_priv.196>:
   return (systime_t)STM32_ST_TIM->CNT;
-  202820:	4b01      	ldr	r3, [pc, #4]	; (202828 <st_lld_get_counter.lto_priv.189+0x8>)
+  202820:	4b01      	ldr	r3, [pc, #4]	; (202828 <st_lld_get_counter.lto_priv.196+0x8>)
   202822:	6a5b      	ldr	r3, [r3, #36]	; 0x24
 }
   202824:	4618      	mov	r0, r3
@@ -6826,11 +6826,11 @@ static inline void port_unlock(void) {
   202828:	40000c00 	.word	0x40000c00
   20282c:	00000000 	.word	0x00000000
 
-00202830 <port_timer_get_time.lto_priv.184>:
+00202830 <port_timer_get_time.lto_priv.191>:
 static inline systime_t port_timer_get_time(void) {
   202830:	b508      	push	{r3, lr}
   return stGetCounter();
-  202832:	f7ff fff5 	bl	202820 <st_lld_get_counter.lto_priv.189>
+  202832:	f7ff fff5 	bl	202820 <st_lld_get_counter.lto_priv.196>
   202836:	4603      	mov	r3, r0
 }
   202838:	4618      	mov	r0, r3
@@ -6838,7 +6838,7 @@ static inline systime_t port_timer_get_time(void) {
   20283c:	0000      	movs	r0, r0
 	...
 
-00202840 <queue_init.lto_priv.179>:
+00202840 <queue_init.lto_priv.186>:
 static inline void queue_init(threads_queue_t *tqp) {
   202840:	b082      	sub	sp, #8
   202842:	9001      	str	r0, [sp, #4]
@@ -6855,7 +6855,7 @@ static inline void queue_init(threads_queue_t *tqp) {
   202852:	4770      	bx	lr
 	...
 
-00202860 <chSysLock.lto_priv.145>:
+00202860 <chSysLock.lto_priv.154>:
 static inline void chSysLock(void) {
   202860:	b508      	push	{r3, lr}
   port_lock();
@@ -6867,40 +6867,40 @@ static inline void chSysLock(void) {
   20286c:	0000      	movs	r0, r0
 	...
 
-00202870 <chSysUnlock.lto_priv.109>:
+00202870 <chSysUnlock.lto_priv.118>:
 static inline void chSysUnlock(void) {
   202870:	b508      	push	{r3, lr}
   _dbg_check_unlock();
   202872:	f7fe f81d 	bl	2008b0 <_dbg_check_unlock>
   chDbgAssert((ch.rlist.queue.next == (thread_t *)&ch.rlist.queue) ||
-  202876:	4b09      	ldr	r3, [pc, #36]	; (20289c <chSysUnlock.lto_priv.109+0x2c>)
+  202876:	4b09      	ldr	r3, [pc, #36]	; (20289c <chSysUnlock.lto_priv.118+0x2c>)
   202878:	681b      	ldr	r3, [r3, #0]
-  20287a:	4a08      	ldr	r2, [pc, #32]	; (20289c <chSysUnlock.lto_priv.109+0x2c>)
+  20287a:	4a08      	ldr	r2, [pc, #32]	; (20289c <chSysUnlock.lto_priv.118+0x2c>)
   20287c:	4293      	cmp	r3, r2
-  20287e:	d00a      	beq.n	202896 <chSysUnlock.lto_priv.109+0x26>
-  202880:	4b06      	ldr	r3, [pc, #24]	; (20289c <chSysUnlock.lto_priv.109+0x2c>)
+  20287e:	d00a      	beq.n	202896 <chSysUnlock.lto_priv.118+0x26>
+  202880:	4b06      	ldr	r3, [pc, #24]	; (20289c <chSysUnlock.lto_priv.118+0x2c>)
   202882:	699b      	ldr	r3, [r3, #24]
   202884:	689a      	ldr	r2, [r3, #8]
-  202886:	4b05      	ldr	r3, [pc, #20]	; (20289c <chSysUnlock.lto_priv.109+0x2c>)
+  202886:	4b05      	ldr	r3, [pc, #20]	; (20289c <chSysUnlock.lto_priv.118+0x2c>)
   202888:	681b      	ldr	r3, [r3, #0]
   20288a:	689b      	ldr	r3, [r3, #8]
   20288c:	429a      	cmp	r2, r3
-  20288e:	d202      	bcs.n	202896 <chSysUnlock.lto_priv.109+0x26>
-  202890:	4803      	ldr	r0, [pc, #12]	; (2028a0 <chSysUnlock.lto_priv.109+0x30>)
+  20288e:	d202      	bcs.n	202896 <chSysUnlock.lto_priv.118+0x26>
+  202890:	4803      	ldr	r0, [pc, #12]	; (2028a0 <chSysUnlock.lto_priv.118+0x30>)
   202892:	f7fd ff9d 	bl	2007d0 <chSysHalt>
   port_unlock();
   202896:	f7ff ffbb 	bl	202810 <port_unlock.lto_priv.47>
 }
   20289a:	bd08      	pop	{r3, pc}
   20289c:	200008d8 	.word	0x200008d8
-  2028a0:	08004bf8 	.word	0x08004bf8
+  2028a0:	08004c5c 	.word	0x08004c5c
 	...
 
-002028b0 <chVTGetSystemTimeX.lto_priv.171>:
+002028b0 <chVTGetSystemTimeX.lto_priv.178>:
 static inline systime_t chVTGetSystemTimeX(void) {
   2028b0:	b508      	push	{r3, lr}
   return port_timer_get_time();
-  2028b2:	f7ff ffbd 	bl	202830 <port_timer_get_time.lto_priv.184>
+  2028b2:	f7ff ffbd 	bl	202830 <port_timer_get_time.lto_priv.191>
   2028b6:	4603      	mov	r3, r0
 }
   2028b8:	4618      	mov	r0, r3
@@ -6908,21 +6908,21 @@ static inline systime_t chVTGetSystemTimeX(void) {
   2028bc:	0000      	movs	r0, r0
 	...
 
-002028c0 <chThdQueueObjectInit.lto_priv.166>:
+002028c0 <chThdQueueObjectInit.lto_priv.173>:
 static inline void chThdQueueObjectInit(threads_queue_t *tqp) {
   2028c0:	b500      	push	{lr}
   2028c2:	b083      	sub	sp, #12
   2028c4:	9001      	str	r0, [sp, #4]
   queue_init(tqp);
   2028c6:	9801      	ldr	r0, [sp, #4]
-  2028c8:	f7ff ffba 	bl	202840 <queue_init.lto_priv.179>
+  2028c8:	f7ff ffba 	bl	202840 <queue_init.lto_priv.186>
 }
   2028cc:	b003      	add	sp, #12
   2028ce:	f85d fb04 	ldr.w	pc, [sp], #4
   2028d2:	bf00      	nop
 	...
 
-002028e0 <osalSysLock.lto_priv.90>:
+002028e0 <osalSysLock.lto_priv.99>:
  * @brief   Enters a critical zone from thread context.
  * @note    This function cannot be used for reentrant critical zones.
  *
@@ -6932,12 +6932,12 @@ static inline void osalSysLock(void) {
   2028e0:	b508      	push	{r3, lr}
 
   chSysLock();
-  2028e2:	f7ff ffbd 	bl	202860 <chSysLock.lto_priv.145>
+  2028e2:	f7ff ffbd 	bl	202860 <chSysLock.lto_priv.154>
 }
   2028e6:	bd08      	pop	{r3, pc}
 	...
 
-002028f0 <osalSysUnlock.lto_priv.84>:
+002028f0 <osalSysUnlock.lto_priv.93>:
  * @brief   Leaves a critical zone from thread context.
  * @note    This function cannot be used for reentrant critical zones.
  *
@@ -6947,7 +6947,7 @@ static inline void osalSysUnlock(void) {
   2028f0:	b508      	push	{r3, lr}
 
   chSysUnlock();
-  2028f2:	f7ff ffbd 	bl	202870 <chSysUnlock.lto_priv.109>
+  2028f2:	f7ff ffbd 	bl	202870 <chSysUnlock.lto_priv.118>
 }
   2028f6:	bd08      	pop	{r3, pc}
 	...
@@ -6962,7 +6962,7 @@ static inline systime_t osalOsGetSystemTimeX(void) {
   202900:	b508      	push	{r3, lr}
 
   return chVTGetSystemTimeX();
-  202902:	f7ff ffd5 	bl	2028b0 <chVTGetSystemTimeX.lto_priv.171>
+  202902:	f7ff ffd5 	bl	2028b0 <chVTGetSystemTimeX.lto_priv.178>
   202906:	4603      	mov	r3, r0
 }
   202908:	4618      	mov	r0, r3
@@ -6970,7 +6970,7 @@ static inline systime_t osalOsGetSystemTimeX(void) {
   20290c:	0000      	movs	r0, r0
 	...
 
-00202910 <osalThreadQueueObjectInit.lto_priv.163>:
+00202910 <osalThreadQueueObjectInit.lto_priv.170>:
  *
  * @param[out] tqp      pointer to the threads queue object
  *
@@ -6983,14 +6983,14 @@ static inline void osalThreadQueueObjectInit(threads_queue_t *tqp) {
 
   chThdQueueObjectInit(tqp);
   202916:	9801      	ldr	r0, [sp, #4]
-  202918:	f7ff ffd2 	bl	2028c0 <chThdQueueObjectInit.lto_priv.166>
+  202918:	f7ff ffd2 	bl	2028c0 <chThdQueueObjectInit.lto_priv.173>
 }
   20291c:	b003      	add	sp, #12
   20291e:	f85d fb04 	ldr.w	pc, [sp], #4
   202922:	bf00      	nop
 	...
 
-00202930 <osalThreadEnqueueTimeoutS.lto_priv.161>:
+00202930 <osalThreadEnqueueTimeoutS.lto_priv.168>:
  *                      specification.
  *
  * @sclass
@@ -7015,7 +7015,7 @@ static inline msg_t osalThreadEnqueueTimeoutS(threads_queue_t *tqp,
   20294c:	0000      	movs	r0, r0
 	...
 
-00202950 <osalThreadDequeueNextI.lto_priv.159>:
+00202950 <osalThreadDequeueNextI.lto_priv.166>:
  * @param[in] tqp       pointer to the threads queue object
  * @param[in] msg       the message code
  *
@@ -7054,7 +7054,7 @@ void iqObjectInit(input_queue_t *iqp, uint8_t *bp, size_t size,
   osalThreadQueueObjectInit(&iqp->q_waiting);
   20297c:	9b03      	ldr	r3, [sp, #12]
   20297e:	4618      	mov	r0, r3
-  202980:	f7ff ffc6 	bl	202910 <osalThreadQueueObjectInit.lto_priv.163>
+  202980:	f7ff ffc6 	bl	202910 <osalThreadQueueObjectInit.lto_priv.170>
   iqp->q_counter = 0;
   202984:	9b03      	ldr	r3, [sp, #12]
   202986:	2200      	movs	r2, #0
@@ -7161,7 +7161,7 @@ msg_t iqPutI(input_queue_t *iqp, uint8_t b) {
   202a28:	9b01      	ldr	r3, [sp, #4]
   202a2a:	2100      	movs	r1, #0
   202a2c:	4618      	mov	r0, r3
-  202a2e:	f7ff ff8f 	bl	202950 <osalThreadDequeueNextI.lto_priv.159>
+  202a2e:	f7ff ff8f 	bl	202950 <osalThreadDequeueNextI.lto_priv.166>
 
   return MSG_OK;
   202a32:	2300      	movs	r3, #0
@@ -7186,7 +7186,7 @@ msg_t iqGetTimeout(input_queue_t *iqp, systime_t timeout) {
   uint8_t b;
 
   osalSysLock();
-  202a48:	f7ff ff4a 	bl	2028e0 <osalSysLock.lto_priv.90>
+  202a48:	f7ff ff4a 	bl	2028e0 <osalSysLock.lto_priv.99>
   202a4c:	e00c      	b.n	202a68 <iqGetTimeout+0x28>
 
   /* Waiting until there is a character available or a timeout occurs.*/
@@ -7195,14 +7195,14 @@ msg_t iqGetTimeout(input_queue_t *iqp, systime_t timeout) {
   202a4e:	9b01      	ldr	r3, [sp, #4]
   202a50:	9900      	ldr	r1, [sp, #0]
   202a52:	4618      	mov	r0, r3
-  202a54:	f7ff ff6c 	bl	202930 <osalThreadEnqueueTimeoutS.lto_priv.161>
+  202a54:	f7ff ff6c 	bl	202930 <osalThreadEnqueueTimeoutS.lto_priv.168>
   202a58:	9002      	str	r0, [sp, #8]
     if (msg < MSG_OK) {
   202a5a:	9b02      	ldr	r3, [sp, #8]
   202a5c:	2b00      	cmp	r3, #0
   202a5e:	da03      	bge.n	202a68 <iqGetTimeout+0x28>
       osalSysUnlock();
-  202a60:	f7ff ff46 	bl	2028f0 <osalSysUnlock.lto_priv.84>
+  202a60:	f7ff ff46 	bl	2028f0 <osalSysUnlock.lto_priv.93>
       return msg;
   202a64:	9b02      	ldr	r3, [sp, #8]
   202a66:	e026      	b.n	202ab6 <iqGetTimeout+0x76>
@@ -7257,7 +7257,7 @@ msg_t iqGetTimeout(input_queue_t *iqp, systime_t timeout) {
   }
 
   osalSysUnlock();
-  202aae:	f7ff ff1f 	bl	2028f0 <osalSysUnlock.lto_priv.84>
+  202aae:	f7ff ff1f 	bl	2028f0 <osalSysUnlock.lto_priv.93>
 
   return (msg_t)b;
   202ab2:	f89d 300f 	ldrb.w	r3, [sp, #15]
@@ -7297,7 +7297,7 @@ size_t iqReadTimeout(input_queue_t *iqp, uint8_t *bp,
   202ade:	f7fd fe77 	bl	2007d0 <chSysHalt>
 
   osalSysLock();
-  202ae2:	f7ff fefd 	bl	2028e0 <osalSysLock.lto_priv.90>
+  202ae2:	f7ff fefd 	bl	2028e0 <osalSysLock.lto_priv.99>
 
   /* Time deadline for the whole operation, note the result is invalid
      when timeout is TIME_INFINITE or TIME_IMMEDIATE but in that case
@@ -7325,7 +7325,7 @@ size_t iqReadTimeout(input_queue_t *iqp, uint8_t *bp,
   202b02:	9b03      	ldr	r3, [sp, #12]
   202b04:	9900      	ldr	r1, [sp, #0]
   202b06:	4618      	mov	r0, r3
-  202b08:	f7ff ff12 	bl	202930 <osalThreadEnqueueTimeoutS.lto_priv.161>
+  202b08:	f7ff ff12 	bl	202930 <osalThreadEnqueueTimeoutS.lto_priv.168>
   202b0c:	9008      	str	r0, [sp, #32]
   202b0e:	e013      	b.n	202b38 <iqReadTimeout+0x78>
       }
@@ -7346,7 +7346,7 @@ size_t iqReadTimeout(input_queue_t *iqp, uint8_t *bp,
   202b20:	429a      	cmp	r2, r3
   202b22:	d903      	bls.n	202b2c <iqReadTimeout+0x6c>
           osalSysUnlock();
-  202b24:	f7ff fee4 	bl	2028f0 <osalSysUnlock.lto_priv.84>
+  202b24:	f7ff fee4 	bl	2028f0 <osalSysUnlock.lto_priv.93>
           return r;
   202b28:	9b09      	ldr	r3, [sp, #36]	; 0x24
   202b2a:	e03f      	b.n	202bac <iqReadTimeout+0xec>
@@ -7356,7 +7356,7 @@ size_t iqReadTimeout(input_queue_t *iqp, uint8_t *bp,
   202b2c:	9b03      	ldr	r3, [sp, #12]
   202b2e:	9905      	ldr	r1, [sp, #20]
   202b30:	4618      	mov	r0, r3
-  202b32:	f7ff fefd 	bl	202930 <osalThreadEnqueueTimeoutS.lto_priv.161>
+  202b32:	f7ff fefd 	bl	202930 <osalThreadEnqueueTimeoutS.lto_priv.168>
   202b36:	9008      	str	r0, [sp, #32]
       }
 
@@ -7366,7 +7366,7 @@ size_t iqReadTimeout(input_queue_t *iqp, uint8_t *bp,
   202b3a:	2b00      	cmp	r3, #0
   202b3c:	d003      	beq.n	202b46 <iqReadTimeout+0x86>
         osalSysUnlock();
-  202b3e:	f7ff fed7 	bl	2028f0 <osalSysUnlock.lto_priv.84>
+  202b3e:	f7ff fed7 	bl	2028f0 <osalSysUnlock.lto_priv.93>
         return r;
   202b42:	9b09      	ldr	r3, [sp, #36]	; 0x24
   202b44:	e032      	b.n	202bac <iqReadTimeout+0xec>
@@ -7423,7 +7423,7 @@ size_t iqReadTimeout(input_queue_t *iqp, uint8_t *bp,
 
     /* Giving a preemption chance in a controlled point.*/
     osalSysUnlock();
-  202b8c:	f7ff feb0 	bl	2028f0 <osalSysUnlock.lto_priv.84>
+  202b8c:	f7ff feb0 	bl	2028f0 <osalSysUnlock.lto_priv.93>
 
     r++;
   202b90:	9b09      	ldr	r3, [sp, #36]	; 0x24
@@ -7442,14 +7442,14 @@ size_t iqReadTimeout(input_queue_t *iqp, uint8_t *bp,
     }
 
     osalSysLock();
-  202ba6:	f7ff fe9b 	bl	2028e0 <osalSysLock.lto_priv.90>
+  202ba6:	f7ff fe9b 	bl	2028e0 <osalSysLock.lto_priv.99>
   202baa:	e7cc      	b.n	202b46 <iqReadTimeout+0x86>
   }
 }
   202bac:	4618      	mov	r0, r3
   202bae:	b00b      	add	sp, #44	; 0x2c
   202bb0:	f85d fb04 	ldr.w	pc, [sp], #4
-  202bb4:	08004c04 	.word	0x08004c04
+  202bb4:	08004c68 	.word	0x08004c68
 	...
 
 00202bc0 <oqObjectInit>:
@@ -7469,7 +7469,7 @@ void oqObjectInit(output_queue_t *oqp, uint8_t *bp, size_t size,
   osalThreadQueueObjectInit(&oqp->q_waiting);
   202bcc:	9b03      	ldr	r3, [sp, #12]
   202bce:	4618      	mov	r0, r3
-  202bd0:	f7ff fe9e 	bl	202910 <osalThreadQueueObjectInit.lto_priv.163>
+  202bd0:	f7ff fe9e 	bl	202910 <osalThreadQueueObjectInit.lto_priv.170>
   oqp->q_counter = size;
   202bd4:	9b03      	ldr	r3, [sp, #12]
   202bd6:	9a01      	ldr	r2, [sp, #4]
@@ -7520,7 +7520,7 @@ msg_t oqPutTimeout(output_queue_t *oqp, uint8_t b, systime_t timeout) {
   202c1a:	f88d 300b 	strb.w	r3, [sp, #11]
 
   osalSysLock();
-  202c1e:	f7ff fe5f 	bl	2028e0 <osalSysLock.lto_priv.90>
+  202c1e:	f7ff fe5f 	bl	2028e0 <osalSysLock.lto_priv.99>
   202c22:	e00c      	b.n	202c3e <oqPutTimeout+0x2e>
 
   /* Waiting until there is a slot available or a timeout occurs.*/
@@ -7529,14 +7529,14 @@ msg_t oqPutTimeout(output_queue_t *oqp, uint8_t b, systime_t timeout) {
   202c24:	9b03      	ldr	r3, [sp, #12]
   202c26:	9901      	ldr	r1, [sp, #4]
   202c28:	4618      	mov	r0, r3
-  202c2a:	f7ff fe81 	bl	202930 <osalThreadEnqueueTimeoutS.lto_priv.161>
+  202c2a:	f7ff fe81 	bl	202930 <osalThreadEnqueueTimeoutS.lto_priv.168>
   202c2e:	9005      	str	r0, [sp, #20]
     if (msg < MSG_OK) {
   202c30:	9b05      	ldr	r3, [sp, #20]
   202c32:	2b00      	cmp	r3, #0
   202c34:	da03      	bge.n	202c3e <oqPutTimeout+0x2e>
       osalSysUnlock();
-  202c36:	f7ff fe5b 	bl	2028f0 <osalSysUnlock.lto_priv.84>
+  202c36:	f7ff fe5b 	bl	2028f0 <osalSysUnlock.lto_priv.93>
       return msg;
   202c3a:	9b05      	ldr	r3, [sp, #20]
   202c3c:	e025      	b.n	202c8a <oqPutTimeout+0x7a>
@@ -7591,7 +7591,7 @@ msg_t oqPutTimeout(output_queue_t *oqp, uint8_t b, systime_t timeout) {
   }
 
   osalSysUnlock();
-  202c84:	f7ff fe34 	bl	2028f0 <osalSysUnlock.lto_priv.84>
+  202c84:	f7ff fe34 	bl	2028f0 <osalSysUnlock.lto_priv.93>
 
   return MSG_OK;
   202c88:	2300      	movs	r3, #0
@@ -7672,7 +7672,7 @@ msg_t oqGetI(output_queue_t *oqp) {
   202d02:	9b01      	ldr	r3, [sp, #4]
   202d04:	2100      	movs	r1, #0
   202d06:	4618      	mov	r0, r3
-  202d08:	f7ff fe22 	bl	202950 <osalThreadDequeueNextI.lto_priv.159>
+  202d08:	f7ff fe22 	bl	202950 <osalThreadDequeueNextI.lto_priv.166>
 
   return (msg_t)b;
   202d0c:	f89d 300f 	ldrb.w	r3, [sp, #15]
@@ -7712,7 +7712,7 @@ size_t oqWriteTimeout(output_queue_t *oqp, const uint8_t *bp,
   202d3e:	f7fd fd47 	bl	2007d0 <chSysHalt>
 
   osalSysLock();
-  202d42:	f7ff fdcd 	bl	2028e0 <osalSysLock.lto_priv.90>
+  202d42:	f7ff fdcd 	bl	2028e0 <osalSysLock.lto_priv.99>
 
   /* Time deadline for the whole operation, note the result is invalid
      when timeout is TIME_INFINITE or TIME_IMMEDIATE but in that case
@@ -7740,7 +7740,7 @@ size_t oqWriteTimeout(output_queue_t *oqp, const uint8_t *bp,
   202d62:	9b03      	ldr	r3, [sp, #12]
   202d64:	9900      	ldr	r1, [sp, #0]
   202d66:	4618      	mov	r0, r3
-  202d68:	f7ff fde2 	bl	202930 <osalThreadEnqueueTimeoutS.lto_priv.161>
+  202d68:	f7ff fde2 	bl	202930 <osalThreadEnqueueTimeoutS.lto_priv.168>
   202d6c:	9008      	str	r0, [sp, #32]
   202d6e:	e013      	b.n	202d98 <oqWriteTimeout+0x78>
       }
@@ -7761,7 +7761,7 @@ size_t oqWriteTimeout(output_queue_t *oqp, const uint8_t *bp,
   202d80:	429a      	cmp	r2, r3
   202d82:	d903      	bls.n	202d8c <oqWriteTimeout+0x6c>
           osalSysUnlock();
-  202d84:	f7ff fdb4 	bl	2028f0 <osalSysUnlock.lto_priv.84>
+  202d84:	f7ff fdb4 	bl	2028f0 <osalSysUnlock.lto_priv.93>
           return w;
   202d88:	9b09      	ldr	r3, [sp, #36]	; 0x24
   202d8a:	e03f      	b.n	202e0c <oqWriteTimeout+0xec>
@@ -7771,7 +7771,7 @@ size_t oqWriteTimeout(output_queue_t *oqp, const uint8_t *bp,
   202d8c:	9b03      	ldr	r3, [sp, #12]
   202d8e:	9905      	ldr	r1, [sp, #20]
   202d90:	4618      	mov	r0, r3
-  202d92:	f7ff fdcd 	bl	202930 <osalThreadEnqueueTimeoutS.lto_priv.161>
+  202d92:	f7ff fdcd 	bl	202930 <osalThreadEnqueueTimeoutS.lto_priv.168>
   202d96:	9008      	str	r0, [sp, #32]
       }
 
@@ -7781,7 +7781,7 @@ size_t oqWriteTimeout(output_queue_t *oqp, const uint8_t *bp,
   202d9a:	2b00      	cmp	r3, #0
   202d9c:	d003      	beq.n	202da6 <oqWriteTimeout+0x86>
         osalSysUnlock();
-  202d9e:	f7ff fda7 	bl	2028f0 <osalSysUnlock.lto_priv.84>
+  202d9e:	f7ff fda7 	bl	2028f0 <osalSysUnlock.lto_priv.93>
         return w;
   202da2:	9b09      	ldr	r3, [sp, #36]	; 0x24
   202da4:	e032      	b.n	202e0c <oqWriteTimeout+0xec>
@@ -7838,7 +7838,7 @@ size_t oqWriteTimeout(output_queue_t *oqp, const uint8_t *bp,
 
     /* Giving a preemption chance in a controlled point.*/
     osalSysUnlock();
-  202dec:	f7ff fd80 	bl	2028f0 <osalSysUnlock.lto_priv.84>
+  202dec:	f7ff fd80 	bl	2028f0 <osalSysUnlock.lto_priv.93>
 
     w++;
   202df0:	9b09      	ldr	r3, [sp, #36]	; 0x24
@@ -7857,14 +7857,14 @@ size_t oqWriteTimeout(output_queue_t *oqp, const uint8_t *bp,
     }
 
     osalSysLock();
-  202e06:	f7ff fd6b 	bl	2028e0 <osalSysLock.lto_priv.90>
+  202e06:	f7ff fd6b 	bl	2028e0 <osalSysLock.lto_priv.99>
   202e0a:	e7cc      	b.n	202da6 <oqWriteTimeout+0x86>
   }
 }
   202e0c:	4618      	mov	r0, r3
   202e0e:	b00b      	add	sp, #44	; 0x2c
   202e10:	f85d fb04 	ldr.w	pc, [sp], #4
-  202e14:	08004c14 	.word	0x08004c14
+  202e14:	08004c78 	.word	0x08004c78
 	...
 
 00202e20 <port_lock.lto_priv.72>:
@@ -7896,7 +7896,7 @@ static inline void port_unlock(void) {
   202e4c:	b002      	add	sp, #8
   202e4e:	4770      	bx	lr
 
-00202e50 <chSysLock.lto_priv.146>:
+00202e50 <chSysLock.lto_priv.155>:
 static inline void chSysLock(void) {
   202e50:	b508      	push	{r3, lr}
   port_lock();
@@ -7908,49 +7908,49 @@ static inline void chSysLock(void) {
   202e5c:	0000      	movs	r0, r0
 	...
 
-00202e60 <chSysUnlock.lto_priv.110>:
+00202e60 <chSysUnlock.lto_priv.119>:
 static inline void chSysUnlock(void) {
   202e60:	b508      	push	{r3, lr}
   _dbg_check_unlock();
   202e62:	f7fd fd25 	bl	2008b0 <_dbg_check_unlock>
   chDbgAssert((ch.rlist.queue.next == (thread_t *)&ch.rlist.queue) ||
-  202e66:	4b09      	ldr	r3, [pc, #36]	; (202e8c <chSysUnlock.lto_priv.110+0x2c>)
+  202e66:	4b09      	ldr	r3, [pc, #36]	; (202e8c <chSysUnlock.lto_priv.119+0x2c>)
   202e68:	681b      	ldr	r3, [r3, #0]
-  202e6a:	4a08      	ldr	r2, [pc, #32]	; (202e8c <chSysUnlock.lto_priv.110+0x2c>)
+  202e6a:	4a08      	ldr	r2, [pc, #32]	; (202e8c <chSysUnlock.lto_priv.119+0x2c>)
   202e6c:	4293      	cmp	r3, r2
-  202e6e:	d00a      	beq.n	202e86 <chSysUnlock.lto_priv.110+0x26>
-  202e70:	4b06      	ldr	r3, [pc, #24]	; (202e8c <chSysUnlock.lto_priv.110+0x2c>)
+  202e6e:	d00a      	beq.n	202e86 <chSysUnlock.lto_priv.119+0x26>
+  202e70:	4b06      	ldr	r3, [pc, #24]	; (202e8c <chSysUnlock.lto_priv.119+0x2c>)
   202e72:	699b      	ldr	r3, [r3, #24]
   202e74:	689a      	ldr	r2, [r3, #8]
-  202e76:	4b05      	ldr	r3, [pc, #20]	; (202e8c <chSysUnlock.lto_priv.110+0x2c>)
+  202e76:	4b05      	ldr	r3, [pc, #20]	; (202e8c <chSysUnlock.lto_priv.119+0x2c>)
   202e78:	681b      	ldr	r3, [r3, #0]
   202e7a:	689b      	ldr	r3, [r3, #8]
   202e7c:	429a      	cmp	r2, r3
-  202e7e:	d202      	bcs.n	202e86 <chSysUnlock.lto_priv.110+0x26>
-  202e80:	4803      	ldr	r0, [pc, #12]	; (202e90 <chSysUnlock.lto_priv.110+0x30>)
+  202e7e:	d202      	bcs.n	202e86 <chSysUnlock.lto_priv.119+0x26>
+  202e80:	4803      	ldr	r0, [pc, #12]	; (202e90 <chSysUnlock.lto_priv.119+0x30>)
   202e82:	f7fd fca5 	bl	2007d0 <chSysHalt>
   port_unlock();
   202e86:	f7ff ffdb 	bl	202e40 <port_unlock.lto_priv.48>
 }
   202e8a:	bd08      	pop	{r3, pc}
   202e8c:	200008d8 	.word	0x200008d8
-  202e90:	08004c30 	.word	0x08004c30
+  202e90:	08004c94 	.word	0x08004c94
 	...
 
-00202ea0 <osalSysLock.lto_priv.91>:
+00202ea0 <osalSysLock.lto_priv.100>:
 static inline void osalSysLock(void) {
   202ea0:	b508      	push	{r3, lr}
   chSysLock();
-  202ea2:	f7ff ffd5 	bl	202e50 <chSysLock.lto_priv.146>
+  202ea2:	f7ff ffd5 	bl	202e50 <chSysLock.lto_priv.155>
 }
   202ea6:	bd08      	pop	{r3, pc}
 	...
 
-00202eb0 <osalSysUnlock.lto_priv.85>:
+00202eb0 <osalSysUnlock.lto_priv.94>:
 static inline void osalSysUnlock(void) {
   202eb0:	b508      	push	{r3, lr}
   chSysUnlock();
-  202eb2:	f7ff ffd5 	bl	202e60 <chSysUnlock.lto_priv.110>
+  202eb2:	f7ff ffd5 	bl	202e60 <chSysUnlock.lto_priv.119>
 }
   202eb6:	bd08      	pop	{r3, pc}
 	...
@@ -8016,7 +8016,7 @@ void icuStart(ICUDriver *icup, const ICUConfig *config) {
   202f06:	f7fd fc63 	bl	2007d0 <chSysHalt>
 
   osalSysLock();
-  202f0a:	f7ff ffc9 	bl	202ea0 <osalSysLock.lto_priv.91>
+  202f0a:	f7ff ffc9 	bl	202ea0 <osalSysLock.lto_priv.100>
   osalDbgAssert((icup->state == ICU_STOP) || (icup->state == ICU_READY),
   202f0e:	9b01      	ldr	r3, [sp, #4]
   202f10:	781b      	ldrb	r3, [r3, #0]
@@ -8041,11 +8041,11 @@ void icuStart(ICUDriver *icup, const ICUConfig *config) {
   202f32:	2202      	movs	r2, #2
   202f34:	701a      	strb	r2, [r3, #0]
   osalSysUnlock();
-  202f36:	f7ff ffbb 	bl	202eb0 <osalSysUnlock.lto_priv.85>
+  202f36:	f7ff ffbb 	bl	202eb0 <osalSysUnlock.lto_priv.94>
 }
   202f3a:	b003      	add	sp, #12
   202f3c:	f85d fb04 	ldr.w	pc, [sp], #4
-  202f40:	08004c24 	.word	0x08004c24
+  202f40:	08004c88 	.word	0x08004c88
 	...
 
 00202f50 <icuStartCapture>:
@@ -8067,7 +8067,7 @@ void icuStartCapture(ICUDriver *icup) {
   202f5e:	f7fd fc37 	bl	2007d0 <chSysHalt>
 
   osalSysLock();
-  202f62:	f7ff ff9d 	bl	202ea0 <osalSysLock.lto_priv.91>
+  202f62:	f7ff ff9d 	bl	202ea0 <osalSysLock.lto_priv.100>
   osalDbgAssert(icup->state == ICU_READY, "invalid state");
   202f66:	9b01      	ldr	r3, [sp, #4]
   202f68:	781b      	ldrb	r3, [r3, #0]
@@ -8082,12 +8082,12 @@ void icuStartCapture(ICUDriver *icup) {
   202f7c:	2203      	movs	r2, #3
   202f7e:	701a      	strb	r2, [r3, #0]
   osalSysUnlock();
-  202f80:	f7ff ff96 	bl	202eb0 <osalSysUnlock.lto_priv.85>
+  202f80:	f7ff ff96 	bl	202eb0 <osalSysUnlock.lto_priv.94>
 }
   202f84:	b003      	add	sp, #12
   202f86:	f85d fb04 	ldr.w	pc, [sp], #4
   202f8a:	bf00      	nop
-  202f8c:	08004c3c 	.word	0x08004c3c
+  202f8c:	08004ca0 	.word	0x08004ca0
 
 00202f90 <icuEnableNotifications>:
  *
@@ -8108,7 +8108,7 @@ void icuEnableNotifications(ICUDriver *icup) {
   202f9e:	f7fd fc17 	bl	2007d0 <chSysHalt>
 
   osalSysLock();
-  202fa2:	f7ff ff7d 	bl	202ea0 <osalSysLock.lto_priv.91>
+  202fa2:	f7ff ff7d 	bl	202ea0 <osalSysLock.lto_priv.100>
   osalDbgAssert((icup->state == ICU_WAITING) || (icup->state == ICU_ACTIVE),
   202fa6:	9b01      	ldr	r3, [sp, #4]
   202fa8:	781b      	ldrb	r3, [r3, #0]
@@ -8125,11 +8125,11 @@ void icuEnableNotifications(ICUDriver *icup) {
   202fbc:	9801      	ldr	r0, [sp, #4]
   202fbe:	f000 ff0f 	bl	203de0 <icu_lld_enable_notifications>
   osalSysUnlock();
-  202fc2:	f7ff ff75 	bl	202eb0 <osalSysUnlock.lto_priv.85>
+  202fc2:	f7ff ff75 	bl	202eb0 <osalSysUnlock.lto_priv.94>
 }
   202fc6:	b003      	add	sp, #12
   202fc8:	f85d fb04 	ldr.w	pc, [sp], #4
-  202fcc:	08004c4c 	.word	0x08004c4c
+  202fcc:	08004cb0 	.word	0x08004cb0
 
 00202fd0 <port_lock.lto_priv.73>:
 static inline void port_lock(void) {
@@ -8160,7 +8160,7 @@ static inline void port_unlock(void) {
   202ffc:	b002      	add	sp, #8
   202ffe:	4770      	bx	lr
 
-00203000 <chSysLock.lto_priv.147>:
+00203000 <chSysLock.lto_priv.156>:
 static inline void chSysLock(void) {
   203000:	b508      	push	{r3, lr}
   port_lock();
@@ -8172,49 +8172,49 @@ static inline void chSysLock(void) {
   20300c:	0000      	movs	r0, r0
 	...
 
-00203010 <chSysUnlock.lto_priv.111>:
+00203010 <chSysUnlock.lto_priv.120>:
 static inline void chSysUnlock(void) {
   203010:	b508      	push	{r3, lr}
   _dbg_check_unlock();
   203012:	f7fd fc4d 	bl	2008b0 <_dbg_check_unlock>
   chDbgAssert((ch.rlist.queue.next == (thread_t *)&ch.rlist.queue) ||
-  203016:	4b09      	ldr	r3, [pc, #36]	; (20303c <chSysUnlock.lto_priv.111+0x2c>)
+  203016:	4b09      	ldr	r3, [pc, #36]	; (20303c <chSysUnlock.lto_priv.120+0x2c>)
   203018:	681b      	ldr	r3, [r3, #0]
-  20301a:	4a08      	ldr	r2, [pc, #32]	; (20303c <chSysUnlock.lto_priv.111+0x2c>)
+  20301a:	4a08      	ldr	r2, [pc, #32]	; (20303c <chSysUnlock.lto_priv.120+0x2c>)
   20301c:	4293      	cmp	r3, r2
-  20301e:	d00a      	beq.n	203036 <chSysUnlock.lto_priv.111+0x26>
-  203020:	4b06      	ldr	r3, [pc, #24]	; (20303c <chSysUnlock.lto_priv.111+0x2c>)
+  20301e:	d00a      	beq.n	203036 <chSysUnlock.lto_priv.120+0x26>
+  203020:	4b06      	ldr	r3, [pc, #24]	; (20303c <chSysUnlock.lto_priv.120+0x2c>)
   203022:	699b      	ldr	r3, [r3, #24]
   203024:	689a      	ldr	r2, [r3, #8]
-  203026:	4b05      	ldr	r3, [pc, #20]	; (20303c <chSysUnlock.lto_priv.111+0x2c>)
+  203026:	4b05      	ldr	r3, [pc, #20]	; (20303c <chSysUnlock.lto_priv.120+0x2c>)
   203028:	681b      	ldr	r3, [r3, #0]
   20302a:	689b      	ldr	r3, [r3, #8]
   20302c:	429a      	cmp	r2, r3
-  20302e:	d202      	bcs.n	203036 <chSysUnlock.lto_priv.111+0x26>
-  203030:	4803      	ldr	r0, [pc, #12]	; (203040 <chSysUnlock.lto_priv.111+0x30>)
+  20302e:	d202      	bcs.n	203036 <chSysUnlock.lto_priv.120+0x26>
+  203030:	4803      	ldr	r0, [pc, #12]	; (203040 <chSysUnlock.lto_priv.120+0x30>)
   203032:	f7fd fbcd 	bl	2007d0 <chSysHalt>
   port_unlock();
   203036:	f7ff ffdb 	bl	202ff0 <port_unlock.lto_priv.49>
 }
   20303a:	bd08      	pop	{r3, pc}
   20303c:	200008d8 	.word	0x200008d8
-  203040:	08004c70 	.word	0x08004c70
+  203040:	08004cd4 	.word	0x08004cd4
 	...
 
-00203050 <osalSysLock.lto_priv.92>:
+00203050 <osalSysLock.lto_priv.101>:
 static inline void osalSysLock(void) {
   203050:	b508      	push	{r3, lr}
   chSysLock();
-  203052:	f7ff ffd5 	bl	203000 <chSysLock.lto_priv.147>
+  203052:	f7ff ffd5 	bl	203000 <chSysLock.lto_priv.156>
 }
   203056:	bd08      	pop	{r3, pc}
 	...
 
-00203060 <osalSysUnlock.lto_priv.86>:
+00203060 <osalSysUnlock.lto_priv.95>:
 static inline void osalSysUnlock(void) {
   203060:	b508      	push	{r3, lr}
   chSysUnlock();
-  203062:	f7ff ffd5 	bl	203010 <chSysUnlock.lto_priv.111>
+  203062:	f7ff ffd5 	bl	203010 <chSysUnlock.lto_priv.120>
 }
   203066:	bd08      	pop	{r3, pc}
 	...
@@ -8229,7 +8229,7 @@ void pwmInit(void) {
   203070:	b508      	push	{r3, lr}
 
   pwm_lld_init();
-  203072:	f000 ffbd 	bl	203ff0 <pwm_lld_init>
+  203072:	f000 ffd5 	bl	204020 <pwm_lld_init>
 }
   203076:	bd08      	pop	{r3, pc}
 	...
@@ -8290,7 +8290,7 @@ void pwmStart(PWMDriver *pwmp, const PWMConfig *config) {
   2030b6:	f7fd fb8b 	bl	2007d0 <chSysHalt>
 
   osalSysLock();
-  2030ba:	f7ff ffc9 	bl	203050 <osalSysLock.lto_priv.92>
+  2030ba:	f7ff ffc9 	bl	203050 <osalSysLock.lto_priv.101>
   osalDbgAssert((pwmp->state == PWM_STOP) || (pwmp->state == PWM_READY),
   2030be:	9b01      	ldr	r3, [sp, #4]
   2030c0:	781b      	ldrb	r3, [r3, #0]
@@ -8314,7 +8314,7 @@ void pwmStart(PWMDriver *pwmp, const PWMConfig *config) {
   2030e0:	609a      	str	r2, [r3, #8]
   pwm_lld_start(pwmp);
   2030e2:	9801      	ldr	r0, [sp, #4]
-  2030e4:	f000 ffa4 	bl	204030 <pwm_lld_start>
+  2030e4:	f000 ffbc 	bl	204060 <pwm_lld_start>
   pwmp->enabled = 0;
   2030e8:	9b01      	ldr	r3, [sp, #4]
   2030ea:	2200      	movs	r2, #0
@@ -8324,12 +8324,12 @@ void pwmStart(PWMDriver *pwmp, const PWMConfig *config) {
   2030f0:	2202      	movs	r2, #2
   2030f2:	701a      	strb	r2, [r3, #0]
   osalSysUnlock();
-  2030f4:	f7ff ffb4 	bl	203060 <osalSysUnlock.lto_priv.86>
+  2030f4:	f7ff ffb4 	bl	203060 <osalSysUnlock.lto_priv.95>
 }
   2030f8:	b003      	add	sp, #12
   2030fa:	f85d fb04 	ldr.w	pc, [sp], #4
   2030fe:	bf00      	nop
-  203100:	08004c64 	.word	0x08004c64
+  203100:	08004cc8 	.word	0x08004cc8
 	...
 
 00203110 <pwmChangePeriod>:
@@ -8352,7 +8352,7 @@ void pwmChangePeriod(PWMDriver *pwmp, pwmcnt_t period) {
   203120:	f7fd fb56 	bl	2007d0 <chSysHalt>
 
   osalSysLock();
-  203124:	f7ff ff94 	bl	203050 <osalSysLock.lto_priv.92>
+  203124:	f7ff ff94 	bl	203050 <osalSysLock.lto_priv.101>
   osalDbgAssert(pwmp->state == PWM_READY, "invalid state");
   203128:	9b01      	ldr	r3, [sp, #4]
   20312a:	781b      	ldrb	r3, [r3, #0]
@@ -8370,11 +8370,11 @@ void pwmChangePeriod(PWMDriver *pwmp, pwmcnt_t period) {
   203142:	3a01      	subs	r2, #1
   203144:	62da      	str	r2, [r3, #44]	; 0x2c
   osalSysUnlock();
-  203146:	f7ff ff8b 	bl	203060 <osalSysUnlock.lto_priv.86>
+  203146:	f7ff ff8b 	bl	203060 <osalSysUnlock.lto_priv.95>
 }
   20314a:	b003      	add	sp, #12
   20314c:	f85d fb04 	ldr.w	pc, [sp], #4
-  203150:	08004c7c 	.word	0x08004c7c
+  203150:	08004ce0 	.word	0x08004ce0
 	...
 
 00203160 <pwmEnableChannel>:
@@ -8404,7 +8404,7 @@ void pwmEnableChannel(PWMDriver *pwmp,
   203182:	f7fd fb25 	bl	2007d0 <chSysHalt>
 
   osalSysLock();
-  203186:	f7ff ff63 	bl	203050 <osalSysLock.lto_priv.92>
+  203186:	f7ff ff63 	bl	203050 <osalSysLock.lto_priv.101>
 
   osalDbgAssert(pwmp->state == PWM_READY, "not ready");
   20318a:	9b03      	ldr	r3, [sp, #12]
@@ -8427,14 +8427,14 @@ void pwmEnableChannel(PWMDriver *pwmp,
   2031b0:	9a01      	ldr	r2, [sp, #4]
   2031b2:	4619      	mov	r1, r3
   2031b4:	9803      	ldr	r0, [sp, #12]
-  2031b6:	f001 f853 	bl	204260 <pwm_lld_enable_channel>
+  2031b6:	f001 f883 	bl	2042c0 <pwm_lld_enable_channel>
 
   osalSysUnlock();
-  2031ba:	f7ff ff51 	bl	203060 <osalSysUnlock.lto_priv.86>
+  2031ba:	f7ff ff51 	bl	203060 <osalSysUnlock.lto_priv.95>
 }
   2031be:	b005      	add	sp, #20
   2031c0:	f85d fb04 	ldr.w	pc, [sp], #4
-  2031c4:	08004c8c 	.word	0x08004c8c
+  2031c4:	08004cf0 	.word	0x08004cf0
 	...
 
 002031d0 <pwmDisableChannel>:
@@ -8463,7 +8463,7 @@ void pwmDisableChannel(PWMDriver *pwmp, pwmchannel_t channel) {
   2031f0:	f7fd faee 	bl	2007d0 <chSysHalt>
 
   osalSysLock();
-  2031f4:	f7ff ff2c 	bl	203050 <osalSysLock.lto_priv.92>
+  2031f4:	f7ff ff2c 	bl	203050 <osalSysLock.lto_priv.101>
 
   osalDbgAssert(pwmp->state == PWM_READY, "not ready");
   2031f8:	9b01      	ldr	r3, [sp, #4]
@@ -8486,15 +8486,15 @@ void pwmDisableChannel(PWMDriver *pwmp, pwmchannel_t channel) {
   20321c:	f89d 3003 	ldrb.w	r3, [sp, #3]
   203220:	4619      	mov	r1, r3
   203222:	9801      	ldr	r0, [sp, #4]
-  203224:	f001 f83c 	bl	2042a0 <pwm_lld_disable_channel>
+  203224:	f001 f86c 	bl	204300 <pwm_lld_disable_channel>
 
   osalSysUnlock();
-  203228:	f7ff ff1a 	bl	203060 <osalSysUnlock.lto_priv.86>
+  203228:	f7ff ff1a 	bl	203060 <osalSysUnlock.lto_priv.95>
 }
   20322c:	b003      	add	sp, #12
   20322e:	f85d fb04 	ldr.w	pc, [sp], #4
   203232:	bf00      	nop
-  203234:	08004ca0 	.word	0x08004ca0
+  203234:	08004d04 	.word	0x08004d04
 	...
 
 00203240 <pwmEnablePeriodicNotification>:
@@ -8516,7 +8516,7 @@ void pwmEnablePeriodicNotification(PWMDriver *pwmp) {
   20324e:	f7fd fabf 	bl	2007d0 <chSysHalt>
 
   osalSysLock();
-  203252:	f7ff fefd 	bl	203050 <osalSysLock.lto_priv.92>
+  203252:	f7ff fefd 	bl	203050 <osalSysLock.lto_priv.101>
 
   osalDbgAssert(pwmp->state == PWM_READY, "not ready");
   203256:	9b01      	ldr	r3, [sp, #4]
@@ -8536,14 +8536,14 @@ void pwmEnablePeriodicNotification(PWMDriver *pwmp) {
 
   pwmEnablePeriodicNotificationI(pwmp);
   203274:	9801      	ldr	r0, [sp, #4]
-  203276:	f001 f843 	bl	204300 <pwm_lld_enable_periodic_notification>
+  203276:	f001 f873 	bl	204360 <pwm_lld_enable_periodic_notification>
 
   osalSysUnlock();
-  20327a:	f7ff fef1 	bl	203060 <osalSysUnlock.lto_priv.86>
+  20327a:	f7ff fef1 	bl	203060 <osalSysUnlock.lto_priv.95>
 }
   20327e:	b003      	add	sp, #12
   203280:	f85d fb04 	ldr.w	pc, [sp], #4
-  203284:	08004cb4 	.word	0x08004cb4
+  203284:	08004d18 	.word	0x08004d18
 	...
 
 00203290 <pwmEnableChannelNotification>:
@@ -8572,7 +8572,7 @@ void pwmEnableChannelNotification(PWMDriver *pwmp, pwmchannel_t channel) {
   2032b0:	f7fd fa8e 	bl	2007d0 <chSysHalt>
 
   osalSysLock();
-  2032b4:	f7ff fecc 	bl	203050 <osalSysLock.lto_priv.92>
+  2032b4:	f7ff fecc 	bl	203050 <osalSysLock.lto_priv.101>
 
   osalDbgAssert(pwmp->state == PWM_READY, "not ready");
   2032b8:	9b01      	ldr	r3, [sp, #4]
@@ -8610,14 +8610,14 @@ void pwmEnableChannelNotification(PWMDriver *pwmp, pwmchannel_t channel) {
   2032fa:	f89d 3003 	ldrb.w	r3, [sp, #3]
   2032fe:	4619      	mov	r1, r3
   203300:	9801      	ldr	r0, [sp, #4]
-  203302:	f001 f815 	bl	204330 <pwm_lld_enable_channel_notification>
+  203302:	f001 f845 	bl	204390 <pwm_lld_enable_channel_notification>
 
   osalSysUnlock();
-  203306:	f7ff feab 	bl	203060 <osalSysUnlock.lto_priv.86>
+  203306:	f7ff feab 	bl	203060 <osalSysUnlock.lto_priv.95>
 }
   20330a:	b003      	add	sp, #12
   20330c:	f85d fb04 	ldr.w	pc, [sp], #4
-  203310:	08004cd4 	.word	0x08004cd4
+  203310:	08004d38 	.word	0x08004d38
 	...
 
 00203320 <chEvtObjectInit>:
@@ -8883,7 +8883,7 @@ void sdInit(void) {
   2034d0:	b508      	push	{r3, lr}
 
   sd_lld_init();
-  2034d2:	f001 f91d 	bl	204710 <sd_lld_init>
+  2034d2:	f001 f94d 	bl	204770 <sd_lld_init>
 }
   2034d6:	bd08      	pop	{r3, pc}
 	...
@@ -8916,7 +8916,7 @@ void sdObjectInit(SerialDriver *sdp) {
   2034fc:	b003      	add	sp, #12
   2034fe:	f85d fb04 	ldr.w	pc, [sp], #4
   203502:	bf00      	nop
-  203504:	08004cf4 	.word	0x08004cf4
+  203504:	08004d58 	.word	0x08004d58
 	...
 
 00203510 <sdIncomingDataI>:
@@ -8972,7 +8972,7 @@ void sdIncomingDataI(SerialDriver *sdp, uint8_t b) {
   203564:	b003      	add	sp, #12
   203566:	f85d fb04 	ldr.w	pc, [sp], #4
   20356a:	bf00      	nop
-  20356c:	08004d14 	.word	0x08004d14
+  20356c:	08004d78 	.word	0x08004d78
 
 00203570 <nvicEnableVector>:
  * @brief   Sets the priority of an interrupt handler and enables it.
@@ -9949,7 +9949,7 @@ OSAL_IRQ_HANDLER(ST_HANDLER) {
 }
   203b48:	bd08      	pop	{r3, pc}
   203b4a:	bf00      	nop
-  203b4c:	08004d24 	.word	0x08004d24
+  203b4c:	08004d88 	.word	0x08004d88
   203b50:	40000c00 	.word	0x40000c00
 	...
 
@@ -10058,7 +10058,7 @@ OSAL_IRQ_HANDLER(STM32_TIM2_HANDLER) {
 }
   203bf0:	bd08      	pop	{r3, pc}
   203bf2:	bf00      	nop
-  203bf4:	08004d30 	.word	0x08004d30
+  203bf4:	08004d94 	.word	0x08004d94
   203bf8:	20001184 	.word	0x20001184
   203bfc:	00000000 	.word	0x00000000
 
@@ -10371,7 +10371,7 @@ void icu_lld_start(ICUDriver *icup) {
 }
   203d9a:	b005      	add	sp, #20
   203d9c:	f85d fb04 	ldr.w	pc, [sp], #4
-  203da0:	08004d3c 	.word	0x08004d3c
+  203da0:	08004da0 	.word	0x08004da0
   203da4:	20001184 	.word	0x20001184
   203da8:	40023800 	.word	0x40023800
   203dac:	066ff300 	.word	0x066ff300
@@ -10682,7 +10682,7 @@ OSAL_IRQ_HANDLER(STM32_TIM1_UP_HANDLER) {
 
   pwm_lld_serve_interrupt(&PWMD1);
   203f6c:	4806      	ldr	r0, [pc, #24]	; (203f88 <VectorA4+0x28>)
-  203f6e:	f000 fa17 	bl	2043a0 <pwm_lld_serve_interrupt>
+  203f6e:	f000 fa47 	bl	204400 <pwm_lld_serve_interrupt>
 
   OSAL_IRQ_EPILOGUE();
   203f72:	f7fc fd05 	bl	200980 <_dbg_check_leave_isr>
@@ -10692,7 +10692,7 @@ OSAL_IRQ_HANDLER(STM32_TIM1_UP_HANDLER) {
 }
   203f80:	bd08      	pop	{r3, pc}
   203f82:	bf00      	nop
-  203f84:	08004d4c 	.word	0x08004d4c
+  203f84:	08004db0 	.word	0x08004db0
   203f88:	2000119c 	.word	0x2000119c
   203f8c:	00000000 	.word	0x00000000
 
@@ -10712,7 +10712,7 @@ OSAL_IRQ_HANDLER(STM32_TIM1_CC_HANDLER) {
 
   pwm_lld_serve_interrupt(&PWMD1);
   203f9c:	4806      	ldr	r0, [pc, #24]	; (203fb8 <VectorAC+0x28>)
-  203f9e:	f000 f9ff 	bl	2043a0 <pwm_lld_serve_interrupt>
+  203f9e:	f000 fa2f 	bl	204400 <pwm_lld_serve_interrupt>
 
   OSAL_IRQ_EPILOGUE();
   203fa2:	f7fc fced 	bl	200980 <_dbg_check_leave_isr>
@@ -10722,1539 +10722,1613 @@ OSAL_IRQ_HANDLER(STM32_TIM1_CC_HANDLER) {
 }
   203fb0:	bd08      	pop	{r3, pc}
   203fb2:	bf00      	nop
-  203fb4:	08004d58 	.word	0x08004d58
+  203fb4:	08004dbc 	.word	0x08004dbc
   203fb8:	2000119c 	.word	0x2000119c
   203fbc:	00000000 	.word	0x00000000
 
-00203fc0 <VectorF4>:
+00203fc0 <VectorA8>:
 /**
- * @brief   TIM14 interrupt handler.
+ * @brief   TIM11 interrupt handler.
  *
  * @isr
  */
-OSAL_IRQ_HANDLER(STM32_TIM14_HANDLER) {
+OSAL_IRQ_HANDLER(STM32_TIM11_HANDLER) {
   203fc0:	b508      	push	{r3, lr}
 
   OSAL_IRQ_PROLOGUE();
-  203fc2:	4808      	ldr	r0, [pc, #32]	; (203fe4 <VectorF4+0x24>)
+  203fc2:	4808      	ldr	r0, [pc, #32]	; (203fe4 <VectorA8+0x24>)
   203fc4:	f7fc fdf4 	bl	200bb0 <_trace_isr_enter>
   203fc8:	f7fc fcba 	bl	200940 <_dbg_check_enter_isr>
 
-  pwm_lld_serve_interrupt(&PWMD14);
-  203fcc:	4806      	ldr	r0, [pc, #24]	; (203fe8 <VectorF4+0x28>)
-  203fce:	f000 f9e7 	bl	2043a0 <pwm_lld_serve_interrupt>
+  pwm_lld_serve_interrupt(&PWMD11);
+  203fcc:	4806      	ldr	r0, [pc, #24]	; (203fe8 <VectorA8+0x28>)
+  203fce:	f000 fa17 	bl	204400 <pwm_lld_serve_interrupt>
 
   OSAL_IRQ_EPILOGUE();
   203fd2:	f7fc fcd5 	bl	200980 <_dbg_check_leave_isr>
-  203fd6:	4803      	ldr	r0, [pc, #12]	; (203fe4 <VectorF4+0x24>)
+  203fd6:	4803      	ldr	r0, [pc, #12]	; (203fe4 <VectorA8+0x24>)
   203fd8:	f7fc fe12 	bl	200c00 <_trace_isr_leave>
   203fdc:	f7fe fb38 	bl	202650 <_port_irq_epilogue>
 }
   203fe0:	bd08      	pop	{r3, pc}
   203fe2:	bf00      	nop
-  203fe4:	08004d64 	.word	0x08004d64
+  203fe4:	08004dc8 	.word	0x08004dc8
   203fe8:	200011b8 	.word	0x200011b8
   203fec:	00000000 	.word	0x00000000
 
-00203ff0 <pwm_lld_init>:
+00203ff0 <VectorEC>:
+/**
+ * @brief   TIM12 interrupt handler.
+ *
+ * @isr
+ */
+OSAL_IRQ_HANDLER(STM32_TIM12_HANDLER) {
+  203ff0:	b508      	push	{r3, lr}
+
+  OSAL_IRQ_PROLOGUE();
+  203ff2:	4808      	ldr	r0, [pc, #32]	; (204014 <VectorEC+0x24>)
+  203ff4:	f7fc fddc 	bl	200bb0 <_trace_isr_enter>
+  203ff8:	f7fc fca2 	bl	200940 <_dbg_check_enter_isr>
+
+  pwm_lld_serve_interrupt(&PWMD12);
+  203ffc:	4806      	ldr	r0, [pc, #24]	; (204018 <VectorEC+0x28>)
+  203ffe:	f000 f9ff 	bl	204400 <pwm_lld_serve_interrupt>
+
+  OSAL_IRQ_EPILOGUE();
+  204002:	f7fc fcbd 	bl	200980 <_dbg_check_leave_isr>
+  204006:	4803      	ldr	r0, [pc, #12]	; (204014 <VectorEC+0x24>)
+  204008:	f7fc fdfa 	bl	200c00 <_trace_isr_leave>
+  20400c:	f7fe fb20 	bl	202650 <_port_irq_epilogue>
+}
+  204010:	bd08      	pop	{r3, pc}
+  204012:	bf00      	nop
+  204014:	08004dd4 	.word	0x08004dd4
+  204018:	200011d4 	.word	0x200011d4
+  20401c:	00000000 	.word	0x00000000
+
+00204020 <pwm_lld_init>:
 /**
  * @brief   Low level PWM driver initialization.
  *
  * @notapi
  */
 void pwm_lld_init(void) {
-  203ff0:	b508      	push	{r3, lr}
+  204020:	b508      	push	{r3, lr}
 
 #if STM32_PWM_USE_TIM1
   /* Driver initialization.*/
   pwmObjectInit(&PWMD1);
-  203ff2:	4809      	ldr	r0, [pc, #36]	; (204018 <pwm_lld_init+0x28>)
-  203ff4:	f7ff f844 	bl	203080 <pwmObjectInit>
+  204022:	4809      	ldr	r0, [pc, #36]	; (204048 <pwm_lld_init+0x28>)
+  204024:	f7ff f82c 	bl	203080 <pwmObjectInit>
   PWMD1.channels = STM32_TIM1_CHANNELS;
-  203ff8:	4b07      	ldr	r3, [pc, #28]	; (204018 <pwm_lld_init+0x28>)
-  203ffa:	2206      	movs	r2, #6
-  203ffc:	741a      	strb	r2, [r3, #16]
+  204028:	4b07      	ldr	r3, [pc, #28]	; (204048 <pwm_lld_init+0x28>)
+  20402a:	2206      	movs	r2, #6
+  20402c:	741a      	strb	r2, [r3, #16]
   PWMD1.tim = STM32_TIM1;
-  203ffe:	4b06      	ldr	r3, [pc, #24]	; (204018 <pwm_lld_init+0x28>)
-  204000:	4a06      	ldr	r2, [pc, #24]	; (20401c <pwm_lld_init+0x2c>)
-  204002:	619a      	str	r2, [r3, #24]
+  20402e:	4b06      	ldr	r3, [pc, #24]	; (204048 <pwm_lld_init+0x28>)
+  204030:	4a06      	ldr	r2, [pc, #24]	; (20404c <pwm_lld_init+0x2c>)
+  204032:	619a      	str	r2, [r3, #24]
   PWMD9.tim = STM32_TIM9;
 #endif
 
-#if STM32_PWM_USE_TIM14
+#if STM32_PWM_USE_TIM11
+  /* Driver initialization.*/
+  pwmObjectInit(&PWMD11);
+  204034:	4806      	ldr	r0, [pc, #24]	; (204050 <pwm_lld_init+0x30>)
+  204036:	f7ff f823 	bl	203080 <pwmObjectInit>
+  PWMD11.channels = STM32_TIM11_CHANNELS;
+  20403a:	4b05      	ldr	r3, [pc, #20]	; (204050 <pwm_lld_init+0x30>)
+  20403c:	2201      	movs	r2, #1
+  20403e:	741a      	strb	r2, [r3, #16]
+  PWMD11.tim = STM32_TIM11;
+  204040:	4b03      	ldr	r3, [pc, #12]	; (204050 <pwm_lld_init+0x30>)
+  204042:	4a04      	ldr	r2, [pc, #16]	; (204054 <pwm_lld_init+0x34>)
+  204044:	619a      	str	r2, [r3, #24]
   /* Driver initialization.*/
   pwmObjectInit(&PWMD14);
-  204004:	4806      	ldr	r0, [pc, #24]	; (204020 <pwm_lld_init+0x30>)
-  204006:	f7ff f83b 	bl	203080 <pwmObjectInit>
   PWMD14.channels = STM32_TIM14_CHANNELS;
-  20400a:	4b05      	ldr	r3, [pc, #20]	; (204020 <pwm_lld_init+0x30>)
-  20400c:	2201      	movs	r2, #1
-  20400e:	741a      	strb	r2, [r3, #16]
   PWMD14.tim = STM32_TIM14;
-  204010:	4b03      	ldr	r3, [pc, #12]	; (204020 <pwm_lld_init+0x30>)
-  204012:	4a04      	ldr	r2, [pc, #16]	; (204024 <pwm_lld_init+0x34>)
-  204014:	619a      	str	r2, [r3, #24]
 #endif
 }
-  204016:	bd08      	pop	{r3, pc}
-  204018:	2000119c 	.word	0x2000119c
-  20401c:	40010000 	.word	0x40010000
-  204020:	200011b8 	.word	0x200011b8
-  204024:	40002000 	.word	0x40002000
+  204046:	bd08      	pop	{r3, pc}
+  204048:	2000119c 	.word	0x2000119c
+  20404c:	40010000 	.word	0x40010000
+  204050:	200011b8 	.word	0x200011b8
+  204054:	40014800 	.word	0x40014800
 	...
 
-00204030 <pwm_lld_start>:
+00204060 <pwm_lld_start>:
  *
  * @param[in] pwmp      pointer to a @p PWMDriver object
  *
  * @notapi
  */
 void pwm_lld_start(PWMDriver *pwmp) {
-  204030:	b500      	push	{lr}
-  204032:	b085      	sub	sp, #20
-  204034:	9001      	str	r0, [sp, #4]
+  204060:	b500      	push	{lr}
+  204062:	b085      	sub	sp, #20
+  204064:	9001      	str	r0, [sp, #4]
   uint32_t psc;
   uint32_t ccer;
 
   if (pwmp->state == PWM_STOP) {
-  204036:	9b01      	ldr	r3, [sp, #4]
-  204038:	781b      	ldrb	r3, [r3, #0]
-  20403a:	2b01      	cmp	r3, #1
-  20403c:	d146      	bne.n	2040cc <pwm_lld_start+0x9c>
+  204066:	9b01      	ldr	r3, [sp, #4]
+  204068:	781b      	ldrb	r3, [r3, #0]
+  20406a:	2b01      	cmp	r3, #1
+  20406c:	d160      	bne.n	204130 <pwm_lld_start+0xd0>
     /* Clock activation and timer reset.*/
 #if STM32_PWM_USE_TIM1
     if (&PWMD1 == pwmp) {
-  20403e:	9b01      	ldr	r3, [sp, #4]
-  204040:	4a7d      	ldr	r2, [pc, #500]	; (204238 <pwm_lld_start+0x208>)
-  204042:	4293      	cmp	r3, r2
-  204044:	d119      	bne.n	20407a <pwm_lld_start+0x4a>
+  20406e:	9b01      	ldr	r3, [sp, #4]
+  204070:	4a8a      	ldr	r2, [pc, #552]	; (20429c <pwm_lld_start+0x23c>)
+  204072:	4293      	cmp	r3, r2
+  204074:	d119      	bne.n	2040aa <pwm_lld_start+0x4a>
       rccEnableTIM1(FALSE);
-  204046:	4b7d      	ldr	r3, [pc, #500]	; (20423c <pwm_lld_start+0x20c>)
-  204048:	6c5b      	ldr	r3, [r3, #68]	; 0x44
-  20404a:	4a7c      	ldr	r2, [pc, #496]	; (20423c <pwm_lld_start+0x20c>)
-  20404c:	f043 0301 	orr.w	r3, r3, #1
-  204050:	6453      	str	r3, [r2, #68]	; 0x44
+  204076:	4b8a      	ldr	r3, [pc, #552]	; (2042a0 <pwm_lld_start+0x240>)
+  204078:	6c5b      	ldr	r3, [r3, #68]	; 0x44
+  20407a:	4a89      	ldr	r2, [pc, #548]	; (2042a0 <pwm_lld_start+0x240>)
+  20407c:	f043 0301 	orr.w	r3, r3, #1
+  204080:	6453      	str	r3, [r2, #68]	; 0x44
       rccResetTIM1();
-  204052:	4b7a      	ldr	r3, [pc, #488]	; (20423c <pwm_lld_start+0x20c>)
-  204054:	6a5b      	ldr	r3, [r3, #36]	; 0x24
-  204056:	4a79      	ldr	r2, [pc, #484]	; (20423c <pwm_lld_start+0x20c>)
-  204058:	f043 0301 	orr.w	r3, r3, #1
-  20405c:	6253      	str	r3, [r2, #36]	; 0x24
-  20405e:	4b77      	ldr	r3, [pc, #476]	; (20423c <pwm_lld_start+0x20c>)
-  204060:	2200      	movs	r2, #0
-  204062:	625a      	str	r2, [r3, #36]	; 0x24
+  204082:	4b87      	ldr	r3, [pc, #540]	; (2042a0 <pwm_lld_start+0x240>)
+  204084:	6a5b      	ldr	r3, [r3, #36]	; 0x24
+  204086:	4a86      	ldr	r2, [pc, #536]	; (2042a0 <pwm_lld_start+0x240>)
+  204088:	f043 0301 	orr.w	r3, r3, #1
+  20408c:	6253      	str	r3, [r2, #36]	; 0x24
+  20408e:	4b84      	ldr	r3, [pc, #528]	; (2042a0 <pwm_lld_start+0x240>)
+  204090:	2200      	movs	r2, #0
+  204092:	625a      	str	r2, [r3, #36]	; 0x24
 #if !defined(STM32_TIM1_SUPPRESS_ISR)
       nvicEnableVector(STM32_TIM1_UP_NUMBER, STM32_PWM_TIM1_IRQ_PRIORITY);
-  204064:	2107      	movs	r1, #7
-  204066:	2019      	movs	r0, #25
-  204068:	f7ff fa82 	bl	203570 <nvicEnableVector>
+  204094:	2107      	movs	r1, #7
+  204096:	2019      	movs	r0, #25
+  204098:	f7ff fa6a 	bl	203570 <nvicEnableVector>
       nvicEnableVector(STM32_TIM1_CC_NUMBER, STM32_PWM_TIM1_IRQ_PRIORITY);
-  20406c:	2107      	movs	r1, #7
-  20406e:	201b      	movs	r0, #27
-  204070:	f7ff fa7e 	bl	203570 <nvicEnableVector>
+  20409c:	2107      	movs	r1, #7
+  20409e:	201b      	movs	r0, #27
+  2040a0:	f7ff fa66 	bl	203570 <nvicEnableVector>
 #endif
 #if defined(STM32_TIM1CLK)
       pwmp->clock = STM32_TIM1CLK;
 #else
       pwmp->clock = STM32_TIMCLK2;
-  204074:	9b01      	ldr	r3, [sp, #4]
-  204076:	4a72      	ldr	r2, [pc, #456]	; (204240 <pwm_lld_start+0x210>)
-  204078:	615a      	str	r2, [r3, #20]
+  2040a4:	9b01      	ldr	r3, [sp, #4]
+  2040a6:	4a7f      	ldr	r2, [pc, #508]	; (2042a4 <pwm_lld_start+0x244>)
+  2040a8:	615a      	str	r2, [r3, #20]
 #endif
     }
 #endif
 
-#if STM32_PWM_USE_TIM14
-    if (&PWMD14 == pwmp) {
-  20407a:	9b01      	ldr	r3, [sp, #4]
-  20407c:	4a71      	ldr	r2, [pc, #452]	; (204244 <pwm_lld_start+0x214>)
-  20407e:	4293      	cmp	r3, r2
-  204080:	d115      	bne.n	2040ae <pwm_lld_start+0x7e>
-      rccEnableTIM14(FALSE);
-  204082:	4b6e      	ldr	r3, [pc, #440]	; (20423c <pwm_lld_start+0x20c>)
-  204084:	6c1b      	ldr	r3, [r3, #64]	; 0x40
-  204086:	4a6d      	ldr	r2, [pc, #436]	; (20423c <pwm_lld_start+0x20c>)
-  204088:	f443 7380 	orr.w	r3, r3, #256	; 0x100
-  20408c:	6413      	str	r3, [r2, #64]	; 0x40
-      rccResetTIM14();
-  20408e:	4b6b      	ldr	r3, [pc, #428]	; (20423c <pwm_lld_start+0x20c>)
-  204090:	6a1b      	ldr	r3, [r3, #32]
-  204092:	4a6a      	ldr	r2, [pc, #424]	; (20423c <pwm_lld_start+0x20c>)
-  204094:	f443 7380 	orr.w	r3, r3, #256	; 0x100
-  204098:	6213      	str	r3, [r2, #32]
-  20409a:	4b68      	ldr	r3, [pc, #416]	; (20423c <pwm_lld_start+0x20c>)
-  20409c:	2200      	movs	r2, #0
-  20409e:	621a      	str	r2, [r3, #32]
-#if !defined(STM32_TIM14_SUPPRESS_ISR)
-      nvicEnableVector(STM32_TIM14_NUMBER, STM32_PWM_TIM14_IRQ_PRIORITY);
-  2040a0:	2107      	movs	r1, #7
-  2040a2:	202d      	movs	r0, #45	; 0x2d
-  2040a4:	f7ff fa64 	bl	203570 <nvicEnableVector>
+#if STM32_PWM_USE_TIM11
+    if (&PWMD11 == pwmp) {
+  2040aa:	9b01      	ldr	r3, [sp, #4]
+  2040ac:	4a7e      	ldr	r2, [pc, #504]	; (2042a8 <pwm_lld_start+0x248>)
+  2040ae:	4293      	cmp	r3, r2
+  2040b0:	d115      	bne.n	2040de <pwm_lld_start+0x7e>
+      rccEnableTIM11(FALSE);
+  2040b2:	4b7b      	ldr	r3, [pc, #492]	; (2042a0 <pwm_lld_start+0x240>)
+  2040b4:	6c5b      	ldr	r3, [r3, #68]	; 0x44
+  2040b6:	4a7a      	ldr	r2, [pc, #488]	; (2042a0 <pwm_lld_start+0x240>)
+  2040b8:	f443 2380 	orr.w	r3, r3, #262144	; 0x40000
+  2040bc:	6453      	str	r3, [r2, #68]	; 0x44
+      rccResetTIM11();
+  2040be:	4b78      	ldr	r3, [pc, #480]	; (2042a0 <pwm_lld_start+0x240>)
+  2040c0:	6a5b      	ldr	r3, [r3, #36]	; 0x24
+  2040c2:	4a77      	ldr	r2, [pc, #476]	; (2042a0 <pwm_lld_start+0x240>)
+  2040c4:	f443 2380 	orr.w	r3, r3, #262144	; 0x40000
+  2040c8:	6253      	str	r3, [r2, #36]	; 0x24
+  2040ca:	4b75      	ldr	r3, [pc, #468]	; (2042a0 <pwm_lld_start+0x240>)
+  2040cc:	2200      	movs	r2, #0
+  2040ce:	625a      	str	r2, [r3, #36]	; 0x24
+#if !defined(STM32_TIM11_SUPPRESS_ISR)
+      nvicEnableVector(STM32_TIM11_NUMBER, STM32_PWM_TIM11_IRQ_PRIORITY);
+  2040d0:	2107      	movs	r1, #7
+  2040d2:	201a      	movs	r0, #26
+  2040d4:	f7ff fa4c 	bl	203570 <nvicEnableVector>
 #endif
-#if defined(STM32_TIM14CLK)
-      pwmp->clock = STM32_TIM14CLK;
+#if defined(STM32_TIM11CLK)
+      pwmp->clock = STM32_TIM11CLK;
+#else
+      pwmp->clock = STM32_TIMCLK2;
+  2040d8:	9b01      	ldr	r3, [sp, #4]
+  2040da:	4a72      	ldr	r2, [pc, #456]	; (2042a4 <pwm_lld_start+0x244>)
+  2040dc:	615a      	str	r2, [r3, #20]
+#endif
+    }
+#endif
+
+#if STM32_PWM_USE_TIM12
+    if (&PWMD12 == pwmp) {
+  2040de:	9b01      	ldr	r3, [sp, #4]
+  2040e0:	4a72      	ldr	r2, [pc, #456]	; (2042ac <pwm_lld_start+0x24c>)
+  2040e2:	4293      	cmp	r3, r2
+  2040e4:	d115      	bne.n	204112 <pwm_lld_start+0xb2>
+      rccEnableTIM12(FALSE);
+  2040e6:	4b6e      	ldr	r3, [pc, #440]	; (2042a0 <pwm_lld_start+0x240>)
+  2040e8:	6c1b      	ldr	r3, [r3, #64]	; 0x40
+  2040ea:	4a6d      	ldr	r2, [pc, #436]	; (2042a0 <pwm_lld_start+0x240>)
+  2040ec:	f043 0340 	orr.w	r3, r3, #64	; 0x40
+  2040f0:	6413      	str	r3, [r2, #64]	; 0x40
+      rccResetTIM12();
+  2040f2:	4b6b      	ldr	r3, [pc, #428]	; (2042a0 <pwm_lld_start+0x240>)
+  2040f4:	6a1b      	ldr	r3, [r3, #32]
+  2040f6:	4a6a      	ldr	r2, [pc, #424]	; (2042a0 <pwm_lld_start+0x240>)
+  2040f8:	f043 0340 	orr.w	r3, r3, #64	; 0x40
+  2040fc:	6213      	str	r3, [r2, #32]
+  2040fe:	4b68      	ldr	r3, [pc, #416]	; (2042a0 <pwm_lld_start+0x240>)
+  204100:	2200      	movs	r2, #0
+  204102:	621a      	str	r2, [r3, #32]
+#if !defined(STM32_TIM12_SUPPRESS_ISR)
+      nvicEnableVector(STM32_TIM12_NUMBER, STM32_PWM_TIM12_IRQ_PRIORITY);
+  204104:	2107      	movs	r1, #7
+  204106:	202b      	movs	r0, #43	; 0x2b
+  204108:	f7ff fa32 	bl	203570 <nvicEnableVector>
+#endif
+#if defined(STM32_TIM12CLK)
+      pwmp->clock = STM32_TIM12CLK;
 #else
       pwmp->clock = STM32_TIMCLK1;
-  2040a8:	9b01      	ldr	r3, [sp, #4]
-  2040aa:	4a67      	ldr	r2, [pc, #412]	; (204248 <pwm_lld_start+0x218>)
-  2040ac:	615a      	str	r2, [r3, #20]
+  20410c:	9b01      	ldr	r3, [sp, #4]
+  20410e:	4a68      	ldr	r2, [pc, #416]	; (2042b0 <pwm_lld_start+0x250>)
+  204110:	615a      	str	r2, [r3, #20]
     }
 #endif
 
     /* All channels configured in PWM1 mode with preload enabled and will
        stay that way until the driver is stopped.*/
     pwmp->tim->CCMR1 = STM32_TIM_CCMR1_OC1M(6) | STM32_TIM_CCMR1_OC1PE |
-  2040ae:	9b01      	ldr	r3, [sp, #4]
-  2040b0:	699b      	ldr	r3, [r3, #24]
-  2040b2:	f646 0268 	movw	r2, #26728	; 0x6868
-  2040b6:	619a      	str	r2, [r3, #24]
+  204112:	9b01      	ldr	r3, [sp, #4]
+  204114:	699b      	ldr	r3, [r3, #24]
+  204116:	f646 0268 	movw	r2, #26728	; 0x6868
+  20411a:	619a      	str	r2, [r3, #24]
                        STM32_TIM_CCMR1_OC2M(6) | STM32_TIM_CCMR1_OC2PE;
     pwmp->tim->CCMR2 = STM32_TIM_CCMR2_OC3M(6) | STM32_TIM_CCMR2_OC3PE |
-  2040b8:	9b01      	ldr	r3, [sp, #4]
-  2040ba:	699b      	ldr	r3, [r3, #24]
-  2040bc:	f646 0268 	movw	r2, #26728	; 0x6868
-  2040c0:	61da      	str	r2, [r3, #28]
+  20411c:	9b01      	ldr	r3, [sp, #4]
+  20411e:	699b      	ldr	r3, [r3, #24]
+  204120:	f646 0268 	movw	r2, #26728	; 0x6868
+  204124:	61da      	str	r2, [r3, #28]
                        STM32_TIM_CCMR2_OC4M(6) | STM32_TIM_CCMR2_OC4PE;
 #if STM32_TIM_MAX_CHANNELS > 4
     pwmp->tim->CCMR3 = STM32_TIM_CCMR3_OC5M(6) | STM32_TIM_CCMR3_OC5PE |
-  2040c2:	9b01      	ldr	r3, [sp, #4]
-  2040c4:	699b      	ldr	r3, [r3, #24]
-  2040c6:	4a61      	ldr	r2, [pc, #388]	; (20424c <pwm_lld_start+0x21c>)
-  2040c8:	655a      	str	r2, [r3, #84]	; 0x54
-  2040ca:	e023      	b.n	204114 <pwm_lld_start+0xe4>
+  204126:	9b01      	ldr	r3, [sp, #4]
+  204128:	699b      	ldr	r3, [r3, #24]
+  20412a:	4a62      	ldr	r2, [pc, #392]	; (2042b4 <pwm_lld_start+0x254>)
+  20412c:	655a      	str	r2, [r3, #84]	; 0x54
+  20412e:	e023      	b.n	204178 <pwm_lld_start+0x118>
                        STM32_TIM_CCMR3_OC6M(6) | STM32_TIM_CCMR3_OC6PE;
 #endif
   }
   else {
     /* Driver re-configuration scenario, it must be stopped first.*/
     pwmp->tim->CR1    = 0;                  /* Timer disabled.              */
-  2040cc:	9b01      	ldr	r3, [sp, #4]
-  2040ce:	699b      	ldr	r3, [r3, #24]
-  2040d0:	2200      	movs	r2, #0
-  2040d2:	601a      	str	r2, [r3, #0]
+  204130:	9b01      	ldr	r3, [sp, #4]
+  204132:	699b      	ldr	r3, [r3, #24]
+  204134:	2200      	movs	r2, #0
+  204136:	601a      	str	r2, [r3, #0]
     pwmp->tim->CCR[0] = 0;                  /* Comparator 1 disabled.       */
-  2040d4:	9b01      	ldr	r3, [sp, #4]
-  2040d6:	699b      	ldr	r3, [r3, #24]
-  2040d8:	2200      	movs	r2, #0
-  2040da:	635a      	str	r2, [r3, #52]	; 0x34
+  204138:	9b01      	ldr	r3, [sp, #4]
+  20413a:	699b      	ldr	r3, [r3, #24]
+  20413c:	2200      	movs	r2, #0
+  20413e:	635a      	str	r2, [r3, #52]	; 0x34
     pwmp->tim->CCR[1] = 0;                  /* Comparator 2 disabled.       */
-  2040dc:	9b01      	ldr	r3, [sp, #4]
-  2040de:	699b      	ldr	r3, [r3, #24]
-  2040e0:	2200      	movs	r2, #0
-  2040e2:	639a      	str	r2, [r3, #56]	; 0x38
+  204140:	9b01      	ldr	r3, [sp, #4]
+  204142:	699b      	ldr	r3, [r3, #24]
+  204144:	2200      	movs	r2, #0
+  204146:	639a      	str	r2, [r3, #56]	; 0x38
     pwmp->tim->CCR[2] = 0;                  /* Comparator 3 disabled.       */
-  2040e4:	9b01      	ldr	r3, [sp, #4]
-  2040e6:	699b      	ldr	r3, [r3, #24]
-  2040e8:	2200      	movs	r2, #0
-  2040ea:	63da      	str	r2, [r3, #60]	; 0x3c
+  204148:	9b01      	ldr	r3, [sp, #4]
+  20414a:	699b      	ldr	r3, [r3, #24]
+  20414c:	2200      	movs	r2, #0
+  20414e:	63da      	str	r2, [r3, #60]	; 0x3c
     pwmp->tim->CCR[3] = 0;                  /* Comparator 4 disabled.       */
-  2040ec:	9b01      	ldr	r3, [sp, #4]
-  2040ee:	699b      	ldr	r3, [r3, #24]
-  2040f0:	2200      	movs	r2, #0
-  2040f2:	641a      	str	r2, [r3, #64]	; 0x40
+  204150:	9b01      	ldr	r3, [sp, #4]
+  204152:	699b      	ldr	r3, [r3, #24]
+  204154:	2200      	movs	r2, #0
+  204156:	641a      	str	r2, [r3, #64]	; 0x40
 #if STM32_TIM_MAX_CHANNELS > 4
     if (pwmp->channels > 4) {
-  2040f4:	9b01      	ldr	r3, [sp, #4]
-  2040f6:	7c1b      	ldrb	r3, [r3, #16]
-  2040f8:	2b04      	cmp	r3, #4
-  2040fa:	d907      	bls.n	20410c <pwm_lld_start+0xdc>
+  204158:	9b01      	ldr	r3, [sp, #4]
+  20415a:	7c1b      	ldrb	r3, [r3, #16]
+  20415c:	2b04      	cmp	r3, #4
+  20415e:	d907      	bls.n	204170 <pwm_lld_start+0x110>
       pwmp->tim->CCXR[0] = 0;               /* Comparator 5 disabled.       */
-  2040fc:	9b01      	ldr	r3, [sp, #4]
-  2040fe:	699b      	ldr	r3, [r3, #24]
-  204100:	2200      	movs	r2, #0
-  204102:	659a      	str	r2, [r3, #88]	; 0x58
+  204160:	9b01      	ldr	r3, [sp, #4]
+  204162:	699b      	ldr	r3, [r3, #24]
+  204164:	2200      	movs	r2, #0
+  204166:	659a      	str	r2, [r3, #88]	; 0x58
       pwmp->tim->CCXR[1] = 0;               /* Comparator 6 disabled.       */
-  204104:	9b01      	ldr	r3, [sp, #4]
-  204106:	699b      	ldr	r3, [r3, #24]
-  204108:	2200      	movs	r2, #0
-  20410a:	65da      	str	r2, [r3, #92]	; 0x5c
+  204168:	9b01      	ldr	r3, [sp, #4]
+  20416a:	699b      	ldr	r3, [r3, #24]
+  20416c:	2200      	movs	r2, #0
+  20416e:	65da      	str	r2, [r3, #92]	; 0x5c
     }
 #endif
     pwmp->tim->CNT  = 0;                    /* Counter reset to zero.       */
-  20410c:	9b01      	ldr	r3, [sp, #4]
-  20410e:	699b      	ldr	r3, [r3, #24]
-  204110:	2200      	movs	r2, #0
-  204112:	625a      	str	r2, [r3, #36]	; 0x24
+  204170:	9b01      	ldr	r3, [sp, #4]
+  204172:	699b      	ldr	r3, [r3, #24]
+  204174:	2200      	movs	r2, #0
+  204176:	625a      	str	r2, [r3, #36]	; 0x24
   }
 
   /* Timer configuration.*/
   psc = (pwmp->clock / pwmp->config->frequency) - 1;
-  204114:	9b01      	ldr	r3, [sp, #4]
-  204116:	695a      	ldr	r2, [r3, #20]
-  204118:	9b01      	ldr	r3, [sp, #4]
-  20411a:	685b      	ldr	r3, [r3, #4]
-  20411c:	681b      	ldr	r3, [r3, #0]
-  20411e:	fbb2 f3f3 	udiv	r3, r2, r3
-  204122:	3b01      	subs	r3, #1
-  204124:	9302      	str	r3, [sp, #8]
+  204178:	9b01      	ldr	r3, [sp, #4]
+  20417a:	695a      	ldr	r2, [r3, #20]
+  20417c:	9b01      	ldr	r3, [sp, #4]
+  20417e:	685b      	ldr	r3, [r3, #4]
+  204180:	681b      	ldr	r3, [r3, #0]
+  204182:	fbb2 f3f3 	udiv	r3, r2, r3
+  204186:	3b01      	subs	r3, #1
+  204188:	9302      	str	r3, [sp, #8]
   osalDbgAssert((psc <= 0xFFFF) &&
-  204126:	9b02      	ldr	r3, [sp, #8]
-  204128:	f5b3 3f80 	cmp.w	r3, #65536	; 0x10000
-  20412c:	d20a      	bcs.n	204144 <pwm_lld_start+0x114>
-  20412e:	9b02      	ldr	r3, [sp, #8]
-  204130:	3301      	adds	r3, #1
-  204132:	9a01      	ldr	r2, [sp, #4]
-  204134:	6852      	ldr	r2, [r2, #4]
-  204136:	6812      	ldr	r2, [r2, #0]
-  204138:	fb02 f203 	mul.w	r2, r2, r3
-  20413c:	9b01      	ldr	r3, [sp, #4]
-  20413e:	695b      	ldr	r3, [r3, #20]
-  204140:	429a      	cmp	r2, r3
-  204142:	d002      	beq.n	20414a <pwm_lld_start+0x11a>
-  204144:	4842      	ldr	r0, [pc, #264]	; (204250 <pwm_lld_start+0x220>)
-  204146:	f7fc fb43 	bl	2007d0 <chSysHalt>
+  20418a:	9b02      	ldr	r3, [sp, #8]
+  20418c:	f5b3 3f80 	cmp.w	r3, #65536	; 0x10000
+  204190:	d20a      	bcs.n	2041a8 <pwm_lld_start+0x148>
+  204192:	9b02      	ldr	r3, [sp, #8]
+  204194:	3301      	adds	r3, #1
+  204196:	9a01      	ldr	r2, [sp, #4]
+  204198:	6852      	ldr	r2, [r2, #4]
+  20419a:	6812      	ldr	r2, [r2, #0]
+  20419c:	fb02 f203 	mul.w	r2, r2, r3
+  2041a0:	9b01      	ldr	r3, [sp, #4]
+  2041a2:	695b      	ldr	r3, [r3, #20]
+  2041a4:	429a      	cmp	r2, r3
+  2041a6:	d002      	beq.n	2041ae <pwm_lld_start+0x14e>
+  2041a8:	4843      	ldr	r0, [pc, #268]	; (2042b8 <pwm_lld_start+0x258>)
+  2041aa:	f7fc fb11 	bl	2007d0 <chSysHalt>
                 ((psc + 1) * pwmp->config->frequency) == pwmp->clock,
                 "invalid frequency");
   pwmp->tim->PSC  = psc;
-  20414a:	9b01      	ldr	r3, [sp, #4]
-  20414c:	699b      	ldr	r3, [r3, #24]
-  20414e:	9a02      	ldr	r2, [sp, #8]
-  204150:	629a      	str	r2, [r3, #40]	; 0x28
+  2041ae:	9b01      	ldr	r3, [sp, #4]
+  2041b0:	699b      	ldr	r3, [r3, #24]
+  2041b2:	9a02      	ldr	r2, [sp, #8]
+  2041b4:	629a      	str	r2, [r3, #40]	; 0x28
   pwmp->tim->ARR  = pwmp->period - 1;
-  204152:	9b01      	ldr	r3, [sp, #4]
-  204154:	689a      	ldr	r2, [r3, #8]
-  204156:	9b01      	ldr	r3, [sp, #4]
-  204158:	699b      	ldr	r3, [r3, #24]
-  20415a:	3a01      	subs	r2, #1
-  20415c:	62da      	str	r2, [r3, #44]	; 0x2c
+  2041b6:	9b01      	ldr	r3, [sp, #4]
+  2041b8:	689a      	ldr	r2, [r3, #8]
+  2041ba:	9b01      	ldr	r3, [sp, #4]
+  2041bc:	699b      	ldr	r3, [r3, #24]
+  2041be:	3a01      	subs	r2, #1
+  2041c0:	62da      	str	r2, [r3, #44]	; 0x2c
   pwmp->tim->CR2  = pwmp->config->cr2;
-  20415e:	9b01      	ldr	r3, [sp, #4]
-  204160:	685a      	ldr	r2, [r3, #4]
-  204162:	9b01      	ldr	r3, [sp, #4]
-  204164:	699b      	ldr	r3, [r3, #24]
-  204166:	6bd2      	ldr	r2, [r2, #60]	; 0x3c
-  204168:	605a      	str	r2, [r3, #4]
+  2041c2:	9b01      	ldr	r3, [sp, #4]
+  2041c4:	685a      	ldr	r2, [r3, #4]
+  2041c6:	9b01      	ldr	r3, [sp, #4]
+  2041c8:	699b      	ldr	r3, [r3, #24]
+  2041ca:	6bd2      	ldr	r2, [r2, #60]	; 0x3c
+  2041cc:	605a      	str	r2, [r3, #4]
 
   /* Output enables and polarities setup.*/
   ccer = 0;
-  20416a:	2300      	movs	r3, #0
-  20416c:	9303      	str	r3, [sp, #12]
+  2041ce:	2300      	movs	r3, #0
+  2041d0:	9303      	str	r3, [sp, #12]
   switch (pwmp->config->channels[0].mode & PWM_OUTPUT_MASK) {
-  20416e:	9b01      	ldr	r3, [sp, #4]
-  204170:	685b      	ldr	r3, [r3, #4]
-  204172:	68db      	ldr	r3, [r3, #12]
-  204174:	f003 030f 	and.w	r3, r3, #15
-  204178:	2b01      	cmp	r3, #1
-  20417a:	d005      	beq.n	204188 <pwm_lld_start+0x158>
-  20417c:	2b02      	cmp	r3, #2
-  20417e:	d107      	bne.n	204190 <pwm_lld_start+0x160>
+  2041d2:	9b01      	ldr	r3, [sp, #4]
+  2041d4:	685b      	ldr	r3, [r3, #4]
+  2041d6:	68db      	ldr	r3, [r3, #12]
+  2041d8:	f003 030f 	and.w	r3, r3, #15
+  2041dc:	2b01      	cmp	r3, #1
+  2041de:	d005      	beq.n	2041ec <pwm_lld_start+0x18c>
+  2041e0:	2b02      	cmp	r3, #2
+  2041e2:	d107      	bne.n	2041f4 <pwm_lld_start+0x194>
   case PWM_OUTPUT_ACTIVE_LOW:
     ccer |= STM32_TIM_CCER_CC1P;
-  204180:	9b03      	ldr	r3, [sp, #12]
-  204182:	f043 0302 	orr.w	r3, r3, #2
-  204186:	9303      	str	r3, [sp, #12]
+  2041e4:	9b03      	ldr	r3, [sp, #12]
+  2041e6:	f043 0302 	orr.w	r3, r3, #2
+  2041ea:	9303      	str	r3, [sp, #12]
     /* Falls through.*/
   case PWM_OUTPUT_ACTIVE_HIGH:
     ccer |= STM32_TIM_CCER_CC1E;
-  204188:	9b03      	ldr	r3, [sp, #12]
-  20418a:	f043 0301 	orr.w	r3, r3, #1
-  20418e:	9303      	str	r3, [sp, #12]
+  2041ec:	9b03      	ldr	r3, [sp, #12]
+  2041ee:	f043 0301 	orr.w	r3, r3, #1
+  2041f2:	9303      	str	r3, [sp, #12]
     /* Falls through.*/
   default:
     ;
   }
   switch (pwmp->config->channels[1].mode & PWM_OUTPUT_MASK) {
-  204190:	9b01      	ldr	r3, [sp, #4]
-  204192:	685b      	ldr	r3, [r3, #4]
-  204194:	695b      	ldr	r3, [r3, #20]
-  204196:	f003 030f 	and.w	r3, r3, #15
-  20419a:	2b01      	cmp	r3, #1
-  20419c:	d005      	beq.n	2041aa <pwm_lld_start+0x17a>
-  20419e:	2b02      	cmp	r3, #2
-  2041a0:	d107      	bne.n	2041b2 <pwm_lld_start+0x182>
+  2041f4:	9b01      	ldr	r3, [sp, #4]
+  2041f6:	685b      	ldr	r3, [r3, #4]
+  2041f8:	695b      	ldr	r3, [r3, #20]
+  2041fa:	f003 030f 	and.w	r3, r3, #15
+  2041fe:	2b01      	cmp	r3, #1
+  204200:	d005      	beq.n	20420e <pwm_lld_start+0x1ae>
+  204202:	2b02      	cmp	r3, #2
+  204204:	d107      	bne.n	204216 <pwm_lld_start+0x1b6>
   case PWM_OUTPUT_ACTIVE_LOW:
     ccer |= STM32_TIM_CCER_CC2P;
-  2041a2:	9b03      	ldr	r3, [sp, #12]
-  2041a4:	f043 0320 	orr.w	r3, r3, #32
-  2041a8:	9303      	str	r3, [sp, #12]
+  204206:	9b03      	ldr	r3, [sp, #12]
+  204208:	f043 0320 	orr.w	r3, r3, #32
+  20420c:	9303      	str	r3, [sp, #12]
     /* Falls through.*/
   case PWM_OUTPUT_ACTIVE_HIGH:
     ccer |= STM32_TIM_CCER_CC2E;
-  2041aa:	9b03      	ldr	r3, [sp, #12]
-  2041ac:	f043 0310 	orr.w	r3, r3, #16
-  2041b0:	9303      	str	r3, [sp, #12]
+  20420e:	9b03      	ldr	r3, [sp, #12]
+  204210:	f043 0310 	orr.w	r3, r3, #16
+  204214:	9303      	str	r3, [sp, #12]
     /* Falls through.*/
   default:
     ;
   }
   switch (pwmp->config->channels[2].mode & PWM_OUTPUT_MASK) {
-  2041b2:	9b01      	ldr	r3, [sp, #4]
-  2041b4:	685b      	ldr	r3, [r3, #4]
-  2041b6:	69db      	ldr	r3, [r3, #28]
-  2041b8:	f003 030f 	and.w	r3, r3, #15
-  2041bc:	2b01      	cmp	r3, #1
-  2041be:	d005      	beq.n	2041cc <pwm_lld_start+0x19c>
-  2041c0:	2b02      	cmp	r3, #2
-  2041c2:	d107      	bne.n	2041d4 <pwm_lld_start+0x1a4>
+  204216:	9b01      	ldr	r3, [sp, #4]
+  204218:	685b      	ldr	r3, [r3, #4]
+  20421a:	69db      	ldr	r3, [r3, #28]
+  20421c:	f003 030f 	and.w	r3, r3, #15
+  204220:	2b01      	cmp	r3, #1
+  204222:	d005      	beq.n	204230 <pwm_lld_start+0x1d0>
+  204224:	2b02      	cmp	r3, #2
+  204226:	d107      	bne.n	204238 <pwm_lld_start+0x1d8>
   case PWM_OUTPUT_ACTIVE_LOW:
     ccer |= STM32_TIM_CCER_CC3P;
-  2041c4:	9b03      	ldr	r3, [sp, #12]
-  2041c6:	f443 7300 	orr.w	r3, r3, #512	; 0x200
-  2041ca:	9303      	str	r3, [sp, #12]
+  204228:	9b03      	ldr	r3, [sp, #12]
+  20422a:	f443 7300 	orr.w	r3, r3, #512	; 0x200
+  20422e:	9303      	str	r3, [sp, #12]
     /* Falls through.*/
   case PWM_OUTPUT_ACTIVE_HIGH:
     ccer |= STM32_TIM_CCER_CC3E;
-  2041cc:	9b03      	ldr	r3, [sp, #12]
-  2041ce:	f443 7380 	orr.w	r3, r3, #256	; 0x100
-  2041d2:	9303      	str	r3, [sp, #12]
+  204230:	9b03      	ldr	r3, [sp, #12]
+  204232:	f443 7380 	orr.w	r3, r3, #256	; 0x100
+  204236:	9303      	str	r3, [sp, #12]
     /* Falls through.*/
   default:
     ;
   }
   switch (pwmp->config->channels[3].mode & PWM_OUTPUT_MASK) {
-  2041d4:	9b01      	ldr	r3, [sp, #4]
-  2041d6:	685b      	ldr	r3, [r3, #4]
-  2041d8:	6a5b      	ldr	r3, [r3, #36]	; 0x24
-  2041da:	f003 030f 	and.w	r3, r3, #15
-  2041de:	2b01      	cmp	r3, #1
-  2041e0:	d005      	beq.n	2041ee <pwm_lld_start+0x1be>
-  2041e2:	2b02      	cmp	r3, #2
-  2041e4:	d107      	bne.n	2041f6 <pwm_lld_start+0x1c6>
+  204238:	9b01      	ldr	r3, [sp, #4]
+  20423a:	685b      	ldr	r3, [r3, #4]
+  20423c:	6a5b      	ldr	r3, [r3, #36]	; 0x24
+  20423e:	f003 030f 	and.w	r3, r3, #15
+  204242:	2b01      	cmp	r3, #1
+  204244:	d005      	beq.n	204252 <pwm_lld_start+0x1f2>
+  204246:	2b02      	cmp	r3, #2
+  204248:	d107      	bne.n	20425a <pwm_lld_start+0x1fa>
   case PWM_OUTPUT_ACTIVE_LOW:
     ccer |= STM32_TIM_CCER_CC4P;
-  2041e6:	9b03      	ldr	r3, [sp, #12]
-  2041e8:	f443 5300 	orr.w	r3, r3, #8192	; 0x2000
-  2041ec:	9303      	str	r3, [sp, #12]
+  20424a:	9b03      	ldr	r3, [sp, #12]
+  20424c:	f443 5300 	orr.w	r3, r3, #8192	; 0x2000
+  204250:	9303      	str	r3, [sp, #12]
     /* Falls through.*/
   case PWM_OUTPUT_ACTIVE_HIGH:
     ccer |= STM32_TIM_CCER_CC4E;
-  2041ee:	9b03      	ldr	r3, [sp, #12]
-  2041f0:	f443 5380 	orr.w	r3, r3, #4096	; 0x1000
-  2041f4:	9303      	str	r3, [sp, #12]
+  204252:	9b03      	ldr	r3, [sp, #12]
+  204254:	f443 5380 	orr.w	r3, r3, #4096	; 0x1000
+  204258:	9303      	str	r3, [sp, #12]
       ;
     }
   }
 #endif /* STM32_PWM_USE_ADVANCED*/
 
   pwmp->tim->CCER  = ccer;
-  2041f6:	9b01      	ldr	r3, [sp, #4]
-  2041f8:	699b      	ldr	r3, [r3, #24]
-  2041fa:	9a03      	ldr	r2, [sp, #12]
-  2041fc:	621a      	str	r2, [r3, #32]
+  20425a:	9b01      	ldr	r3, [sp, #4]
+  20425c:	699b      	ldr	r3, [r3, #24]
+  20425e:	9a03      	ldr	r2, [sp, #12]
+  204260:	621a      	str	r2, [r3, #32]
   pwmp->tim->EGR   = STM32_TIM_EGR_UG;      /* Update event.                */
-  2041fe:	9b01      	ldr	r3, [sp, #4]
-  204200:	699b      	ldr	r3, [r3, #24]
-  204202:	2201      	movs	r2, #1
-  204204:	615a      	str	r2, [r3, #20]
+  204262:	9b01      	ldr	r3, [sp, #4]
+  204264:	699b      	ldr	r3, [r3, #24]
+  204266:	2201      	movs	r2, #1
+  204268:	615a      	str	r2, [r3, #20]
   pwmp->tim->SR    = 0;                     /* Clear pending IRQs.          */
-  204206:	9b01      	ldr	r3, [sp, #4]
-  204208:	699b      	ldr	r3, [r3, #24]
-  20420a:	2200      	movs	r2, #0
-  20420c:	611a      	str	r2, [r3, #16]
+  20426a:	9b01      	ldr	r3, [sp, #4]
+  20426c:	699b      	ldr	r3, [r3, #24]
+  20426e:	2200      	movs	r2, #0
+  204270:	611a      	str	r2, [r3, #16]
   pwmp->tim->DIER  = pwmp->config->dier &   /* DMA-related DIER settings.   */
-  20420e:	9b01      	ldr	r3, [sp, #4]
-  204210:	685b      	ldr	r3, [r3, #4]
-  204212:	6c1a      	ldr	r2, [r3, #64]	; 0x40
-  204214:	9b01      	ldr	r3, [sp, #4]
-  204216:	699b      	ldr	r3, [r3, #24]
-  204218:	f022 02ff 	bic.w	r2, r2, #255	; 0xff
-  20421c:	60da      	str	r2, [r3, #12]
+  204272:	9b01      	ldr	r3, [sp, #4]
+  204274:	685b      	ldr	r3, [r3, #4]
+  204276:	6c1a      	ldr	r2, [r3, #64]	; 0x40
+  204278:	9b01      	ldr	r3, [sp, #4]
+  20427a:	699b      	ldr	r3, [r3, #24]
+  20427c:	f022 02ff 	bic.w	r2, r2, #255	; 0xff
+  204280:	60da      	str	r2, [r3, #12]
                      ~STM32_TIM_DIER_IRQ_MASK;
 #if STM32_PWM_USE_TIM1 || STM32_PWM_USE_TIM8
 #if STM32_PWM_USE_ADVANCED
   pwmp->tim->BDTR  = pwmp->config->bdtr | STM32_TIM_BDTR_MOE;
 #else
   pwmp->tim->BDTR  = STM32_TIM_BDTR_MOE;
-  20421e:	9b01      	ldr	r3, [sp, #4]
-  204220:	699b      	ldr	r3, [r3, #24]
-  204222:	f44f 4200 	mov.w	r2, #32768	; 0x8000
-  204226:	645a      	str	r2, [r3, #68]	; 0x44
+  204282:	9b01      	ldr	r3, [sp, #4]
+  204284:	699b      	ldr	r3, [r3, #24]
+  204286:	f44f 4200 	mov.w	r2, #32768	; 0x8000
+  20428a:	645a      	str	r2, [r3, #68]	; 0x44
 #endif
 #endif
   /* Timer configured and started.*/
   pwmp->tim->CR1   = STM32_TIM_CR1_ARPE | STM32_TIM_CR1_URS |
-  204228:	9b01      	ldr	r3, [sp, #4]
-  20422a:	699b      	ldr	r3, [r3, #24]
-  20422c:	2285      	movs	r2, #133	; 0x85
-  20422e:	601a      	str	r2, [r3, #0]
+  20428c:	9b01      	ldr	r3, [sp, #4]
+  20428e:	699b      	ldr	r3, [r3, #24]
+  204290:	2285      	movs	r2, #133	; 0x85
+  204292:	601a      	str	r2, [r3, #0]
                      STM32_TIM_CR1_CEN;
 }
-  204230:	b005      	add	sp, #20
-  204232:	f85d fb04 	ldr.w	pc, [sp], #4
-  204236:	bf00      	nop
-  204238:	2000119c 	.word	0x2000119c
-  20423c:	40023800 	.word	0x40023800
-  204240:	0cdfe600 	.word	0x0cdfe600
-  204244:	200011b8 	.word	0x200011b8
-  204248:	066ff300 	.word	0x066ff300
-  20424c:	01016868 	.word	0x01016868
-  204250:	08004d70 	.word	0x08004d70
-	...
+  204294:	b005      	add	sp, #20
+  204296:	f85d fb04 	ldr.w	pc, [sp], #4
+  20429a:	bf00      	nop
+  20429c:	2000119c 	.word	0x2000119c
+  2042a0:	40023800 	.word	0x40023800
+  2042a4:	0cdfe600 	.word	0x0cdfe600
+  2042a8:	200011b8 	.word	0x200011b8
+  2042ac:	200011d4 	.word	0x200011d4
+  2042b0:	066ff300 	.word	0x066ff300
+  2042b4:	01016868 	.word	0x01016868
+  2042b8:	08004de0 	.word	0x08004de0
+  2042bc:	00000000 	.word	0x00000000
 
-00204260 <pwm_lld_enable_channel>:
+002042c0 <pwm_lld_enable_channel>:
  *
  * @notapi
  */
 void pwm_lld_enable_channel(PWMDriver *pwmp,
                             pwmchannel_t channel,
                             pwmcnt_t width) {
-  204260:	b084      	sub	sp, #16
-  204262:	9003      	str	r0, [sp, #12]
-  204264:	460b      	mov	r3, r1
-  204266:	9201      	str	r2, [sp, #4]
-  204268:	f88d 300b 	strb.w	r3, [sp, #11]
+  2042c0:	b084      	sub	sp, #16
+  2042c2:	9003      	str	r0, [sp, #12]
+  2042c4:	460b      	mov	r3, r1
+  2042c6:	9201      	str	r2, [sp, #4]
+  2042c8:	f88d 300b 	strb.w	r3, [sp, #11]
 
   /* Changing channel duty cycle on the fly.*/
 #if STM32_TIM_MAX_CHANNELS <= 4
   pwmp->tim->CCR[channel] = width;
 #else
   if (channel < 4)
-  20426c:	f89d 300b 	ldrb.w	r3, [sp, #11]
-  204270:	2b03      	cmp	r3, #3
-  204272:	d809      	bhi.n	204288 <pwm_lld_enable_channel+0x28>
+  2042cc:	f89d 300b 	ldrb.w	r3, [sp, #11]
+  2042d0:	2b03      	cmp	r3, #3
+  2042d2:	d809      	bhi.n	2042e8 <pwm_lld_enable_channel+0x28>
     pwmp->tim->CCR[channel] = width;
-  204274:	9b03      	ldr	r3, [sp, #12]
-  204276:	699a      	ldr	r2, [r3, #24]
-  204278:	f89d 300b 	ldrb.w	r3, [sp, #11]
-  20427c:	330c      	adds	r3, #12
-  20427e:	009b      	lsls	r3, r3, #2
-  204280:	4413      	add	r3, r2
-  204282:	9a01      	ldr	r2, [sp, #4]
-  204284:	605a      	str	r2, [r3, #4]
-  204286:	e008      	b.n	20429a <pwm_lld_enable_channel+0x3a>
+  2042d4:	9b03      	ldr	r3, [sp, #12]
+  2042d6:	699a      	ldr	r2, [r3, #24]
+  2042d8:	f89d 300b 	ldrb.w	r3, [sp, #11]
+  2042dc:	330c      	adds	r3, #12
+  2042de:	009b      	lsls	r3, r3, #2
+  2042e0:	4413      	add	r3, r2
+  2042e2:	9a01      	ldr	r2, [sp, #4]
+  2042e4:	605a      	str	r2, [r3, #4]
+  2042e6:	e008      	b.n	2042fa <pwm_lld_enable_channel+0x3a>
   else
     pwmp->tim->CCXR[channel - 4] = width;
-  204288:	9b03      	ldr	r3, [sp, #12]
-  20428a:	699b      	ldr	r3, [r3, #24]
-  20428c:	f89d 200b 	ldrb.w	r2, [sp, #11]
-  204290:	3a04      	subs	r2, #4
-  204292:	3216      	adds	r2, #22
-  204294:	9901      	ldr	r1, [sp, #4]
-  204296:	f843 1022 	str.w	r1, [r3, r2, lsl #2]
+  2042e8:	9b03      	ldr	r3, [sp, #12]
+  2042ea:	699b      	ldr	r3, [r3, #24]
+  2042ec:	f89d 200b 	ldrb.w	r2, [sp, #11]
+  2042f0:	3a04      	subs	r2, #4
+  2042f2:	3216      	adds	r2, #22
+  2042f4:	9901      	ldr	r1, [sp, #4]
+  2042f6:	f843 1022 	str.w	r1, [r3, r2, lsl #2]
 #endif
 }
-  20429a:	b004      	add	sp, #16
-  20429c:	4770      	bx	lr
-  20429e:	bf00      	nop
+  2042fa:	b004      	add	sp, #16
+  2042fc:	4770      	bx	lr
+  2042fe:	bf00      	nop
 
-002042a0 <pwm_lld_disable_channel>:
+00204300 <pwm_lld_disable_channel>:
  * @param[in] pwmp      pointer to a @p PWMDriver object
  * @param[in] channel   PWM channel identifier (0...channels-1)
  *
  * @notapi
  */
 void pwm_lld_disable_channel(PWMDriver *pwmp, pwmchannel_t channel) {
-  2042a0:	b082      	sub	sp, #8
-  2042a2:	9001      	str	r0, [sp, #4]
-  2042a4:	460b      	mov	r3, r1
-  2042a6:	f88d 3003 	strb.w	r3, [sp, #3]
+  204300:	b082      	sub	sp, #8
+  204302:	9001      	str	r0, [sp, #4]
+  204304:	460b      	mov	r3, r1
+  204306:	f88d 3003 	strb.w	r3, [sp, #3]
 
 #if STM32_TIM_MAX_CHANNELS <= 4
   pwmp->tim->CCR[channel] = 0;
   pwmp->tim->DIER &= ~(2 << channel);
 #else
   if (channel < 4) {
-  2042aa:	f89d 3003 	ldrb.w	r3, [sp, #3]
-  2042ae:	2b03      	cmp	r3, #3
-  2042b0:	d817      	bhi.n	2042e2 <pwm_lld_disable_channel+0x42>
+  20430a:	f89d 3003 	ldrb.w	r3, [sp, #3]
+  20430e:	2b03      	cmp	r3, #3
+  204310:	d817      	bhi.n	204342 <pwm_lld_disable_channel+0x42>
     pwmp->tim->CCR[channel] = 0;
-  2042b2:	9b01      	ldr	r3, [sp, #4]
-  2042b4:	699a      	ldr	r2, [r3, #24]
-  2042b6:	f89d 3003 	ldrb.w	r3, [sp, #3]
-  2042ba:	330c      	adds	r3, #12
-  2042bc:	009b      	lsls	r3, r3, #2
-  2042be:	4413      	add	r3, r2
-  2042c0:	2200      	movs	r2, #0
-  2042c2:	605a      	str	r2, [r3, #4]
+  204312:	9b01      	ldr	r3, [sp, #4]
+  204314:	699a      	ldr	r2, [r3, #24]
+  204316:	f89d 3003 	ldrb.w	r3, [sp, #3]
+  20431a:	330c      	adds	r3, #12
+  20431c:	009b      	lsls	r3, r3, #2
+  20431e:	4413      	add	r3, r2
+  204320:	2200      	movs	r2, #0
+  204322:	605a      	str	r2, [r3, #4]
     pwmp->tim->DIER &= ~(2 << channel);
-  2042c4:	9b01      	ldr	r3, [sp, #4]
-  2042c6:	699b      	ldr	r3, [r3, #24]
-  2042c8:	68da      	ldr	r2, [r3, #12]
-  2042ca:	f89d 3003 	ldrb.w	r3, [sp, #3]
-  2042ce:	2102      	movs	r1, #2
-  2042d0:	fa01 f303 	lsl.w	r3, r1, r3
-  2042d4:	43db      	mvns	r3, r3
-  2042d6:	4619      	mov	r1, r3
-  2042d8:	9b01      	ldr	r3, [sp, #4]
-  2042da:	699b      	ldr	r3, [r3, #24]
-  2042dc:	400a      	ands	r2, r1
-  2042de:	60da      	str	r2, [r3, #12]
-  2042e0:	e008      	b.n	2042f4 <pwm_lld_disable_channel+0x54>
+  204324:	9b01      	ldr	r3, [sp, #4]
+  204326:	699b      	ldr	r3, [r3, #24]
+  204328:	68da      	ldr	r2, [r3, #12]
+  20432a:	f89d 3003 	ldrb.w	r3, [sp, #3]
+  20432e:	2102      	movs	r1, #2
+  204330:	fa01 f303 	lsl.w	r3, r1, r3
+  204334:	43db      	mvns	r3, r3
+  204336:	4619      	mov	r1, r3
+  204338:	9b01      	ldr	r3, [sp, #4]
+  20433a:	699b      	ldr	r3, [r3, #24]
+  20433c:	400a      	ands	r2, r1
+  20433e:	60da      	str	r2, [r3, #12]
+  204340:	e008      	b.n	204354 <pwm_lld_disable_channel+0x54>
   }
   else
     pwmp->tim->CCXR[channel - 4] = 0;
-  2042e2:	9b01      	ldr	r3, [sp, #4]
-  2042e4:	699b      	ldr	r3, [r3, #24]
-  2042e6:	f89d 2003 	ldrb.w	r2, [sp, #3]
-  2042ea:	3a04      	subs	r2, #4
-  2042ec:	3216      	adds	r2, #22
-  2042ee:	2100      	movs	r1, #0
-  2042f0:	f843 1022 	str.w	r1, [r3, r2, lsl #2]
+  204342:	9b01      	ldr	r3, [sp, #4]
+  204344:	699b      	ldr	r3, [r3, #24]
+  204346:	f89d 2003 	ldrb.w	r2, [sp, #3]
+  20434a:	3a04      	subs	r2, #4
+  20434c:	3216      	adds	r2, #22
+  20434e:	2100      	movs	r1, #0
+  204350:	f843 1022 	str.w	r1, [r3, r2, lsl #2]
 #endif
 }
-  2042f4:	b002      	add	sp, #8
-  2042f6:	4770      	bx	lr
+  204354:	b002      	add	sp, #8
+  204356:	4770      	bx	lr
 	...
 
-00204300 <pwm_lld_enable_periodic_notification>:
+00204360 <pwm_lld_enable_periodic_notification>:
  *
  * @param[in] pwmp      pointer to a @p PWMDriver object
  *
  * @notapi
  */
 void pwm_lld_enable_periodic_notification(PWMDriver *pwmp) {
-  204300:	b084      	sub	sp, #16
-  204302:	9001      	str	r0, [sp, #4]
+  204360:	b084      	sub	sp, #16
+  204362:	9001      	str	r0, [sp, #4]
   uint32_t dier = pwmp->tim->DIER;
-  204304:	9b01      	ldr	r3, [sp, #4]
-  204306:	699b      	ldr	r3, [r3, #24]
-  204308:	68db      	ldr	r3, [r3, #12]
-  20430a:	9303      	str	r3, [sp, #12]
+  204364:	9b01      	ldr	r3, [sp, #4]
+  204366:	699b      	ldr	r3, [r3, #24]
+  204368:	68db      	ldr	r3, [r3, #12]
+  20436a:	9303      	str	r3, [sp, #12]
 
   /* If the IRQ is not already enabled care must be taken to clear it,
      it is probably already pending because the timer is running.*/
   if ((dier & STM32_TIM_DIER_UIE) == 0) {
-  20430c:	9b03      	ldr	r3, [sp, #12]
-  20430e:	f003 0301 	and.w	r3, r3, #1
-  204312:	2b00      	cmp	r3, #0
-  204314:	d10a      	bne.n	20432c <pwm_lld_enable_periodic_notification+0x2c>
+  20436c:	9b03      	ldr	r3, [sp, #12]
+  20436e:	f003 0301 	and.w	r3, r3, #1
+  204372:	2b00      	cmp	r3, #0
+  204374:	d10a      	bne.n	20438c <pwm_lld_enable_periodic_notification+0x2c>
     pwmp->tim->SR   = ~STM32_TIM_SR_UIF;
-  204316:	9b01      	ldr	r3, [sp, #4]
-  204318:	699b      	ldr	r3, [r3, #24]
-  20431a:	f06f 0201 	mvn.w	r2, #1
-  20431e:	611a      	str	r2, [r3, #16]
+  204376:	9b01      	ldr	r3, [sp, #4]
+  204378:	699b      	ldr	r3, [r3, #24]
+  20437a:	f06f 0201 	mvn.w	r2, #1
+  20437e:	611a      	str	r2, [r3, #16]
     pwmp->tim->DIER = dier | STM32_TIM_DIER_UIE;
-  204320:	9b01      	ldr	r3, [sp, #4]
-  204322:	699b      	ldr	r3, [r3, #24]
-  204324:	9a03      	ldr	r2, [sp, #12]
-  204326:	f042 0201 	orr.w	r2, r2, #1
-  20432a:	60da      	str	r2, [r3, #12]
+  204380:	9b01      	ldr	r3, [sp, #4]
+  204382:	699b      	ldr	r3, [r3, #24]
+  204384:	9a03      	ldr	r2, [sp, #12]
+  204386:	f042 0201 	orr.w	r2, r2, #1
+  20438a:	60da      	str	r2, [r3, #12]
   }
 }
-  20432c:	b004      	add	sp, #16
-  20432e:	4770      	bx	lr
+  20438c:	b004      	add	sp, #16
+  20438e:	4770      	bx	lr
 
-00204330 <pwm_lld_enable_channel_notification>:
+00204390 <pwm_lld_enable_channel_notification>:
  * @param[in] channel   PWM channel identifier (0...channels-1)
  *
  * @notapi
  */
 void pwm_lld_enable_channel_notification(PWMDriver *pwmp,
                                          pwmchannel_t channel) {
-  204330:	b500      	push	{lr}
-  204332:	b085      	sub	sp, #20
-  204334:	9001      	str	r0, [sp, #4]
-  204336:	460b      	mov	r3, r1
-  204338:	f88d 3003 	strb.w	r3, [sp, #3]
+  204390:	b500      	push	{lr}
+  204392:	b085      	sub	sp, #20
+  204394:	9001      	str	r0, [sp, #4]
+  204396:	460b      	mov	r3, r1
+  204398:	f88d 3003 	strb.w	r3, [sp, #3]
   uint32_t dier = pwmp->tim->DIER;
-  20433c:	9b01      	ldr	r3, [sp, #4]
-  20433e:	699b      	ldr	r3, [r3, #24]
-  204340:	68db      	ldr	r3, [r3, #12]
-  204342:	9303      	str	r3, [sp, #12]
+  20439c:	9b01      	ldr	r3, [sp, #4]
+  20439e:	699b      	ldr	r3, [r3, #24]
+  2043a0:	68db      	ldr	r3, [r3, #12]
+  2043a2:	9303      	str	r3, [sp, #12]
 
 #if STM32_TIM_MAX_CHANNELS > 4
   /* Channels 4 and 5 do not support callbacks.*/
   osalDbgAssert(channel < 4, "callback not supported");
-  204344:	f89d 3003 	ldrb.w	r3, [sp, #3]
-  204348:	2b03      	cmp	r3, #3
-  20434a:	d902      	bls.n	204352 <pwm_lld_enable_channel_notification+0x22>
-  20434c:	4811      	ldr	r0, [pc, #68]	; (204394 <pwm_lld_enable_channel_notification+0x64>)
-  20434e:	f7fc fa3f 	bl	2007d0 <chSysHalt>
+  2043a4:	f89d 3003 	ldrb.w	r3, [sp, #3]
+  2043a8:	2b03      	cmp	r3, #3
+  2043aa:	d902      	bls.n	2043b2 <pwm_lld_enable_channel_notification+0x22>
+  2043ac:	4811      	ldr	r0, [pc, #68]	; (2043f4 <pwm_lld_enable_channel_notification+0x64>)
+  2043ae:	f7fc fa0f 	bl	2007d0 <chSysHalt>
 #endif
 
   /* If the IRQ is not already enabled care must be taken to clear it,
      it is probably already pending because the timer is running.*/
   if ((dier & (2 << channel)) == 0) {
-  204352:	f89d 3003 	ldrb.w	r3, [sp, #3]
-  204356:	2202      	movs	r2, #2
-  204358:	fa02 f303 	lsl.w	r3, r2, r3
-  20435c:	461a      	mov	r2, r3
-  20435e:	9b03      	ldr	r3, [sp, #12]
-  204360:	4013      	ands	r3, r2
-  204362:	2b00      	cmp	r3, #0
-  204364:	d113      	bne.n	20438e <pwm_lld_enable_channel_notification+0x5e>
+  2043b2:	f89d 3003 	ldrb.w	r3, [sp, #3]
+  2043b6:	2202      	movs	r2, #2
+  2043b8:	fa02 f303 	lsl.w	r3, r2, r3
+  2043bc:	461a      	mov	r2, r3
+  2043be:	9b03      	ldr	r3, [sp, #12]
+  2043c0:	4013      	ands	r3, r2
+  2043c2:	2b00      	cmp	r3, #0
+  2043c4:	d113      	bne.n	2043ee <pwm_lld_enable_channel_notification+0x5e>
     pwmp->tim->SR   = ~(2 << channel);
-  204366:	f89d 3003 	ldrb.w	r3, [sp, #3]
-  20436a:	2202      	movs	r2, #2
-  20436c:	fa02 f303 	lsl.w	r3, r2, r3
-  204370:	43da      	mvns	r2, r3
-  204372:	9b01      	ldr	r3, [sp, #4]
-  204374:	699b      	ldr	r3, [r3, #24]
-  204376:	611a      	str	r2, [r3, #16]
+  2043c6:	f89d 3003 	ldrb.w	r3, [sp, #3]
+  2043ca:	2202      	movs	r2, #2
+  2043cc:	fa02 f303 	lsl.w	r3, r2, r3
+  2043d0:	43da      	mvns	r2, r3
+  2043d2:	9b01      	ldr	r3, [sp, #4]
+  2043d4:	699b      	ldr	r3, [r3, #24]
+  2043d6:	611a      	str	r2, [r3, #16]
     pwmp->tim->DIER = dier | (2 << channel);
-  204378:	f89d 3003 	ldrb.w	r3, [sp, #3]
-  20437c:	2202      	movs	r2, #2
-  20437e:	fa02 f303 	lsl.w	r3, r2, r3
-  204382:	4619      	mov	r1, r3
-  204384:	9b01      	ldr	r3, [sp, #4]
-  204386:	699b      	ldr	r3, [r3, #24]
-  204388:	9a03      	ldr	r2, [sp, #12]
-  20438a:	430a      	orrs	r2, r1
-  20438c:	60da      	str	r2, [r3, #12]
+  2043d8:	f89d 3003 	ldrb.w	r3, [sp, #3]
+  2043dc:	2202      	movs	r2, #2
+  2043de:	fa02 f303 	lsl.w	r3, r2, r3
+  2043e2:	4619      	mov	r1, r3
+  2043e4:	9b01      	ldr	r3, [sp, #4]
+  2043e6:	699b      	ldr	r3, [r3, #24]
+  2043e8:	9a03      	ldr	r2, [sp, #12]
+  2043ea:	430a      	orrs	r2, r1
+  2043ec:	60da      	str	r2, [r3, #12]
   }
 }
-  20438e:	b005      	add	sp, #20
-  204390:	f85d fb04 	ldr.w	pc, [sp], #4
-  204394:	08004d80 	.word	0x08004d80
+  2043ee:	b005      	add	sp, #20
+  2043f0:	f85d fb04 	ldr.w	pc, [sp], #4
+  2043f4:	08004df0 	.word	0x08004df0
 	...
 
-002043a0 <pwm_lld_serve_interrupt>:
+00204400 <pwm_lld_serve_interrupt>:
  *
  * @param[in] pwmp      pointer to a @p PWMDriver object
  *
  * @notapi
  */
 void pwm_lld_serve_interrupt(PWMDriver *pwmp) {
-  2043a0:	b500      	push	{lr}
-  2043a2:	b085      	sub	sp, #20
-  2043a4:	9001      	str	r0, [sp, #4]
+  204400:	b500      	push	{lr}
+  204402:	b085      	sub	sp, #20
+  204404:	9001      	str	r0, [sp, #4]
   uint32_t sr;
 
   sr  = pwmp->tim->SR;
-  2043a6:	9b01      	ldr	r3, [sp, #4]
-  2043a8:	699b      	ldr	r3, [r3, #24]
-  2043aa:	691b      	ldr	r3, [r3, #16]
-  2043ac:	9303      	str	r3, [sp, #12]
+  204406:	9b01      	ldr	r3, [sp, #4]
+  204408:	699b      	ldr	r3, [r3, #24]
+  20440a:	691b      	ldr	r3, [r3, #16]
+  20440c:	9303      	str	r3, [sp, #12]
   sr &= pwmp->tim->DIER & STM32_TIM_DIER_IRQ_MASK;
-  2043ae:	9b01      	ldr	r3, [sp, #4]
-  2043b0:	699b      	ldr	r3, [r3, #24]
-  2043b2:	68db      	ldr	r3, [r3, #12]
-  2043b4:	b2db      	uxtb	r3, r3
-  2043b6:	9a03      	ldr	r2, [sp, #12]
-  2043b8:	4013      	ands	r3, r2
-  2043ba:	9303      	str	r3, [sp, #12]
+  20440e:	9b01      	ldr	r3, [sp, #4]
+  204410:	699b      	ldr	r3, [r3, #24]
+  204412:	68db      	ldr	r3, [r3, #12]
+  204414:	b2db      	uxtb	r3, r3
+  204416:	9a03      	ldr	r2, [sp, #12]
+  204418:	4013      	ands	r3, r2
+  20441a:	9303      	str	r3, [sp, #12]
   pwmp->tim->SR = ~sr;
-  2043bc:	9b01      	ldr	r3, [sp, #4]
-  2043be:	699b      	ldr	r3, [r3, #24]
-  2043c0:	9a03      	ldr	r2, [sp, #12]
-  2043c2:	43d2      	mvns	r2, r2
-  2043c4:	611a      	str	r2, [r3, #16]
+  20441c:	9b01      	ldr	r3, [sp, #4]
+  20441e:	699b      	ldr	r3, [r3, #24]
+  204420:	9a03      	ldr	r2, [sp, #12]
+  204422:	43d2      	mvns	r2, r2
+  204424:	611a      	str	r2, [r3, #16]
   if (((sr & STM32_TIM_SR_CC1IF) != 0) &&
-  2043c6:	9b03      	ldr	r3, [sp, #12]
-  2043c8:	f003 0302 	and.w	r3, r3, #2
-  2043cc:	2b00      	cmp	r3, #0
-  2043ce:	d009      	beq.n	2043e4 <pwm_lld_serve_interrupt+0x44>
+  204426:	9b03      	ldr	r3, [sp, #12]
+  204428:	f003 0302 	and.w	r3, r3, #2
+  20442c:	2b00      	cmp	r3, #0
+  20442e:	d009      	beq.n	204444 <pwm_lld_serve_interrupt+0x44>
       (pwmp->config->channels[0].callback != NULL))
-  2043d0:	9b01      	ldr	r3, [sp, #4]
-  2043d2:	685b      	ldr	r3, [r3, #4]
-  2043d4:	691b      	ldr	r3, [r3, #16]
+  204430:	9b01      	ldr	r3, [sp, #4]
+  204432:	685b      	ldr	r3, [r3, #4]
+  204434:	691b      	ldr	r3, [r3, #16]
   if (((sr & STM32_TIM_SR_CC1IF) != 0) &&
-  2043d6:	2b00      	cmp	r3, #0
-  2043d8:	d004      	beq.n	2043e4 <pwm_lld_serve_interrupt+0x44>
+  204436:	2b00      	cmp	r3, #0
+  204438:	d004      	beq.n	204444 <pwm_lld_serve_interrupt+0x44>
     pwmp->config->channels[0].callback(pwmp);
-  2043da:	9b01      	ldr	r3, [sp, #4]
-  2043dc:	685b      	ldr	r3, [r3, #4]
-  2043de:	691b      	ldr	r3, [r3, #16]
-  2043e0:	9801      	ldr	r0, [sp, #4]
-  2043e2:	4798      	blx	r3
+  20443a:	9b01      	ldr	r3, [sp, #4]
+  20443c:	685b      	ldr	r3, [r3, #4]
+  20443e:	691b      	ldr	r3, [r3, #16]
+  204440:	9801      	ldr	r0, [sp, #4]
+  204442:	4798      	blx	r3
   if (((sr & STM32_TIM_SR_CC2IF) != 0) &&
-  2043e4:	9b03      	ldr	r3, [sp, #12]
-  2043e6:	f003 0304 	and.w	r3, r3, #4
-  2043ea:	2b00      	cmp	r3, #0
-  2043ec:	d009      	beq.n	204402 <pwm_lld_serve_interrupt+0x62>
+  204444:	9b03      	ldr	r3, [sp, #12]
+  204446:	f003 0304 	and.w	r3, r3, #4
+  20444a:	2b00      	cmp	r3, #0
+  20444c:	d009      	beq.n	204462 <pwm_lld_serve_interrupt+0x62>
       (pwmp->config->channels[1].callback != NULL))
-  2043ee:	9b01      	ldr	r3, [sp, #4]
-  2043f0:	685b      	ldr	r3, [r3, #4]
-  2043f2:	699b      	ldr	r3, [r3, #24]
+  20444e:	9b01      	ldr	r3, [sp, #4]
+  204450:	685b      	ldr	r3, [r3, #4]
+  204452:	699b      	ldr	r3, [r3, #24]
   if (((sr & STM32_TIM_SR_CC2IF) != 0) &&
-  2043f4:	2b00      	cmp	r3, #0
-  2043f6:	d004      	beq.n	204402 <pwm_lld_serve_interrupt+0x62>
+  204454:	2b00      	cmp	r3, #0
+  204456:	d004      	beq.n	204462 <pwm_lld_serve_interrupt+0x62>
     pwmp->config->channels[1].callback(pwmp);
-  2043f8:	9b01      	ldr	r3, [sp, #4]
-  2043fa:	685b      	ldr	r3, [r3, #4]
-  2043fc:	699b      	ldr	r3, [r3, #24]
-  2043fe:	9801      	ldr	r0, [sp, #4]
-  204400:	4798      	blx	r3
+  204458:	9b01      	ldr	r3, [sp, #4]
+  20445a:	685b      	ldr	r3, [r3, #4]
+  20445c:	699b      	ldr	r3, [r3, #24]
+  20445e:	9801      	ldr	r0, [sp, #4]
+  204460:	4798      	blx	r3
   if (((sr & STM32_TIM_SR_CC3IF) != 0) &&
-  204402:	9b03      	ldr	r3, [sp, #12]
-  204404:	f003 0308 	and.w	r3, r3, #8
-  204408:	2b00      	cmp	r3, #0
-  20440a:	d009      	beq.n	204420 <pwm_lld_serve_interrupt+0x80>
+  204462:	9b03      	ldr	r3, [sp, #12]
+  204464:	f003 0308 	and.w	r3, r3, #8
+  204468:	2b00      	cmp	r3, #0
+  20446a:	d009      	beq.n	204480 <pwm_lld_serve_interrupt+0x80>
       (pwmp->config->channels[2].callback != NULL))
-  20440c:	9b01      	ldr	r3, [sp, #4]
-  20440e:	685b      	ldr	r3, [r3, #4]
-  204410:	6a1b      	ldr	r3, [r3, #32]
+  20446c:	9b01      	ldr	r3, [sp, #4]
+  20446e:	685b      	ldr	r3, [r3, #4]
+  204470:	6a1b      	ldr	r3, [r3, #32]
   if (((sr & STM32_TIM_SR_CC3IF) != 0) &&
-  204412:	2b00      	cmp	r3, #0
-  204414:	d004      	beq.n	204420 <pwm_lld_serve_interrupt+0x80>
+  204472:	2b00      	cmp	r3, #0
+  204474:	d004      	beq.n	204480 <pwm_lld_serve_interrupt+0x80>
     pwmp->config->channels[2].callback(pwmp);
-  204416:	9b01      	ldr	r3, [sp, #4]
-  204418:	685b      	ldr	r3, [r3, #4]
-  20441a:	6a1b      	ldr	r3, [r3, #32]
-  20441c:	9801      	ldr	r0, [sp, #4]
-  20441e:	4798      	blx	r3
+  204476:	9b01      	ldr	r3, [sp, #4]
+  204478:	685b      	ldr	r3, [r3, #4]
+  20447a:	6a1b      	ldr	r3, [r3, #32]
+  20447c:	9801      	ldr	r0, [sp, #4]
+  20447e:	4798      	blx	r3
   if (((sr & STM32_TIM_SR_CC4IF) != 0) &&
-  204420:	9b03      	ldr	r3, [sp, #12]
-  204422:	f003 0310 	and.w	r3, r3, #16
-  204426:	2b00      	cmp	r3, #0
-  204428:	d009      	beq.n	20443e <pwm_lld_serve_interrupt+0x9e>
+  204480:	9b03      	ldr	r3, [sp, #12]
+  204482:	f003 0310 	and.w	r3, r3, #16
+  204486:	2b00      	cmp	r3, #0
+  204488:	d009      	beq.n	20449e <pwm_lld_serve_interrupt+0x9e>
       (pwmp->config->channels[3].callback != NULL))
-  20442a:	9b01      	ldr	r3, [sp, #4]
-  20442c:	685b      	ldr	r3, [r3, #4]
-  20442e:	6a9b      	ldr	r3, [r3, #40]	; 0x28
+  20448a:	9b01      	ldr	r3, [sp, #4]
+  20448c:	685b      	ldr	r3, [r3, #4]
+  20448e:	6a9b      	ldr	r3, [r3, #40]	; 0x28
   if (((sr & STM32_TIM_SR_CC4IF) != 0) &&
-  204430:	2b00      	cmp	r3, #0
-  204432:	d004      	beq.n	20443e <pwm_lld_serve_interrupt+0x9e>
+  204490:	2b00      	cmp	r3, #0
+  204492:	d004      	beq.n	20449e <pwm_lld_serve_interrupt+0x9e>
     pwmp->config->channels[3].callback(pwmp);
-  204434:	9b01      	ldr	r3, [sp, #4]
-  204436:	685b      	ldr	r3, [r3, #4]
-  204438:	6a9b      	ldr	r3, [r3, #40]	; 0x28
-  20443a:	9801      	ldr	r0, [sp, #4]
-  20443c:	4798      	blx	r3
+  204494:	9b01      	ldr	r3, [sp, #4]
+  204496:	685b      	ldr	r3, [r3, #4]
+  204498:	6a9b      	ldr	r3, [r3, #40]	; 0x28
+  20449a:	9801      	ldr	r0, [sp, #4]
+  20449c:	4798      	blx	r3
   if (((sr & STM32_TIM_SR_UIF) != 0) && (pwmp->config->callback != NULL))
-  20443e:	9b03      	ldr	r3, [sp, #12]
-  204440:	f003 0301 	and.w	r3, r3, #1
-  204444:	2b00      	cmp	r3, #0
-  204446:	d009      	beq.n	20445c <pwm_lld_serve_interrupt+0xbc>
-  204448:	9b01      	ldr	r3, [sp, #4]
-  20444a:	685b      	ldr	r3, [r3, #4]
-  20444c:	689b      	ldr	r3, [r3, #8]
-  20444e:	2b00      	cmp	r3, #0
-  204450:	d004      	beq.n	20445c <pwm_lld_serve_interrupt+0xbc>
+  20449e:	9b03      	ldr	r3, [sp, #12]
+  2044a0:	f003 0301 	and.w	r3, r3, #1
+  2044a4:	2b00      	cmp	r3, #0
+  2044a6:	d009      	beq.n	2044bc <pwm_lld_serve_interrupt+0xbc>
+  2044a8:	9b01      	ldr	r3, [sp, #4]
+  2044aa:	685b      	ldr	r3, [r3, #4]
+  2044ac:	689b      	ldr	r3, [r3, #8]
+  2044ae:	2b00      	cmp	r3, #0
+  2044b0:	d004      	beq.n	2044bc <pwm_lld_serve_interrupt+0xbc>
     pwmp->config->callback(pwmp);
-  204452:	9b01      	ldr	r3, [sp, #4]
-  204454:	685b      	ldr	r3, [r3, #4]
-  204456:	689b      	ldr	r3, [r3, #8]
-  204458:	9801      	ldr	r0, [sp, #4]
-  20445a:	4798      	blx	r3
+  2044b2:	9b01      	ldr	r3, [sp, #4]
+  2044b4:	685b      	ldr	r3, [r3, #4]
+  2044b6:	689b      	ldr	r3, [r3, #8]
+  2044b8:	9801      	ldr	r0, [sp, #4]
+  2044ba:	4798      	blx	r3
 }
-  20445c:	b005      	add	sp, #20
-  20445e:	f85d fb04 	ldr.w	pc, [sp], #4
-  204462:	bf00      	nop
+  2044bc:	b005      	add	sp, #20
+  2044be:	f85d fb04 	ldr.w	pc, [sp], #4
+  2044c2:	bf00      	nop
 	...
 
-00204470 <port_lock.lto_priv.77>:
+002044d0 <port_lock.lto_priv.77>:
 static inline void port_lock(void) {
-  204470:	b082      	sub	sp, #8
+  2044d0:	b082      	sub	sp, #8
   __ASM volatile ("cpsid i" : : : "memory");
-  204472:	b672      	cpsid	i
-  204474:	2320      	movs	r3, #32
-  204476:	9301      	str	r3, [sp, #4]
+  2044d2:	b672      	cpsid	i
+  2044d4:	2320      	movs	r3, #32
+  2044d6:	9301      	str	r3, [sp, #4]
   __ASM volatile ("MSR basepri, %0" : : "r" (value) : "memory");
-  204478:	9b01      	ldr	r3, [sp, #4]
-  20447a:	f383 8811 	msr	BASEPRI, r3
+  2044d8:	9b01      	ldr	r3, [sp, #4]
+  2044da:	f383 8811 	msr	BASEPRI, r3
   __ASM volatile ("cpsie i" : : : "memory");
-  20447e:	b662      	cpsie	i
+  2044de:	b662      	cpsie	i
 }
-  204480:	b002      	add	sp, #8
-  204482:	4770      	bx	lr
+  2044e0:	b002      	add	sp, #8
+  2044e2:	4770      	bx	lr
 	...
 
-00204490 <port_unlock.lto_priv.53>:
+002044f0 <port_unlock.lto_priv.53>:
 static inline void port_unlock(void) {
-  204490:	b082      	sub	sp, #8
-  204492:	2300      	movs	r3, #0
-  204494:	9301      	str	r3, [sp, #4]
+  2044f0:	b082      	sub	sp, #8
+  2044f2:	2300      	movs	r3, #0
+  2044f4:	9301      	str	r3, [sp, #4]
   __ASM volatile ("MSR basepri, %0" : : "r" (value) : "memory");
-  204496:	9b01      	ldr	r3, [sp, #4]
-  204498:	f383 8811 	msr	BASEPRI, r3
+  2044f6:	9b01      	ldr	r3, [sp, #4]
+  2044f8:	f383 8811 	msr	BASEPRI, r3
 }
-  20449c:	b002      	add	sp, #8
-  20449e:	4770      	bx	lr
+  2044fc:	b002      	add	sp, #8
+  2044fe:	4770      	bx	lr
 
-002044a0 <port_lock_from_isr.lto_priv.29>:
+00204500 <port_lock_from_isr.lto_priv.29>:
 static inline void port_lock_from_isr(void) {
-  2044a0:	b508      	push	{r3, lr}
+  204500:	b508      	push	{r3, lr}
   port_lock();
-  2044a2:	f7ff ffe5 	bl	204470 <port_lock.lto_priv.77>
+  204502:	f7ff ffe5 	bl	2044d0 <port_lock.lto_priv.77>
 }
-  2044a6:	bd08      	pop	{r3, pc}
+  204506:	bd08      	pop	{r3, pc}
 	...
 
-002044b0 <port_unlock_from_isr.lto_priv.22>:
+00204510 <port_unlock_from_isr.lto_priv.22>:
 static inline void port_unlock_from_isr(void) {
-  2044b0:	b508      	push	{r3, lr}
+  204510:	b508      	push	{r3, lr}
   port_unlock();
-  2044b2:	f7ff ffed 	bl	204490 <port_unlock.lto_priv.53>
+  204512:	f7ff ffed 	bl	2044f0 <port_unlock.lto_priv.53>
 }
-  2044b6:	bd08      	pop	{r3, pc}
+  204516:	bd08      	pop	{r3, pc}
 	...
 
-002044c0 <chSysLockFromISR.lto_priv.15>:
+00204520 <chSysLockFromISR.lto_priv.15>:
 static inline void chSysLockFromISR(void) {
-  2044c0:	b508      	push	{r3, lr}
+  204520:	b508      	push	{r3, lr}
   port_lock_from_isr();
-  2044c2:	f7ff ffed 	bl	2044a0 <port_lock_from_isr.lto_priv.29>
+  204522:	f7ff ffed 	bl	204500 <port_lock_from_isr.lto_priv.29>
   _dbg_check_lock_from_isr();
-  2044c6:	f7fc fa0b 	bl	2008e0 <_dbg_check_lock_from_isr>
+  204526:	f7fc f9db 	bl	2008e0 <_dbg_check_lock_from_isr>
 }
-  2044ca:	bd08      	pop	{r3, pc}
-  2044cc:	0000      	movs	r0, r0
+  20452a:	bd08      	pop	{r3, pc}
+  20452c:	0000      	movs	r0, r0
 	...
 
-002044d0 <chSysUnlockFromISR.lto_priv.11>:
+00204530 <chSysUnlockFromISR.lto_priv.11>:
 static inline void chSysUnlockFromISR(void) {
-  2044d0:	b508      	push	{r3, lr}
+  204530:	b508      	push	{r3, lr}
   _dbg_check_unlock_from_isr();
-  2044d2:	f7fc fa1d 	bl	200910 <_dbg_check_unlock_from_isr>
+  204532:	f7fc f9ed 	bl	200910 <_dbg_check_unlock_from_isr>
   port_unlock_from_isr();
-  2044d6:	f7ff ffeb 	bl	2044b0 <port_unlock_from_isr.lto_priv.22>
+  204536:	f7ff ffeb 	bl	204510 <port_unlock_from_isr.lto_priv.22>
 }
-  2044da:	bd08      	pop	{r3, pc}
-  2044dc:	0000      	movs	r0, r0
+  20453a:	bd08      	pop	{r3, pc}
+  20453c:	0000      	movs	r0, r0
 	...
 
-002044e0 <osalSysLockFromISR.lto_priv.7>:
+00204540 <osalSysLockFromISR.lto_priv.7>:
 static inline void osalSysLockFromISR(void) {
-  2044e0:	b508      	push	{r3, lr}
+  204540:	b508      	push	{r3, lr}
   chSysLockFromISR();
-  2044e2:	f7ff ffed 	bl	2044c0 <chSysLockFromISR.lto_priv.15>
+  204542:	f7ff ffed 	bl	204520 <chSysLockFromISR.lto_priv.15>
 }
-  2044e6:	bd08      	pop	{r3, pc}
+  204546:	bd08      	pop	{r3, pc}
 	...
 
-002044f0 <osalSysUnlockFromISR.lto_priv.5>:
+00204550 <osalSysUnlockFromISR.lto_priv.5>:
 static inline void osalSysUnlockFromISR(void) {
-  2044f0:	b508      	push	{r3, lr}
+  204550:	b508      	push	{r3, lr}
   chSysUnlockFromISR();
-  2044f2:	f7ff ffed 	bl	2044d0 <chSysUnlockFromISR.lto_priv.11>
+  204552:	f7ff ffed 	bl	204530 <chSysUnlockFromISR.lto_priv.11>
 }
-  2044f6:	bd08      	pop	{r3, pc}
+  204556:	bd08      	pop	{r3, pc}
 	...
 
-00204500 <osalEventBroadcastFlagsI.lto_priv.3>:
+00204560 <osalEventBroadcastFlagsI.lto_priv.3>:
                                             eventflags_t flags) {
-  204500:	b500      	push	{lr}
-  204502:	b083      	sub	sp, #12
-  204504:	9001      	str	r0, [sp, #4]
-  204506:	9100      	str	r1, [sp, #0]
+  204560:	b500      	push	{lr}
+  204562:	b083      	sub	sp, #12
+  204564:	9001      	str	r0, [sp, #4]
+  204566:	9100      	str	r1, [sp, #0]
   chEvtBroadcastFlagsI(esp, flags);
-  204508:	9900      	ldr	r1, [sp, #0]
-  20450a:	9801      	ldr	r0, [sp, #4]
-  20450c:	f7fd fe30 	bl	202170 <chEvtBroadcastFlagsI>
+  204568:	9900      	ldr	r1, [sp, #0]
+  20456a:	9801      	ldr	r0, [sp, #4]
+  20456c:	f7fd fe00 	bl	202170 <chEvtBroadcastFlagsI>
 }
-  204510:	b003      	add	sp, #12
-  204512:	f85d fb04 	ldr.w	pc, [sp], #4
-  204516:	bf00      	nop
+  204570:	b003      	add	sp, #12
+  204572:	f85d fb04 	ldr.w	pc, [sp], #4
+  204576:	bf00      	nop
 	...
 
-00204520 <set_error>:
+00204580 <set_error>:
  * @brief   Error handling routine.
  *
  * @param[in] sdp       pointer to a @p SerialDriver object
  * @param[in] isr       USART ISR register value
  */
 static void set_error(SerialDriver *sdp, uint32_t isr) {
-  204520:	b500      	push	{lr}
-  204522:	b085      	sub	sp, #20
-  204524:	9001      	str	r0, [sp, #4]
-  204526:	9100      	str	r1, [sp, #0]
+  204580:	b500      	push	{lr}
+  204582:	b085      	sub	sp, #20
+  204584:	9001      	str	r0, [sp, #4]
+  204586:	9100      	str	r1, [sp, #0]
   eventflags_t sts = 0;
-  204528:	2300      	movs	r3, #0
-  20452a:	9303      	str	r3, [sp, #12]
+  204588:	2300      	movs	r3, #0
+  20458a:	9303      	str	r3, [sp, #12]
 
   if (isr & USART_ISR_ORE)
-  20452c:	9b00      	ldr	r3, [sp, #0]
-  20452e:	f003 0308 	and.w	r3, r3, #8
-  204532:	2b00      	cmp	r3, #0
-  204534:	d003      	beq.n	20453e <set_error+0x1e>
+  20458c:	9b00      	ldr	r3, [sp, #0]
+  20458e:	f003 0308 	and.w	r3, r3, #8
+  204592:	2b00      	cmp	r3, #0
+  204594:	d003      	beq.n	20459e <set_error+0x1e>
     sts |= SD_OVERRUN_ERROR;
-  204536:	9b03      	ldr	r3, [sp, #12]
-  204538:	f043 0380 	orr.w	r3, r3, #128	; 0x80
-  20453c:	9303      	str	r3, [sp, #12]
+  204596:	9b03      	ldr	r3, [sp, #12]
+  204598:	f043 0380 	orr.w	r3, r3, #128	; 0x80
+  20459c:	9303      	str	r3, [sp, #12]
   if (isr & USART_ISR_PE)
-  20453e:	9b00      	ldr	r3, [sp, #0]
-  204540:	f003 0301 	and.w	r3, r3, #1
-  204544:	2b00      	cmp	r3, #0
-  204546:	d003      	beq.n	204550 <set_error+0x30>
+  20459e:	9b00      	ldr	r3, [sp, #0]
+  2045a0:	f003 0301 	and.w	r3, r3, #1
+  2045a4:	2b00      	cmp	r3, #0
+  2045a6:	d003      	beq.n	2045b0 <set_error+0x30>
     sts |= SD_PARITY_ERROR;
-  204548:	9b03      	ldr	r3, [sp, #12]
-  20454a:	f043 0320 	orr.w	r3, r3, #32
-  20454e:	9303      	str	r3, [sp, #12]
+  2045a8:	9b03      	ldr	r3, [sp, #12]
+  2045aa:	f043 0320 	orr.w	r3, r3, #32
+  2045ae:	9303      	str	r3, [sp, #12]
   if (isr & USART_ISR_FE)
-  204550:	9b00      	ldr	r3, [sp, #0]
-  204552:	f003 0302 	and.w	r3, r3, #2
-  204556:	2b00      	cmp	r3, #0
-  204558:	d003      	beq.n	204562 <set_error+0x42>
+  2045b0:	9b00      	ldr	r3, [sp, #0]
+  2045b2:	f003 0302 	and.w	r3, r3, #2
+  2045b6:	2b00      	cmp	r3, #0
+  2045b8:	d003      	beq.n	2045c2 <set_error+0x42>
     sts |= SD_FRAMING_ERROR;
-  20455a:	9b03      	ldr	r3, [sp, #12]
-  20455c:	f043 0340 	orr.w	r3, r3, #64	; 0x40
-  204560:	9303      	str	r3, [sp, #12]
+  2045ba:	9b03      	ldr	r3, [sp, #12]
+  2045bc:	f043 0340 	orr.w	r3, r3, #64	; 0x40
+  2045c0:	9303      	str	r3, [sp, #12]
   if (isr & USART_ISR_NE)
-  204562:	9b00      	ldr	r3, [sp, #0]
-  204564:	f003 0304 	and.w	r3, r3, #4
-  204568:	2b00      	cmp	r3, #0
-  20456a:	d003      	beq.n	204574 <set_error+0x54>
+  2045c2:	9b00      	ldr	r3, [sp, #0]
+  2045c4:	f003 0304 	and.w	r3, r3, #4
+  2045c8:	2b00      	cmp	r3, #0
+  2045ca:	d003      	beq.n	2045d4 <set_error+0x54>
     sts |= SD_NOISE_ERROR;
-  20456c:	9b03      	ldr	r3, [sp, #12]
-  20456e:	f443 7380 	orr.w	r3, r3, #256	; 0x100
-  204572:	9303      	str	r3, [sp, #12]
+  2045cc:	9b03      	ldr	r3, [sp, #12]
+  2045ce:	f443 7380 	orr.w	r3, r3, #256	; 0x100
+  2045d2:	9303      	str	r3, [sp, #12]
   osalSysLockFromISR();
-  204574:	f7ff ffb4 	bl	2044e0 <osalSysLockFromISR.lto_priv.7>
+  2045d4:	f7ff ffb4 	bl	204540 <osalSysLockFromISR.lto_priv.7>
   chnAddFlagsI(sdp, sts);
-  204578:	9b01      	ldr	r3, [sp, #4]
-  20457a:	3304      	adds	r3, #4
-  20457c:	9903      	ldr	r1, [sp, #12]
-  20457e:	4618      	mov	r0, r3
-  204580:	f7ff ffbe 	bl	204500 <osalEventBroadcastFlagsI.lto_priv.3>
+  2045d8:	9b01      	ldr	r3, [sp, #4]
+  2045da:	3304      	adds	r3, #4
+  2045dc:	9903      	ldr	r1, [sp, #12]
+  2045de:	4618      	mov	r0, r3
+  2045e0:	f7ff ffbe 	bl	204560 <osalEventBroadcastFlagsI.lto_priv.3>
   osalSysUnlockFromISR();
-  204584:	f7ff ffb4 	bl	2044f0 <osalSysUnlockFromISR.lto_priv.5>
+  2045e4:	f7ff ffb4 	bl	204550 <osalSysUnlockFromISR.lto_priv.5>
 }
-  204588:	b005      	add	sp, #20
-  20458a:	f85d fb04 	ldr.w	pc, [sp], #4
-  20458e:	bf00      	nop
+  2045e8:	b005      	add	sp, #20
+  2045ea:	f85d fb04 	ldr.w	pc, [sp], #4
+  2045ee:	bf00      	nop
 
-00204590 <serve_interrupt>:
+002045f0 <serve_interrupt>:
 /**
  * @brief   Common IRQ handler.
  *
  * @param[in] sdp       communication channel associated to the USART
  */
 static void serve_interrupt(SerialDriver *sdp) {
-  204590:	b500      	push	{lr}
-  204592:	b087      	sub	sp, #28
-  204594:	9001      	str	r0, [sp, #4]
+  2045f0:	b500      	push	{lr}
+  2045f2:	b087      	sub	sp, #28
+  2045f4:	9001      	str	r0, [sp, #4]
   USART_TypeDef *u = sdp->usart;
-  204596:	9b01      	ldr	r3, [sp, #4]
-  204598:	6d5b      	ldr	r3, [r3, #84]	; 0x54
-  20459a:	9305      	str	r3, [sp, #20]
+  2045f6:	9b01      	ldr	r3, [sp, #4]
+  2045f8:	6d5b      	ldr	r3, [r3, #84]	; 0x54
+  2045fa:	9305      	str	r3, [sp, #20]
   uint32_t cr1 = u->CR1;
-  20459c:	9b05      	ldr	r3, [sp, #20]
-  20459e:	681b      	ldr	r3, [r3, #0]
-  2045a0:	9304      	str	r3, [sp, #16]
+  2045fc:	9b05      	ldr	r3, [sp, #20]
+  2045fe:	681b      	ldr	r3, [r3, #0]
+  204600:	9304      	str	r3, [sp, #16]
   uint32_t isr;
 
   /* Reading and clearing status.*/
   isr = u->ISR;
-  2045a2:	9b05      	ldr	r3, [sp, #20]
-  2045a4:	69db      	ldr	r3, [r3, #28]
-  2045a6:	9303      	str	r3, [sp, #12]
+  204602:	9b05      	ldr	r3, [sp, #20]
+  204604:	69db      	ldr	r3, [r3, #28]
+  204606:	9303      	str	r3, [sp, #12]
   u->ICR = isr;
-  2045a8:	9b05      	ldr	r3, [sp, #20]
-  2045aa:	9a03      	ldr	r2, [sp, #12]
-  2045ac:	621a      	str	r2, [r3, #32]
+  204608:	9b05      	ldr	r3, [sp, #20]
+  20460a:	9a03      	ldr	r2, [sp, #12]
+  20460c:	621a      	str	r2, [r3, #32]
 
   /* Error condition detection.*/
   if (isr & (USART_ISR_ORE | USART_ISR_NE | USART_ISR_FE  | USART_ISR_PE))
-  2045ae:	9b03      	ldr	r3, [sp, #12]
-  2045b0:	f003 030f 	and.w	r3, r3, #15
-  2045b4:	2b00      	cmp	r3, #0
-  2045b6:	d003      	beq.n	2045c0 <serve_interrupt+0x30>
+  20460e:	9b03      	ldr	r3, [sp, #12]
+  204610:	f003 030f 	and.w	r3, r3, #15
+  204614:	2b00      	cmp	r3, #0
+  204616:	d003      	beq.n	204620 <serve_interrupt+0x30>
     set_error(sdp, isr);
-  2045b8:	9903      	ldr	r1, [sp, #12]
-  2045ba:	9801      	ldr	r0, [sp, #4]
-  2045bc:	f7ff ffb0 	bl	204520 <set_error>
+  204618:	9903      	ldr	r1, [sp, #12]
+  20461a:	9801      	ldr	r0, [sp, #4]
+  20461c:	f7ff ffb0 	bl	204580 <set_error>
 
   /* Special case, LIN break detection.*/
   if (isr & USART_ISR_LBDF) {
-  2045c0:	9b03      	ldr	r3, [sp, #12]
-  2045c2:	f403 7380 	and.w	r3, r3, #256	; 0x100
-  2045c6:	2b00      	cmp	r3, #0
-  2045c8:	d00a      	beq.n	2045e0 <serve_interrupt+0x50>
+  204620:	9b03      	ldr	r3, [sp, #12]
+  204622:	f403 7380 	and.w	r3, r3, #256	; 0x100
+  204626:	2b00      	cmp	r3, #0
+  204628:	d00a      	beq.n	204640 <serve_interrupt+0x50>
     osalSysLockFromISR();
-  2045ca:	f7ff ff89 	bl	2044e0 <osalSysLockFromISR.lto_priv.7>
+  20462a:	f7ff ff89 	bl	204540 <osalSysLockFromISR.lto_priv.7>
     chnAddFlagsI(sdp, SD_BREAK_DETECTED);
-  2045ce:	9b01      	ldr	r3, [sp, #4]
-  2045d0:	3304      	adds	r3, #4
-  2045d2:	f44f 7100 	mov.w	r1, #512	; 0x200
-  2045d6:	4618      	mov	r0, r3
-  2045d8:	f7ff ff92 	bl	204500 <osalEventBroadcastFlagsI.lto_priv.3>
+  20462e:	9b01      	ldr	r3, [sp, #4]
+  204630:	3304      	adds	r3, #4
+  204632:	f44f 7100 	mov.w	r1, #512	; 0x200
+  204636:	4618      	mov	r0, r3
+  204638:	f7ff ff92 	bl	204560 <osalEventBroadcastFlagsI.lto_priv.3>
     osalSysUnlockFromISR();
-  2045dc:	f7ff ff88 	bl	2044f0 <osalSysUnlockFromISR.lto_priv.5>
+  20463c:	f7ff ff88 	bl	204550 <osalSysUnlockFromISR.lto_priv.5>
   }
 
   /* Data available.*/
   if (isr & USART_ISR_RXNE) {
-  2045e0:	9b03      	ldr	r3, [sp, #12]
-  2045e2:	f003 0320 	and.w	r3, r3, #32
-  2045e6:	2b00      	cmp	r3, #0
-  2045e8:	d00f      	beq.n	20460a <serve_interrupt+0x7a>
+  204640:	9b03      	ldr	r3, [sp, #12]
+  204642:	f003 0320 	and.w	r3, r3, #32
+  204646:	2b00      	cmp	r3, #0
+  204648:	d00f      	beq.n	20466a <serve_interrupt+0x7a>
     osalSysLockFromISR();
-  2045ea:	f7ff ff79 	bl	2044e0 <osalSysLockFromISR.lto_priv.7>
+  20464a:	f7ff ff79 	bl	204540 <osalSysLockFromISR.lto_priv.7>
     sdIncomingDataI(sdp, (uint8_t)u->RDR & sdp->rxmask);
-  2045ee:	9b05      	ldr	r3, [sp, #20]
-  2045f0:	6a5b      	ldr	r3, [r3, #36]	; 0x24
-  2045f2:	b2da      	uxtb	r2, r3
-  2045f4:	9b01      	ldr	r3, [sp, #4]
-  2045f6:	f893 305c 	ldrb.w	r3, [r3, #92]	; 0x5c
-  2045fa:	4013      	ands	r3, r2
-  2045fc:	b2db      	uxtb	r3, r3
-  2045fe:	4619      	mov	r1, r3
-  204600:	9801      	ldr	r0, [sp, #4]
-  204602:	f7fe ff85 	bl	203510 <sdIncomingDataI>
+  20464e:	9b05      	ldr	r3, [sp, #20]
+  204650:	6a5b      	ldr	r3, [r3, #36]	; 0x24
+  204652:	b2da      	uxtb	r2, r3
+  204654:	9b01      	ldr	r3, [sp, #4]
+  204656:	f893 305c 	ldrb.w	r3, [r3, #92]	; 0x5c
+  20465a:	4013      	ands	r3, r2
+  20465c:	b2db      	uxtb	r3, r3
+  20465e:	4619      	mov	r1, r3
+  204660:	9801      	ldr	r0, [sp, #4]
+  204662:	f7fe ff55 	bl	203510 <sdIncomingDataI>
     osalSysUnlockFromISR();
-  204606:	f7ff ff73 	bl	2044f0 <osalSysUnlockFromISR.lto_priv.5>
+  204666:	f7ff ff73 	bl	204550 <osalSysUnlockFromISR.lto_priv.5>
   }
 
   /* Transmission buffer empty.*/
   if ((cr1 & USART_CR1_TXEIE) && (isr & USART_ISR_TXE)) {
-  20460a:	9b04      	ldr	r3, [sp, #16]
-  20460c:	f003 0380 	and.w	r3, r3, #128	; 0x80
-  204610:	2b00      	cmp	r3, #0
-  204612:	d020      	beq.n	204656 <serve_interrupt+0xc6>
-  204614:	9b03      	ldr	r3, [sp, #12]
-  204616:	f003 0380 	and.w	r3, r3, #128	; 0x80
-  20461a:	2b00      	cmp	r3, #0
-  20461c:	d01b      	beq.n	204656 <serve_interrupt+0xc6>
+  20466a:	9b04      	ldr	r3, [sp, #16]
+  20466c:	f003 0380 	and.w	r3, r3, #128	; 0x80
+  204670:	2b00      	cmp	r3, #0
+  204672:	d020      	beq.n	2046b6 <serve_interrupt+0xc6>
+  204674:	9b03      	ldr	r3, [sp, #12]
+  204676:	f003 0380 	and.w	r3, r3, #128	; 0x80
+  20467a:	2b00      	cmp	r3, #0
+  20467c:	d01b      	beq.n	2046b6 <serve_interrupt+0xc6>
     msg_t b;
     osalSysLockFromISR();
-  20461e:	f7ff ff5f 	bl	2044e0 <osalSysLockFromISR.lto_priv.7>
+  20467e:	f7ff ff5f 	bl	204540 <osalSysLockFromISR.lto_priv.7>
     b = oqGetI(&sdp->oqueue);
-  204622:	9b01      	ldr	r3, [sp, #4]
-  204624:	3330      	adds	r3, #48	; 0x30
-  204626:	4618      	mov	r0, r3
-  204628:	f7fe fb3a 	bl	202ca0 <oqGetI>
-  20462c:	9002      	str	r0, [sp, #8]
+  204682:	9b01      	ldr	r3, [sp, #4]
+  204684:	3330      	adds	r3, #48	; 0x30
+  204686:	4618      	mov	r0, r3
+  204688:	f7fe fb0a 	bl	202ca0 <oqGetI>
+  20468c:	9002      	str	r0, [sp, #8]
     if (b < MSG_OK) {
-  20462e:	9b02      	ldr	r3, [sp, #8]
-  204630:	2b00      	cmp	r3, #0
-  204632:	da0b      	bge.n	20464c <serve_interrupt+0xbc>
+  20468e:	9b02      	ldr	r3, [sp, #8]
+  204690:	2b00      	cmp	r3, #0
+  204692:	da0b      	bge.n	2046ac <serve_interrupt+0xbc>
       chnAddFlagsI(sdp, CHN_OUTPUT_EMPTY);
-  204634:	9b01      	ldr	r3, [sp, #4]
-  204636:	3304      	adds	r3, #4
-  204638:	2108      	movs	r1, #8
-  20463a:	4618      	mov	r0, r3
-  20463c:	f7ff ff60 	bl	204500 <osalEventBroadcastFlagsI.lto_priv.3>
+  204694:	9b01      	ldr	r3, [sp, #4]
+  204696:	3304      	adds	r3, #4
+  204698:	2108      	movs	r1, #8
+  20469a:	4618      	mov	r0, r3
+  20469c:	f7ff ff60 	bl	204560 <osalEventBroadcastFlagsI.lto_priv.3>
       u->CR1 = cr1 & ~USART_CR1_TXEIE;
-  204640:	9b04      	ldr	r3, [sp, #16]
-  204642:	f023 0280 	bic.w	r2, r3, #128	; 0x80
-  204646:	9b05      	ldr	r3, [sp, #20]
-  204648:	601a      	str	r2, [r3, #0]
-  20464a:	e002      	b.n	204652 <serve_interrupt+0xc2>
+  2046a0:	9b04      	ldr	r3, [sp, #16]
+  2046a2:	f023 0280 	bic.w	r2, r3, #128	; 0x80
+  2046a6:	9b05      	ldr	r3, [sp, #20]
+  2046a8:	601a      	str	r2, [r3, #0]
+  2046aa:	e002      	b.n	2046b2 <serve_interrupt+0xc2>
     }
     else
       u->TDR = b;
-  20464c:	9a02      	ldr	r2, [sp, #8]
-  20464e:	9b05      	ldr	r3, [sp, #20]
-  204650:	629a      	str	r2, [r3, #40]	; 0x28
+  2046ac:	9a02      	ldr	r2, [sp, #8]
+  2046ae:	9b05      	ldr	r3, [sp, #20]
+  2046b0:	629a      	str	r2, [r3, #40]	; 0x28
     osalSysUnlockFromISR();
-  204652:	f7ff ff4d 	bl	2044f0 <osalSysUnlockFromISR.lto_priv.5>
+  2046b2:	f7ff ff4d 	bl	204550 <osalSysUnlockFromISR.lto_priv.5>
   }
 
   /* Physical transmission end.*/
   if ((cr1 & USART_CR1_TCIE) && (isr & USART_ISR_TC)) {
-  204656:	9b04      	ldr	r3, [sp, #16]
-  204658:	f003 0340 	and.w	r3, r3, #64	; 0x40
-  20465c:	2b00      	cmp	r3, #0
-  20465e:	d025      	beq.n	2046ac <serve_interrupt+0x11c>
-  204660:	9b03      	ldr	r3, [sp, #12]
-  204662:	f003 0340 	and.w	r3, r3, #64	; 0x40
-  204666:	2b00      	cmp	r3, #0
-  204668:	d020      	beq.n	2046ac <serve_interrupt+0x11c>
+  2046b6:	9b04      	ldr	r3, [sp, #16]
+  2046b8:	f003 0340 	and.w	r3, r3, #64	; 0x40
+  2046bc:	2b00      	cmp	r3, #0
+  2046be:	d025      	beq.n	20470c <serve_interrupt+0x11c>
+  2046c0:	9b03      	ldr	r3, [sp, #12]
+  2046c2:	f003 0340 	and.w	r3, r3, #64	; 0x40
+  2046c6:	2b00      	cmp	r3, #0
+  2046c8:	d020      	beq.n	20470c <serve_interrupt+0x11c>
     osalSysLockFromISR();
-  20466a:	f7ff ff39 	bl	2044e0 <osalSysLockFromISR.lto_priv.7>
+  2046ca:	f7ff ff39 	bl	204540 <osalSysLockFromISR.lto_priv.7>
     if (oqIsEmptyI(&sdp->oqueue)) {
-  20466e:	9b01      	ldr	r3, [sp, #4]
-  204670:	6c5a      	ldr	r2, [r3, #68]	; 0x44
-  204672:	9b01      	ldr	r3, [sp, #4]
-  204674:	6c9b      	ldr	r3, [r3, #72]	; 0x48
-  204676:	429a      	cmp	r2, r3
-  204678:	d105      	bne.n	204686 <serve_interrupt+0xf6>
-  20467a:	9b01      	ldr	r3, [sp, #4]
-  20467c:	6b9b      	ldr	r3, [r3, #56]	; 0x38
-  20467e:	2b00      	cmp	r3, #0
-  204680:	d001      	beq.n	204686 <serve_interrupt+0xf6>
-  204682:	2301      	movs	r3, #1
-  204684:	e000      	b.n	204688 <serve_interrupt+0xf8>
-  204686:	2300      	movs	r3, #0
-  204688:	f003 0301 	and.w	r3, r3, #1
-  20468c:	b2db      	uxtb	r3, r3
-  20468e:	2b00      	cmp	r3, #0
-  204690:	d00a      	beq.n	2046a8 <serve_interrupt+0x118>
+  2046ce:	9b01      	ldr	r3, [sp, #4]
+  2046d0:	6c5a      	ldr	r2, [r3, #68]	; 0x44
+  2046d2:	9b01      	ldr	r3, [sp, #4]
+  2046d4:	6c9b      	ldr	r3, [r3, #72]	; 0x48
+  2046d6:	429a      	cmp	r2, r3
+  2046d8:	d105      	bne.n	2046e6 <serve_interrupt+0xf6>
+  2046da:	9b01      	ldr	r3, [sp, #4]
+  2046dc:	6b9b      	ldr	r3, [r3, #56]	; 0x38
+  2046de:	2b00      	cmp	r3, #0
+  2046e0:	d001      	beq.n	2046e6 <serve_interrupt+0xf6>
+  2046e2:	2301      	movs	r3, #1
+  2046e4:	e000      	b.n	2046e8 <serve_interrupt+0xf8>
+  2046e6:	2300      	movs	r3, #0
+  2046e8:	f003 0301 	and.w	r3, r3, #1
+  2046ec:	b2db      	uxtb	r3, r3
+  2046ee:	2b00      	cmp	r3, #0
+  2046f0:	d00a      	beq.n	204708 <serve_interrupt+0x118>
       chnAddFlagsI(sdp, CHN_TRANSMISSION_END);
-  204692:	9b01      	ldr	r3, [sp, #4]
-  204694:	3304      	adds	r3, #4
-  204696:	2110      	movs	r1, #16
-  204698:	4618      	mov	r0, r3
-  20469a:	f7ff ff31 	bl	204500 <osalEventBroadcastFlagsI.lto_priv.3>
+  2046f2:	9b01      	ldr	r3, [sp, #4]
+  2046f4:	3304      	adds	r3, #4
+  2046f6:	2110      	movs	r1, #16
+  2046f8:	4618      	mov	r0, r3
+  2046fa:	f7ff ff31 	bl	204560 <osalEventBroadcastFlagsI.lto_priv.3>
       u->CR1 = cr1 & ~USART_CR1_TCIE;
-  20469e:	9b04      	ldr	r3, [sp, #16]
-  2046a0:	f023 0240 	bic.w	r2, r3, #64	; 0x40
-  2046a4:	9b05      	ldr	r3, [sp, #20]
-  2046a6:	601a      	str	r2, [r3, #0]
+  2046fe:	9b04      	ldr	r3, [sp, #16]
+  204700:	f023 0240 	bic.w	r2, r3, #64	; 0x40
+  204704:	9b05      	ldr	r3, [sp, #20]
+  204706:	601a      	str	r2, [r3, #0]
     }
     osalSysUnlockFromISR();
-  2046a8:	f7ff ff22 	bl	2044f0 <osalSysUnlockFromISR.lto_priv.5>
+  204708:	f7ff ff22 	bl	204550 <osalSysUnlockFromISR.lto_priv.5>
   }
 }
-  2046ac:	b007      	add	sp, #28
-  2046ae:	f85d fb04 	ldr.w	pc, [sp], #4
-  2046b2:	bf00      	nop
+  20470c:	b007      	add	sp, #28
+  20470e:	f85d fb04 	ldr.w	pc, [sp], #4
+  204712:	bf00      	nop
 	...
 
-002046c0 <notify1>:
+00204720 <notify1>:
 
 #if STM32_SERIAL_USE_USART1 || defined(__DOXYGEN__)
 static void notify1(io_queue_t *qp) {
-  2046c0:	b082      	sub	sp, #8
-  2046c2:	9001      	str	r0, [sp, #4]
+  204720:	b082      	sub	sp, #8
+  204722:	9001      	str	r0, [sp, #4]
 
   (void)qp;
   USART1->CR1 |= USART_CR1_TXEIE | USART_CR1_TCIE;
-  2046c4:	4b03      	ldr	r3, [pc, #12]	; (2046d4 <notify1+0x14>)
-  2046c6:	681b      	ldr	r3, [r3, #0]
-  2046c8:	4a02      	ldr	r2, [pc, #8]	; (2046d4 <notify1+0x14>)
-  2046ca:	f043 03c0 	orr.w	r3, r3, #192	; 0xc0
-  2046ce:	6013      	str	r3, [r2, #0]
+  204724:	4b03      	ldr	r3, [pc, #12]	; (204734 <notify1+0x14>)
+  204726:	681b      	ldr	r3, [r3, #0]
+  204728:	4a02      	ldr	r2, [pc, #8]	; (204734 <notify1+0x14>)
+  20472a:	f043 03c0 	orr.w	r3, r3, #192	; 0xc0
+  20472e:	6013      	str	r3, [r2, #0]
 }
-  2046d0:	b002      	add	sp, #8
-  2046d2:	4770      	bx	lr
-  2046d4:	40011000 	.word	0x40011000
+  204730:	b002      	add	sp, #8
+  204732:	4770      	bx	lr
+  204734:	40011000 	.word	0x40011000
 	...
 
-002046e0 <VectorD4>:
+00204740 <VectorD4>:
 /**
  * @brief   USART1 interrupt handler.
  *
  * @isr
  */
 OSAL_IRQ_HANDLER(STM32_USART1_HANDLER) {
-  2046e0:	b508      	push	{r3, lr}
+  204740:	b508      	push	{r3, lr}
 
   OSAL_IRQ_PROLOGUE();
-  2046e2:	4808      	ldr	r0, [pc, #32]	; (204704 <VectorD4+0x24>)
-  2046e4:	f7fc fa64 	bl	200bb0 <_trace_isr_enter>
-  2046e8:	f7fc f92a 	bl	200940 <_dbg_check_enter_isr>
+  204742:	4808      	ldr	r0, [pc, #32]	; (204764 <VectorD4+0x24>)
+  204744:	f7fc fa34 	bl	200bb0 <_trace_isr_enter>
+  204748:	f7fc f8fa 	bl	200940 <_dbg_check_enter_isr>
 
   serve_interrupt(&SD1);
-  2046ec:	4806      	ldr	r0, [pc, #24]	; (204708 <VectorD4+0x28>)
-  2046ee:	f7ff ff4f 	bl	204590 <serve_interrupt>
+  20474c:	4806      	ldr	r0, [pc, #24]	; (204768 <VectorD4+0x28>)
+  20474e:	f7ff ff4f 	bl	2045f0 <serve_interrupt>
 
   OSAL_IRQ_EPILOGUE();
-  2046f2:	f7fc f945 	bl	200980 <_dbg_check_leave_isr>
-  2046f6:	4803      	ldr	r0, [pc, #12]	; (204704 <VectorD4+0x24>)
-  2046f8:	f7fc fa82 	bl	200c00 <_trace_isr_leave>
-  2046fc:	f7fd ffa8 	bl	202650 <_port_irq_epilogue>
+  204752:	f7fc f915 	bl	200980 <_dbg_check_leave_isr>
+  204756:	4803      	ldr	r0, [pc, #12]	; (204764 <VectorD4+0x24>)
+  204758:	f7fc fa52 	bl	200c00 <_trace_isr_leave>
+  20475c:	f7fd ff78 	bl	202650 <_port_irq_epilogue>
 }
-  204700:	bd08      	pop	{r3, pc}
-  204702:	bf00      	nop
-  204704:	08004da4 	.word	0x08004da4
-  204708:	200011d4 	.word	0x200011d4
-  20470c:	00000000 	.word	0x00000000
+  204760:	bd08      	pop	{r3, pc}
+  204762:	bf00      	nop
+  204764:	08004e14 	.word	0x08004e14
+  204768:	200011f0 	.word	0x200011f0
+  20476c:	00000000 	.word	0x00000000
 
-00204710 <sd_lld_init>:
+00204770 <sd_lld_init>:
 /**
  * @brief   Low level serial driver initialization.
  *
  * @notapi
  */
 void sd_lld_init(void) {
-  204710:	b500      	push	{lr}
-  204712:	b083      	sub	sp, #12
+  204770:	b500      	push	{lr}
+  204772:	b083      	sub	sp, #12
 
 #if STM32_SERIAL_USE_USART1
   sdObjectInit(&SD1);
-  204714:	480f      	ldr	r0, [pc, #60]	; (204754 <sd_lld_init+0x44>)
-  204716:	f7fe fee3 	bl	2034e0 <sdObjectInit>
+  204774:	480f      	ldr	r0, [pc, #60]	; (2047b4 <sd_lld_init+0x44>)
+  204776:	f7fe feb3 	bl	2034e0 <sdObjectInit>
   iqObjectInit(&SD1.iqueue, sd_in_buf1, sizeof sd_in_buf1, NULL, &SD1);
-  20471a:	4b0e      	ldr	r3, [pc, #56]	; (204754 <sd_lld_init+0x44>)
-  20471c:	9300      	str	r3, [sp, #0]
-  20471e:	2300      	movs	r3, #0
-  204720:	2210      	movs	r2, #16
-  204722:	490d      	ldr	r1, [pc, #52]	; (204758 <sd_lld_init+0x48>)
-  204724:	480d      	ldr	r0, [pc, #52]	; (20475c <sd_lld_init+0x4c>)
-  204726:	f7fe f923 	bl	202970 <iqObjectInit>
+  20477a:	4b0e      	ldr	r3, [pc, #56]	; (2047b4 <sd_lld_init+0x44>)
+  20477c:	9300      	str	r3, [sp, #0]
+  20477e:	2300      	movs	r3, #0
+  204780:	2210      	movs	r2, #16
+  204782:	490d      	ldr	r1, [pc, #52]	; (2047b8 <sd_lld_init+0x48>)
+  204784:	480d      	ldr	r0, [pc, #52]	; (2047bc <sd_lld_init+0x4c>)
+  204786:	f7fe f8f3 	bl	202970 <iqObjectInit>
   oqObjectInit(&SD1.oqueue, sd_out_buf1, sizeof sd_out_buf1, notify1, &SD1);
-  20472a:	4b0a      	ldr	r3, [pc, #40]	; (204754 <sd_lld_init+0x44>)
-  20472c:	9300      	str	r3, [sp, #0]
-  20472e:	4b0c      	ldr	r3, [pc, #48]	; (204760 <sd_lld_init+0x50>)
-  204730:	2210      	movs	r2, #16
-  204732:	490c      	ldr	r1, [pc, #48]	; (204764 <sd_lld_init+0x54>)
-  204734:	480c      	ldr	r0, [pc, #48]	; (204768 <sd_lld_init+0x58>)
-  204736:	f7fe fa43 	bl	202bc0 <oqObjectInit>
+  20478a:	4b0a      	ldr	r3, [pc, #40]	; (2047b4 <sd_lld_init+0x44>)
+  20478c:	9300      	str	r3, [sp, #0]
+  20478e:	4b0c      	ldr	r3, [pc, #48]	; (2047c0 <sd_lld_init+0x50>)
+  204790:	2210      	movs	r2, #16
+  204792:	490c      	ldr	r1, [pc, #48]	; (2047c4 <sd_lld_init+0x54>)
+  204794:	480c      	ldr	r0, [pc, #48]	; (2047c8 <sd_lld_init+0x58>)
+  204796:	f7fe fa13 	bl	202bc0 <oqObjectInit>
   SD1.usart = USART1;
-  20473a:	4b06      	ldr	r3, [pc, #24]	; (204754 <sd_lld_init+0x44>)
-  20473c:	4a0b      	ldr	r2, [pc, #44]	; (20476c <sd_lld_init+0x5c>)
-  20473e:	655a      	str	r2, [r3, #84]	; 0x54
+  20479a:	4b06      	ldr	r3, [pc, #24]	; (2047b4 <sd_lld_init+0x44>)
+  20479c:	4a0b      	ldr	r2, [pc, #44]	; (2047cc <sd_lld_init+0x5c>)
+  20479e:	655a      	str	r2, [r3, #84]	; 0x54
   SD1.clock = STM32_USART1CLK;
-  204740:	4b04      	ldr	r3, [pc, #16]	; (204754 <sd_lld_init+0x44>)
-  204742:	4a0b      	ldr	r2, [pc, #44]	; (204770 <sd_lld_init+0x60>)
-  204744:	659a      	str	r2, [r3, #88]	; 0x58
+  2047a0:	4b04      	ldr	r3, [pc, #16]	; (2047b4 <sd_lld_init+0x44>)
+  2047a2:	4a0b      	ldr	r2, [pc, #44]	; (2047d0 <sd_lld_init+0x60>)
+  2047a4:	659a      	str	r2, [r3, #88]	; 0x58
 #if defined(STM32_USART1_NUMBER)
   nvicEnableVector(STM32_USART1_NUMBER, STM32_SERIAL_USART1_PRIORITY);
-  204746:	210c      	movs	r1, #12
-  204748:	2025      	movs	r0, #37	; 0x25
-  20474a:	f7fe ff11 	bl	203570 <nvicEnableVector>
+  2047a6:	210c      	movs	r1, #12
+  2047a8:	2025      	movs	r0, #37	; 0x25
+  2047aa:	f7fe fee1 	bl	203570 <nvicEnableVector>
     STM32_SERIAL_USE_UART7  || STM32_SERIAL_USE_UART8
 #if defined(STM32_USART3_8_HANDLER)
   nvicEnableVector(STM32_USART3_8_NUMBER, STM32_SERIAL_USART3_8_PRIORITY);
 #endif
 #endif
 }
-  20474e:	b003      	add	sp, #12
-  204750:	f85d fb04 	ldr.w	pc, [sp], #4
-  204754:	200011d4 	.word	0x200011d4
-  204758:	20001234 	.word	0x20001234
-  20475c:	200011e0 	.word	0x200011e0
-  204760:	002046c1 	.word	0x002046c1
-  204764:	20001244 	.word	0x20001244
-  204768:	20001204 	.word	0x20001204
-  20476c:	40011000 	.word	0x40011000
-  204770:	066ff300 	.word	0x066ff300
+  2047ae:	b003      	add	sp, #12
+  2047b0:	f85d fb04 	ldr.w	pc, [sp], #4
+  2047b4:	200011f0 	.word	0x200011f0
+  2047b8:	20001250 	.word	0x20001250
+  2047bc:	200011fc 	.word	0x200011fc
+  2047c0:	00204721 	.word	0x00204721
+  2047c4:	20001260 	.word	0x20001260
+  2047c8:	20001220 	.word	0x20001220
+  2047cc:	40011000 	.word	0x40011000
+  2047d0:	066ff300 	.word	0x066ff300
 	...
 
-00204780 <__early_init>:
+002047e0 <__early_init>:
 /**
  * @brief   Early initialization code.
  * @details This initialization must be performed just after stack setup
  *          and before any other initialization.
  */
 void __early_init(void) {
-  204780:	b508      	push	{r3, lr}
+  2047e0:	b508      	push	{r3, lr}
 
   stm32_clock_init();
-  204782:	f7fe ff85 	bl	203690 <stm32_clock_init>
+  2047e2:	f7fe ff55 	bl	203690 <stm32_clock_init>
 }
-  204786:	bd08      	pop	{r3, pc}
+  2047e6:	bd08      	pop	{r3, pc}
 	...
 
-00204790 <boardInit>:
+002047f0 <boardInit>:
 /**
  * @brief   Board-specific initialization code.
  * @todo    Add your board-specific code, if any.
  */
 void boardInit(void) {
 }
-  204790:	4770      	bx	lr
-  204792:	bf00      	nop
+  2047f0:	4770      	bx	lr
+  2047f2:	bf00      	nop
 	...
 
-002047a0 <pwmpcb>:
+00204800 <pwmpcb>:
 
 /*===========================================================================*/
 /* PWM driver related.                                                       */
 /*===========================================================================*/
 
 static void pwmpcb(PWMDriver *pwmp) {
-  2047a0:	b082      	sub	sp, #8
-  2047a2:	9001      	str	r0, [sp, #4]
+  204800:	b082      	sub	sp, #8
+  204802:	9001      	str	r0, [sp, #4]
 
   (void)pwmp;
 }
-  2047a4:	b002      	add	sp, #8
-  2047a6:	4770      	bx	lr
+  204804:	b002      	add	sp, #8
+  204806:	4770      	bx	lr
 	...
 
-002047b0 <pwmc1cb>:
+00204810 <pwmc1cb>:
 
 static void pwmc1cb(PWMDriver *pwmp) {
-  2047b0:	b082      	sub	sp, #8
-  2047b2:	9001      	str	r0, [sp, #4]
+  204810:	b082      	sub	sp, #8
+  204812:	9001      	str	r0, [sp, #4]
 
   (void)pwmp;
 }
-  2047b4:	b002      	add	sp, #8
-  2047b6:	4770      	bx	lr
+  204814:	b002      	add	sp, #8
+  204816:	4770      	bx	lr
 	...
 
-002047c0 <icuwidthcb>:
+00204820 <icuwidthcb>:
 /* ICU driver related.                                                       */
 /*===========================================================================*/
 
 icucnt_t last_width, last_period;
 
 static void icuwidthcb(ICUDriver *icup) {
-  2047c0:	b082      	sub	sp, #8
-  2047c2:	9001      	str	r0, [sp, #4]
-
-  palSetLine(LINE_ARD_D13);
-  2047c4:	4b05      	ldr	r3, [pc, #20]	; (2047dc <icuwidthcb+0x1c>)
-  2047c6:	2202      	movs	r2, #2
-  2047c8:	831a      	strh	r2, [r3, #24]
-  last_width = icuGetWidthX(icup);
-  2047ca:	9b01      	ldr	r3, [sp, #4]
-  2047cc:	691b      	ldr	r3, [r3, #16]
-  2047ce:	681b      	ldr	r3, [r3, #0]
-  2047d0:	3301      	adds	r3, #1
-  2047d2:	4a03      	ldr	r2, [pc, #12]	; (2047e0 <icuwidthcb+0x20>)
-  2047d4:	6013      	str	r3, [r2, #0]
-}
-  2047d6:	b002      	add	sp, #8
-  2047d8:	4770      	bx	lr
-  2047da:	bf00      	nop
-  2047dc:	40022000 	.word	0x40022000
-  2047e0:	20001254 	.word	0x20001254
-	...
-
-002047f0 <icuperiodcb>:
-
-static void icuperiodcb(ICUDriver *icup) {
-  2047f0:	b082      	sub	sp, #8
-  2047f2:	9001      	str	r0, [sp, #4]
-
-  palClearLine(LINE_ARD_D13);
-  2047f4:	4b05      	ldr	r3, [pc, #20]	; (20480c <icuperiodcb+0x1c>)
-  2047f6:	2202      	movs	r2, #2
-  2047f8:	835a      	strh	r2, [r3, #26]
-  last_period = icuGetPeriodX(icup);
-  2047fa:	9b01      	ldr	r3, [sp, #4]
-  2047fc:	695b      	ldr	r3, [r3, #20]
-  2047fe:	681b      	ldr	r3, [r3, #0]
-  204800:	3301      	adds	r3, #1
-  204802:	4a03      	ldr	r2, [pc, #12]	; (204810 <icuperiodcb+0x20>)
-  204804:	6013      	str	r3, [r2, #0]
-}
-  204806:	b002      	add	sp, #8
-  204808:	4770      	bx	lr
-  20480a:	bf00      	nop
-  20480c:	40022000 	.word	0x40022000
-  204810:	20001258 	.word	0x20001258
-	...
-
-00204820 <icuovfcb>:
-
-static void icuovfcb(ICUDriver *icup) {
   204820:	b082      	sub	sp, #8
   204822:	9001      	str	r0, [sp, #4]
 
-  (void)icup;
+  palSetLine(LINE_ARD_D13);
+  204824:	4b05      	ldr	r3, [pc, #20]	; (20483c <icuwidthcb+0x1c>)
+  204826:	2202      	movs	r2, #2
+  204828:	831a      	strh	r2, [r3, #24]
+  last_width = icuGetWidthX(icup);
+  20482a:	9b01      	ldr	r3, [sp, #4]
+  20482c:	691b      	ldr	r3, [r3, #16]
+  20482e:	681b      	ldr	r3, [r3, #0]
+  204830:	3301      	adds	r3, #1
+  204832:	4a03      	ldr	r2, [pc, #12]	; (204840 <icuwidthcb+0x20>)
+  204834:	6013      	str	r3, [r2, #0]
 }
-  204824:	b002      	add	sp, #8
-  204826:	4770      	bx	lr
+  204836:	b002      	add	sp, #8
+  204838:	4770      	bx	lr
+  20483a:	bf00      	nop
+  20483c:	40022000 	.word	0x40022000
+  204840:	20001270 	.word	0x20001270
 	...
 
-00204830 <main>:
+00204850 <icuperiodcb>:
+
+static void icuperiodcb(ICUDriver *icup) {
+  204850:	b082      	sub	sp, #8
+  204852:	9001      	str	r0, [sp, #4]
+
+  palClearLine(LINE_ARD_D13);
+  204854:	4b05      	ldr	r3, [pc, #20]	; (20486c <icuperiodcb+0x1c>)
+  204856:	2202      	movs	r2, #2
+  204858:	835a      	strh	r2, [r3, #26]
+  last_period = icuGetPeriodX(icup);
+  20485a:	9b01      	ldr	r3, [sp, #4]
+  20485c:	695b      	ldr	r3, [r3, #20]
+  20485e:	681b      	ldr	r3, [r3, #0]
+  204860:	3301      	adds	r3, #1
+  204862:	4a03      	ldr	r2, [pc, #12]	; (204870 <icuperiodcb+0x20>)
+  204864:	6013      	str	r3, [r2, #0]
+}
+  204866:	b002      	add	sp, #8
+  204868:	4770      	bx	lr
+  20486a:	bf00      	nop
+  20486c:	40022000 	.word	0x40022000
+  204870:	20001274 	.word	0x20001274
+	...
+
+00204880 <icuovfcb>:
+
+static void icuovfcb(ICUDriver *icup) {
+  204880:	b082      	sub	sp, #8
+  204882:	9001      	str	r0, [sp, #4]
+
+  (void)icup;
+}
+  204884:	b002      	add	sp, #8
+  204886:	4770      	bx	lr
+	...
+
+00204890 <main>:
 /*===========================================================================*/
 
 /*
  * Application entry point.
  */
 int main(void) {
-  204830:	b508      	push	{r3, lr}
+  204890:	b508      	push	{r3, lr}
    * - HAL initialization, this also initializes the configured device drivers
    *   and performs the board-specific initializations.
    * - Kernel initialization, the main() function becomes a thread and the
    *   RTOS is active.
    */
   halInit();
-  204832:	f7fd ff4d 	bl	2026d0 <halInit>
+  204892:	f7fd ff1d 	bl	2026d0 <halInit>
   chSysInit();
-  204836:	f7fb ff93 	bl	200760 <chSysInit>
+  204896:	f7fb ff63 	bl	200760 <chSysInit>
 
   /*
    * Starting PWM driver 1 and enabling the notifications.
    * GPIOA8 is programmed as PWM output (channel 1 of TIM1).
    */
-  pwmStart(&PWMD1, &pwmcfg);
-  20483a:	493a      	ldr	r1, [pc, #232]	; (204924 <main+0xf4>)
-  20483c:	483a      	ldr	r0, [pc, #232]	; (204928 <main+0xf8>)
-  20483e:	f7fe fc2f 	bl	2030a0 <pwmStart>
-  pwmEnablePeriodicNotification(&PWMD1);
-  204842:	4839      	ldr	r0, [pc, #228]	; (204928 <main+0xf8>)
-  204844:	f7fe fcfc 	bl	203240 <pwmEnablePeriodicNotification>
-  palSetLineMode(PAL_LINE(GPIOA,8), PAL_MODE_ALTERNATE(1));
-  204848:	2282      	movs	r2, #130	; 0x82
-  20484a:	f44f 7180 	mov.w	r1, #256	; 0x100
-  20484e:	4837      	ldr	r0, [pc, #220]	; (20492c <main+0xfc>)
-  204850:	f7ff f856 	bl	203900 <_pal_lld_setgroupmode>
+  pwmStart(&PWMD11, &pwmcfg);
+  20489a:	493a      	ldr	r1, [pc, #232]	; (204984 <main+0xf4>)
+  20489c:	483a      	ldr	r0, [pc, #232]	; (204988 <main+0xf8>)
+  20489e:	f7fe fbff 	bl	2030a0 <pwmStart>
+  pwmEnablePeriodicNotification(&PWMD11);
+  2048a2:	4839      	ldr	r0, [pc, #228]	; (204988 <main+0xf8>)
+  2048a4:	f7fe fccc 	bl	203240 <pwmEnablePeriodicNotification>
+  palSetLineMode(LINE_ARD_D5, PAL_MODE_ALTERNATE(1));
+  2048a8:	2282      	movs	r2, #130	; 0x82
+  2048aa:	f44f 7180 	mov.w	r1, #256	; 0x100
+  2048ae:	4837      	ldr	r0, [pc, #220]	; (20498c <main+0xfc>)
+  2048b0:	f7ff f826 	bl	203900 <_pal_lld_setgroupmode>
 
   /*
    * Starting ICU driver 2.
    * GPIOA15 is programmed as ICU input (channel 1 of TIM2).
    */
   icuStart(&ICUD2, &icucfg);
-  204854:	4936      	ldr	r1, [pc, #216]	; (204930 <main+0x100>)
-  204856:	4837      	ldr	r0, [pc, #220]	; (204934 <main+0x104>)
-  204858:	f7fe fb4a 	bl	202ef0 <icuStart>
+  2048b4:	4936      	ldr	r1, [pc, #216]	; (204990 <main+0x100>)
+  2048b6:	4837      	ldr	r0, [pc, #220]	; (204994 <main+0x104>)
+  2048b8:	f7fe fb1a 	bl	202ef0 <icuStart>
   palSetLineMode(LINE_ARD_D9, PAL_MODE_ALTERNATE(1));
-  20485c:	2282      	movs	r2, #130	; 0x82
-  20485e:	f44f 4100 	mov.w	r1, #32768	; 0x8000
-  204862:	4832      	ldr	r0, [pc, #200]	; (20492c <main+0xfc>)
-  204864:	f7ff f84c 	bl	203900 <_pal_lld_setgroupmode>
+  2048bc:	2282      	movs	r2, #130	; 0x82
+  2048be:	f44f 4100 	mov.w	r1, #32768	; 0x8000
+  2048c2:	4832      	ldr	r0, [pc, #200]	; (20498c <main+0xfc>)
+  2048c4:	f7ff f81c 	bl	203900 <_pal_lld_setgroupmode>
 
   /*
    * GPIOI1 is programmed as output (board LED).
    */
   palClearLine(LINE_ARD_D13);
-  204868:	4b33      	ldr	r3, [pc, #204]	; (204938 <main+0x108>)
-  20486a:	2202      	movs	r2, #2
-  20486c:	835a      	strh	r2, [r3, #26]
+  2048c8:	4b33      	ldr	r3, [pc, #204]	; (204998 <main+0x108>)
+  2048ca:	2202      	movs	r2, #2
+  2048cc:	835a      	strh	r2, [r3, #26]
   palSetLineMode(LINE_ARD_D13, PAL_MODE_OUTPUT_PUSHPULL);
-  20486e:	2201      	movs	r2, #1
-  204870:	2102      	movs	r1, #2
-  204872:	4831      	ldr	r0, [pc, #196]	; (204938 <main+0x108>)
-  204874:	f7ff f844 	bl	203900 <_pal_lld_setgroupmode>
+  2048ce:	2201      	movs	r2, #1
+  2048d0:	2102      	movs	r1, #2
+  2048d2:	4831      	ldr	r0, [pc, #196]	; (204998 <main+0x108>)
+  2048d4:	f7ff f814 	bl	203900 <_pal_lld_setgroupmode>
   chThdSleepMilliseconds(1000);
-  204878:	f242 7010 	movw	r0, #10000	; 0x2710
-  20487c:	f7fd f8f0 	bl	201a60 <chThdSleep>
+  2048d8:	f242 7010 	movw	r0, #10000	; 0x2710
+  2048dc:	f7fd f8c0 	bl	201a60 <chThdSleep>
 
   /*
    * Starting ICU capture and enabling the notifications.
    */
   icuStartCapture(&ICUD2);
-  204880:	482c      	ldr	r0, [pc, #176]	; (204934 <main+0x104>)
-  204882:	f7fe fb65 	bl	202f50 <icuStartCapture>
+  2048e0:	482c      	ldr	r0, [pc, #176]	; (204994 <main+0x104>)
+  2048e2:	f7fe fb35 	bl	202f50 <icuStartCapture>
   icuEnableNotifications(&ICUD2);
-  204886:	482b      	ldr	r0, [pc, #172]	; (204934 <main+0x104>)
-  204888:	f7fe fb82 	bl	202f90 <icuEnableNotifications>
+  2048e6:	482b      	ldr	r0, [pc, #172]	; (204994 <main+0x104>)
+  2048e8:	f7fe fb52 	bl	202f90 <icuEnableNotifications>
    */
   while (true) {
     /*
      * Starts the PWM channel 0 using 75% duty cycle.
      */
-    pwmEnableChannel(&PWMD1, 0, PWM_PERCENTAGE_TO_WIDTH(&PWMD1, 7500));
-  20488c:	4b26      	ldr	r3, [pc, #152]	; (204928 <main+0xf8>)
-  20488e:	689b      	ldr	r3, [r3, #8]
-  204890:	f641 524c 	movw	r2, #7500	; 0x1d4c
-  204894:	fb02 f303 	mul.w	r3, r2, r3
-  204898:	4a28      	ldr	r2, [pc, #160]	; (20493c <main+0x10c>)
-  20489a:	fba2 2303 	umull	r2, r3, r2, r3
-  20489e:	0b5b      	lsrs	r3, r3, #13
-  2048a0:	461a      	mov	r2, r3
-  2048a2:	2100      	movs	r1, #0
-  2048a4:	4820      	ldr	r0, [pc, #128]	; (204928 <main+0xf8>)
-  2048a6:	f7fe fc5b 	bl	203160 <pwmEnableChannel>
+    pwmEnableChannel(&PWMD11, 0, PWM_PERCENTAGE_TO_WIDTH(&PWMD1, 7500));
+  2048ec:	4b2b      	ldr	r3, [pc, #172]	; (20499c <main+0x10c>)
+  2048ee:	689b      	ldr	r3, [r3, #8]
+  2048f0:	f641 524c 	movw	r2, #7500	; 0x1d4c
+  2048f4:	fb02 f303 	mul.w	r3, r2, r3
+  2048f8:	4a29      	ldr	r2, [pc, #164]	; (2049a0 <main+0x110>)
+  2048fa:	fba2 2303 	umull	r2, r3, r2, r3
+  2048fe:	0b5b      	lsrs	r3, r3, #13
+  204900:	461a      	mov	r2, r3
+  204902:	2100      	movs	r1, #0
+  204904:	4820      	ldr	r0, [pc, #128]	; (204988 <main+0xf8>)
+  204906:	f7fe fc2b 	bl	203160 <pwmEnableChannel>
     pwmEnableChannelNotification(&PWMD1, 0);
-  2048aa:	2100      	movs	r1, #0
-  2048ac:	481e      	ldr	r0, [pc, #120]	; (204928 <main+0xf8>)
-  2048ae:	f7fe fcef 	bl	203290 <pwmEnableChannelNotification>
+  20490a:	2100      	movs	r1, #0
+  20490c:	4823      	ldr	r0, [pc, #140]	; (20499c <main+0x10c>)
+  20490e:	f7fe fcbf 	bl	203290 <pwmEnableChannelNotification>
     chThdSleepMilliseconds(5000);
-  2048b2:	f24c 3050 	movw	r0, #50000	; 0xc350
-  2048b6:	f7fd f8d3 	bl	201a60 <chThdSleep>
+  204912:	f24c 3050 	movw	r0, #50000	; 0xc350
+  204916:	f7fd f8a3 	bl	201a60 <chThdSleep>
 
     /*
      * Changes the PWM channel 0 to 50% duty cycle.
      */
-    pwmEnableChannel(&PWMD1, 0, PWM_PERCENTAGE_TO_WIDTH(&PWMD1, 5000));
-  2048ba:	4b1b      	ldr	r3, [pc, #108]	; (204928 <main+0xf8>)
-  2048bc:	689b      	ldr	r3, [r3, #8]
-  2048be:	f241 3288 	movw	r2, #5000	; 0x1388
-  2048c2:	fb02 f303 	mul.w	r3, r2, r3
-  2048c6:	4a1d      	ldr	r2, [pc, #116]	; (20493c <main+0x10c>)
-  2048c8:	fba2 2303 	umull	r2, r3, r2, r3
-  2048cc:	0b5b      	lsrs	r3, r3, #13
-  2048ce:	461a      	mov	r2, r3
-  2048d0:	2100      	movs	r1, #0
-  2048d2:	4815      	ldr	r0, [pc, #84]	; (204928 <main+0xf8>)
-  2048d4:	f7fe fc44 	bl	203160 <pwmEnableChannel>
+    pwmEnableChannel(&PWMD11, 0, PWM_PERCENTAGE_TO_WIDTH(&PWMD1, 5000));
+  20491a:	4b20      	ldr	r3, [pc, #128]	; (20499c <main+0x10c>)
+  20491c:	689b      	ldr	r3, [r3, #8]
+  20491e:	f241 3288 	movw	r2, #5000	; 0x1388
+  204922:	fb02 f303 	mul.w	r3, r2, r3
+  204926:	4a1e      	ldr	r2, [pc, #120]	; (2049a0 <main+0x110>)
+  204928:	fba2 2303 	umull	r2, r3, r2, r3
+  20492c:	0b5b      	lsrs	r3, r3, #13
+  20492e:	461a      	mov	r2, r3
+  204930:	2100      	movs	r1, #0
+  204932:	4815      	ldr	r0, [pc, #84]	; (204988 <main+0xf8>)
+  204934:	f7fe fc14 	bl	203160 <pwmEnableChannel>
     chThdSleepMilliseconds(5000);
-  2048d8:	f24c 3050 	movw	r0, #50000	; 0xc350
-  2048dc:	f7fd f8c0 	bl	201a60 <chThdSleep>
+  204938:	f24c 3050 	movw	r0, #50000	; 0xc350
+  20493c:	f7fd f890 	bl	201a60 <chThdSleep>
 
     /*
      * Changes the PWM channel 0 to 25% duty cycle.
      */
-    pwmEnableChannel(&PWMD1, 0, PWM_PERCENTAGE_TO_WIDTH(&PWMD1, 2500));
-  2048e0:	4b11      	ldr	r3, [pc, #68]	; (204928 <main+0xf8>)
-  2048e2:	689b      	ldr	r3, [r3, #8]
-  2048e4:	f640 12c4 	movw	r2, #2500	; 0x9c4
-  2048e8:	fb02 f303 	mul.w	r3, r2, r3
-  2048ec:	4a13      	ldr	r2, [pc, #76]	; (20493c <main+0x10c>)
-  2048ee:	fba2 2303 	umull	r2, r3, r2, r3
-  2048f2:	0b5b      	lsrs	r3, r3, #13
-  2048f4:	461a      	mov	r2, r3
-  2048f6:	2100      	movs	r1, #0
-  2048f8:	480b      	ldr	r0, [pc, #44]	; (204928 <main+0xf8>)
-  2048fa:	f7fe fc31 	bl	203160 <pwmEnableChannel>
+    pwmEnableChannel(&PWMD11, 0, PWM_PERCENTAGE_TO_WIDTH(&PWMD1, 2500));
+  204940:	4b16      	ldr	r3, [pc, #88]	; (20499c <main+0x10c>)
+  204942:	689b      	ldr	r3, [r3, #8]
+  204944:	f640 12c4 	movw	r2, #2500	; 0x9c4
+  204948:	fb02 f303 	mul.w	r3, r2, r3
+  20494c:	4a14      	ldr	r2, [pc, #80]	; (2049a0 <main+0x110>)
+  20494e:	fba2 2303 	umull	r2, r3, r2, r3
+  204952:	0b5b      	lsrs	r3, r3, #13
+  204954:	461a      	mov	r2, r3
+  204956:	2100      	movs	r1, #0
+  204958:	480b      	ldr	r0, [pc, #44]	; (204988 <main+0xf8>)
+  20495a:	f7fe fc01 	bl	203160 <pwmEnableChannel>
     chThdSleepMilliseconds(5000);
-  2048fe:	f24c 3050 	movw	r0, #50000	; 0xc350
-  204902:	f7fd f8ad 	bl	201a60 <chThdSleep>
+  20495e:	f24c 3050 	movw	r0, #50000	; 0xc350
+  204962:	f7fd f87d 	bl	201a60 <chThdSleep>
 
     /*
      * Changes PWM period to half second the duty cycle becomes 50%
      * implicitly.
      */
-    pwmChangePeriod(&PWMD1, 5000);
-  204906:	f241 3188 	movw	r1, #5000	; 0x1388
-  20490a:	4807      	ldr	r0, [pc, #28]	; (204928 <main+0xf8>)
-  20490c:	f7fe fc00 	bl	203110 <pwmChangePeriod>
+    pwmChangePeriod(&PWMD11, 5000);
+  204966:	f241 3188 	movw	r1, #5000	; 0x1388
+  20496a:	4807      	ldr	r0, [pc, #28]	; (204988 <main+0xf8>)
+  20496c:	f7fe fbd0 	bl	203110 <pwmChangePeriod>
     chThdSleepMilliseconds(5000);
-  204910:	f24c 3050 	movw	r0, #50000	; 0xc350
-  204914:	f7fd f8a4 	bl	201a60 <chThdSleep>
+  204970:	f24c 3050 	movw	r0, #50000	; 0xc350
+  204974:	f7fd f874 	bl	201a60 <chThdSleep>
 
     /*
      * Disables channel 0.
      */
     pwmDisableChannel(&PWMD1, 0);
-  204918:	2100      	movs	r1, #0
-  20491a:	4803      	ldr	r0, [pc, #12]	; (204928 <main+0xf8>)
-  20491c:	f7fe fc58 	bl	2031d0 <pwmDisableChannel>
-  204920:	e7b4      	b.n	20488c <main+0x5c>
-  204922:	bf00      	nop
-  204924:	20010000 	.word	0x20010000
-  204928:	2000119c 	.word	0x2000119c
-  20492c:	40020000 	.word	0x40020000
-  204930:	20010044 	.word	0x20010044
-  204934:	20001184 	.word	0x20001184
-  204938:	40022000 	.word	0x40022000
-  20493c:	d1b71759 	.word	0xd1b71759
+  204978:	2100      	movs	r1, #0
+  20497a:	4808      	ldr	r0, [pc, #32]	; (20499c <main+0x10c>)
+  20497c:	f7fe fc28 	bl	2031d0 <pwmDisableChannel>
+  204980:	e7b4      	b.n	2048ec <main+0x5c>
+  204982:	bf00      	nop
+  204984:	20010000 	.word	0x20010000
+  204988:	200011b8 	.word	0x200011b8
+  20498c:	40020000 	.word	0x40020000
+  204990:	20010044 	.word	0x20010044
+  204994:	20001184 	.word	0x20001184
+  204998:	40022000 	.word	0x40022000
+  20499c:	2000119c 	.word	0x2000119c
+  2049a0:	d1b71759 	.word	0xd1b71759

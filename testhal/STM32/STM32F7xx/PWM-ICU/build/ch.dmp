@@ -7,13 +7,13 @@ start address 0x00200201
 
 Program Header:
     LOAD off    0x00010000 vaddr 0x00200000 paddr 0x08000000 align 2**16
-         filesz 0x00004940 memsz 0x00004940 flags rwx
-    LOAD off    0x00014940 vaddr 0x08004940 paddr 0x08004940 align 2**16
-         filesz 0x000005a4 memsz 0x000005a4 flags r--
-    LOAD off    0x00020000 vaddr 0x20010000 paddr 0x08004ee4 align 2**16
+         filesz 0x000049a4 memsz 0x000049a4 flags rwx
+    LOAD off    0x000149a4 vaddr 0x080049a4 paddr 0x080049a4 align 2**16
+         filesz 0x000005b0 memsz 0x000005b0 flags r--
+    LOAD off    0x00020000 vaddr 0x20010000 paddr 0x08004f54 align 2**16
          filesz 0x00000060 memsz 0x00000060 flags rw-
     LOAD off    0x00030000 vaddr 0x20000000 paddr 0x20000000 align 2**16
-         filesz 0x00000000 memsz 0x0000125c flags rw-
+         filesz 0x00000000 memsz 0x00001278 flags rw-
     LOAD off    0x00020060 vaddr 0x20010060 paddr 0x20010060 align 2**16
          filesz 0x00000000 memsz 0x0003ffa0 flags rw-
 private flags = 5000200: [Version5 EABI] [soft-float ABI]
@@ -30,13 +30,13 @@ Idx Name          Size      VMA       LMA       File off  Algn
                   CONTENTS
   4 .vectors      00000200  00200000  08000000  00010000  2**7
                   CONTENTS, ALLOC, LOAD, DATA
-  5 .text         00004740  00200200  08000200  00010200  2**4
+  5 .text         000047a4  00200200  08000200  00010200  2**4
                   CONTENTS, ALLOC, LOAD, READONLY, CODE
-  6 .rodata       000005a4  08004940  08004940  00014940  2**2
+  6 .rodata       000005b0  080049a4  080049a4  000149a4  2**2
                   CONTENTS, ALLOC, LOAD, READONLY, DATA
-  7 .data         00000060  20010000  08004ee4  00020000  2**2
+  7 .data         00000060  20010000  08004f54  00020000  2**2
                   CONTENTS, ALLOC, LOAD, DATA
-  8 .bss          00000a5c  20000800  20000800  00030000  2**3
+  8 .bss          00000a78  20000800  20000800  00030000  2**3
                   ALLOC
   9 .ram0_init    00000000  20010060  20010060  00020060  2**2
                   CONTENTS
@@ -50,9 +50,9 @@ Idx Name          Size      VMA       LMA       File off  Algn
                   CONTENTS
  14 .ram2         00000000  2004c000  2004c000  00020060  2**2
                   CONTENTS
- 15 .ram3_init    00000000  2000125c  2000125c  00020060  2**2
+ 15 .ram3_init    00000000  20001278  20001278  00020060  2**2
                   CONTENTS
- 16 .ram3         00000000  2000125c  2000125c  00020060  2**2
+ 16 .ram3         00000000  20001278  20001278  00020060  2**2
                   CONTENTS
  17 .ram4_init    00000000  00000000  00000000  00020060  2**2
                   CONTENTS
@@ -76,19 +76,19 @@ Idx Name          Size      VMA       LMA       File off  Algn
                   CONTENTS, READONLY
  27 .comment      0000007e  00000000  00000000  0002008d  2**0
                   CONTENTS, READONLY
- 28 .debug_line   000040f5  00000000  00000000  0002010b  2**0
+ 28 .debug_line   00004118  00000000  00000000  0002010b  2**0
                   CONTENTS, READONLY, DEBUGGING
- 29 .debug_info   00009b9a  00000000  00000000  00024200  2**0
+ 29 .debug_info   00009bd1  00000000  00000000  00024223  2**0
                   CONTENTS, READONLY, DEBUGGING
- 30 .debug_abbrev 00000568  00000000  00000000  0002dd9a  2**0
+ 30 .debug_abbrev 00000568  00000000  00000000  0002ddf4  2**0
                   CONTENTS, READONLY, DEBUGGING
- 31 .debug_aranges 00001150  00000000  00000000  0002e308  2**3
+ 31 .debug_aranges 00001158  00000000  00000000  0002e360  2**3
                   CONTENTS, READONLY, DEBUGGING
- 32 .debug_str    000031cd  00000000  00000000  0002f458  2**0
+ 32 .debug_str    000031dd  00000000  00000000  0002f4b8  2**0
                   CONTENTS, READONLY, DEBUGGING
- 33 .debug_ranges 00001100  00000000  00000000  00032625  2**0
+ 33 .debug_ranges 00001108  00000000  00000000  00032695  2**0
                   CONTENTS, READONLY, DEBUGGING
- 34 .debug_frame  00003670  00000000  00000000  00033728  2**2
+ 34 .debug_frame  0000368c  00000000  00000000  000337a0  2**2
                   CONTENTS, READONLY, DEBUGGING
 SYMBOL TABLE:
 20000000 l    d  .mstack	00000000 .mstack
@@ -97,7 +97,7 @@ SYMBOL TABLE:
 20000800 l    d  .eth	00000000 .eth
 00200000 l    d  .vectors	00000000 .vectors
 00200200 l    d  .text	00000000 .text
-08004940 l    d  .rodata	00000000 .rodata
+080049a4 l    d  .rodata	00000000 .rodata
 20010000 l    d  .data	00000000 .data
 20000800 l    d  .bss	00000000 .bss
 20010060 l    d  .ram0_init	00000000 .ram0_init
@@ -106,8 +106,8 @@ SYMBOL TABLE:
 20010000 l    d  .ram1	00000000 .ram1
 2004c000 l    d  .ram2_init	00000000 .ram2_init
 2004c000 l    d  .ram2	00000000 .ram2
-2000125c l    d  .ram3_init	00000000 .ram3_init
-2000125c l    d  .ram3	00000000 .ram3
+20001278 l    d  .ram3_init	00000000 .ram3_init
+20001278 l    d  .ram3	00000000 .ram3
 00000000 l    d  .ram4_init	00000000 .ram4_init
 00000000 l    d  .ram4	00000000 .ram4
 40024000 l    d  .ram5_init	00000000 .ram5_init
@@ -129,11 +129,10 @@ SYMBOL TABLE:
 00000000 l    df *ABS*	00000000 
 00200310 l     F .text	0000002c SCB_EnableICache
 00200340 l     F .text	00000074 SCB_EnableDCache
-08004940 l     O .rodata	00000080 ram_areas
+080049a4 l     O .rodata	00000080 ram_areas
 00200460 l     F .text	00000002 _unhandled_exception
-00200460 l     F .text	00000002 Vector24
 00200460 l     F .text	00000002 Vector28
-00200460 l     F .text	00000002 Vector20
+00200460 l     F .text	00000002 Vector24
 00200460 l     F .text	00000002 DebugMon_Handler
 00200460 l     F .text	00000002 Vector34
 00200460 l     F .text	00000002 PendSV_Handler
@@ -163,10 +162,10 @@ SYMBOL TABLE:
 00200460 l     F .text	00000002 Vector98
 00200460 l     F .text	00000002 Vector9C
 00200460 l     F .text	00000002 VectorA0
-00200460 l     F .text	00000002 BusFault_Handler
-00200460 l     F .text	00000002 VectorA8
-00200460 l     F .text	00000002 MemManage_Handler
 00200460 l     F .text	00000002 UsageFault_Handler
+00200460 l     F .text	00000002 MemManage_Handler
+00200460 l     F .text	00000002 BusFault_Handler
+00200460 l     F .text	00000002 Vector1C
 00200460 l     F .text	00000002 VectorB4
 00200460 l     F .text	00000002 VectorB8
 00200460 l     F .text	00000002 VectorBC
@@ -181,14 +180,14 @@ SYMBOL TABLE:
 00200460 l     F .text	00000002 VectorE0
 00200460 l     F .text	00000002 VectorE4
 00200460 l     F .text	00000002 VectorE8
-00200460 l     F .text	00000002 VectorEC
-00200460 l     F .text	00000002 VectorF0
 00200460 l     F .text	00000002 HardFault_Handler
+00200460 l     F .text	00000002 VectorF0
+00200460 l     F .text	00000002 VectorF4
 00200460 l     F .text	00000002 VectorF8
 00200460 l     F .text	00000002 VectorFC
 00200460 l     F .text	00000002 Vector100
 00200460 l     F .text	00000002 Vector104
-00200460 l     F .text	00000002 Vector1C
+00200460 l     F .text	00000002 Vector20
 00200460 l     F .text	00000002 Vector10C
 00200460 l     F .text	00000002 Vector110
 00200460 l     F .text	00000002 Vector114
@@ -252,10 +251,11 @@ SYMBOL TABLE:
 00200460 l     F .text	00000002 Vector1FC
 00202620 l     F .text	0000002a SVC_Handler
 00203f60 l     F .text	0000002c VectorA4
+00203fc0 l     F .text	0000002c VectorA8
 00203f90 l     F .text	0000002c VectorAC
 00203bd0 l     F .text	0000002c VectorB0
-002046e0 l     F .text	0000002c VectorD4
-00203fc0 l     F .text	0000002c VectorF4
+00204740 l     F .text	0000002c VectorD4
+00203ff0 l     F .text	0000002c VectorEC
 00203b10 l     F .text	00000044 Vector108
 00200470 l     F .text	0000003c NVIC_SetPriorityGrouping
 002004b0 l     F .text	0000004c NVIC_SetPriority
@@ -267,12 +267,12 @@ SYMBOL TABLE:
 002005a0 l     F .text	00000004 port_disable
 002005b0 l     F .text	00000012 port_enable
 002005d0 l     F .text	00000002 port_wait_for_interrupt
-002005e0 l     F .text	0000000c st_lld_get_counter.lto_priv.185
-002005f0 l     F .text	00000008 port_timer_stop_alarm.lto_priv.253
+002005e0 l     F .text	0000000c st_lld_get_counter.lto_priv.192
+002005f0 l     F .text	00000008 port_timer_stop_alarm.lto_priv.260
 002027b0 l     F .text	00000008 stStopAlarm
-00200600 l     F .text	00000012 port_timer_set_alarm.lto_priv.251
+00200600 l     F .text	00000012 port_timer_set_alarm.lto_priv.258
 002027c0 l     F .text	0000002c stSetAlarm
-00200620 l     F .text	0000000c port_timer_get_time.lto_priv.180
+00200620 l     F .text	0000000c port_timer_get_time.lto_priv.187
 00200630 l     F .text	0000000c chSysEnable
 00200850 l     F .text	00000024 _dbg_check_enable
 002007d0 l     F .text	0000001c chSysHalt
@@ -281,10 +281,10 @@ SYMBOL TABLE:
 002008e0 l     F .text	00000028 _dbg_check_lock_from_isr
 00200650 l     F .text	0000000c chSysUnlockFromISR.lto_priv.8
 00200910 l     F .text	00000028 _dbg_check_unlock_from_isr
-00200660 l     F .text	0000000c chVTGetSystemTimeX.lto_priv.167
+00200660 l     F .text	0000000c chVTGetSystemTimeX.lto_priv.174
 00200670 l     F .text	000000e0 chVTDoTickI
 002009c0 l     F .text	00000024 chDbgCheckClassI
-080049e0 l     O .rodata	0000000c __func__.6385
+08004a44 l     O .rodata	0000000c __func__.6385
 20000800 l     O .bss	000000d8 ch_idle_thread_wa
 00200750 l     F .text	0000000c _idle_thread
 00200760 l     F .text	0000006c chSysInit
@@ -296,8 +296,8 @@ SYMBOL TABLE:
 002023b0 l     F .text	00000028 _heap_init
 00201750 l     F .text	00000080 _thread_init
 002018c0 l     F .text	00000054 chThdCreate
-08004afc l     O .rodata	00000016 ch_debug
-080049c8 l     O .rodata	00000018 idle_descriptor.7004
+08004b60 l     O .rodata	00000016 ch_debug
+08004a2c l     O .rodata	00000018 idle_descriptor.7004
 00200c50 l     F .text	00000044 _trace_halt
 002007f0 l     F .text	0000000c chSysTimerHandlerI
 00201420 l     F .text	00000016 chSchRescheduleS
@@ -312,133 +312,133 @@ SYMBOL TABLE:
 00200a40 l     F .text	00000010 port_unlock.lto_priv.32
 00200a50 l     F .text	00000008 port_lock_from_isr.lto_priv.25
 00200a60 l     F .text	00000008 port_unlock_from_isr.lto_priv.18
-00200a70 l     F .text	0000000c port_rt_get_counter_value.lto_priv.249
-00200a80 l     F .text	0000000c st_lld_get_counter.lto_priv.186
-00200a90 l     F .text	0000000c port_timer_get_time.lto_priv.181
-00200aa0 l     F .text	0000000c chVTGetSystemTimeX.lto_priv.168
+00200a70 l     F .text	0000000c port_rt_get_counter_value.lto_priv.256
+00200a80 l     F .text	0000000c st_lld_get_counter.lto_priv.193
+00200a90 l     F .text	0000000c port_timer_get_time.lto_priv.188
+00200aa0 l     F .text	0000000c chVTGetSystemTimeX.lto_priv.175
 00200ab0 l     F .text	0000004c trace_next
 00200b50 l     F .text	00000060 _trace_switch
 00200bb0 l     F .text	0000004c _trace_isr_enter
 00200c00 l     F .text	0000004c _trace_isr_leave
-00200ca0 l     F .text	0000000c st_lld_get_counter.lto_priv.187
+00200ca0 l     F .text	0000000c st_lld_get_counter.lto_priv.194
 00200cb0 l     F .text	00000012 port_timer_start_alarm
 00202780 l     F .text	00000028 stStartAlarm
-00200cd0 l     F .text	00000008 port_timer_stop_alarm.lto_priv.254
-00200ce0 l     F .text	00000012 port_timer_set_alarm.lto_priv.252
-00200d00 l     F .text	0000000c port_timer_get_time.lto_priv.182
-00200d10 l     F .text	0000000c chVTGetSystemTimeX.lto_priv.169
+00200cd0 l     F .text	00000008 port_timer_stop_alarm.lto_priv.261
+00200ce0 l     F .text	00000012 port_timer_set_alarm.lto_priv.259
+00200d00 l     F .text	0000000c port_timer_get_time.lto_priv.189
+00200d10 l     F .text	0000000c chVTGetSystemTimeX.lto_priv.176
 00200d50 l     F .text	00000144 chVTDoSetI
-08004a34 l     O .rodata	0000000b __func__.7005.lto_priv.198
+08004a98 l     O .rodata	0000000b __func__.7005.lto_priv.205
 00200ea0 l     F .text	000000f8 chVTDoResetI
-08004a40 l     O .rodata	0000000d __func__.7013.lto_priv.195
+08004aa4 l     O .rodata	0000000d __func__.7013.lto_priv.202
 00200fa0 l     F .text	00000014 port_lock.lto_priv.57
 00200fc0 l     F .text	00000010 port_unlock.lto_priv.33
 00200fd0 l     F .text	00000008 port_lock_from_isr.lto_priv.26
 00200fe0 l     F .text	00000008 port_unlock_from_isr.lto_priv.19
-00200ff0 l     F .text	00000014 queue_init.lto_priv.172
-00201010 l     F .text	00000022 queue_fifo_remove.lto_priv.221
-00201040 l     F .text	00000020 queue_dequeue.lto_priv.242
+00200ff0 l     F .text	00000014 queue_init.lto_priv.179
+00201010 l     F .text	00000022 queue_fifo_remove.lto_priv.228
+00201040 l     F .text	00000020 queue_dequeue.lto_priv.249
 00201060 l     F .text	00000024 chSchIsRescRequiredI
 00201090 l     F .text	0000000c chSysLockFromISR.lto_priv.13
 002010a0 l     F .text	0000000c chSysUnlockFromISR.lto_priv.9
 002010b0 l     F .text	00000020 chVTIsArmedI
 002010d0 l     F .text	0000001a chSemFastSignalI
 00201110 l     F .text	0000007c chSchReadyI
-08004a60 l     O .rodata	0000000c __func__.7002
+08004ac4 l     O .rodata	0000000c __func__.7002
 00201190 l     F .text	0000007c chSchReadyAheadI
-08004a6c l     O .rodata	00000011 __func__.7009.lto_priv.209
+08004ad0 l     O .rodata	00000011 __func__.7009.lto_priv.216
 00201210 l     F .text	00000078 chSchGoSleepS
 00201290 l     F .text	00000078 wakeup
 00201310 l     F .text	00000068 chSchGoSleepTimeoutS
 00201380 l     F .text	000000a0 chSchWakeupS
-08004a80 l     O .rodata	0000000d __func__.7038
+08004ae4 l     O .rodata	0000000d __func__.7038
 00201470 l     F .text	0000006c chSchDoRescheduleAhead
 00201440 l     F .text	0000002c chSchIsPreemptionRequired
 00201550 l     F .text	00000014 port_lock.lto_priv.58
 00201570 l     F .text	00000010 port_unlock.lto_priv.34
 00201580 l     F .text	0000000e list_init
 00201590 l     F .text	0000001a list_notempty
-002015b0 l     F .text	00000014 queue_init.lto_priv.173
-002015d0 l     F .text	0000001a queue_notempty.lto_priv.238
+002015b0 l     F .text	00000014 queue_init.lto_priv.180
+002015d0 l     F .text	0000001a queue_notempty.lto_priv.245
 002015f0 l     F .text	0000001a list_remove
-00201610 l     F .text	00000026 queue_insert.lto_priv.227
-00201640 l     F .text	00000022 queue_fifo_remove.lto_priv.222
-00201670 l     F .text	0000000c chSysLock.lto_priv.133
-00201680 l     F .text	00000034 chSysUnlock.lto_priv.97
-08004aa8 l     O .rodata	0000000c __func__.6266.lto_priv.116
-002016c0 l     F .text	0000000e chThdGetWorkingAreaX.lto_priv.246
+00201610 l     F .text	00000026 queue_insert.lto_priv.234
+00201640 l     F .text	00000022 queue_fifo_remove.lto_priv.229
+00201670 l     F .text	0000000c chSysLock.lto_priv.142
+00201680 l     F .text	00000034 chSysUnlock.lto_priv.106
+08004b0c l     O .rodata	0000000c __func__.6266.lto_priv.125
+002016c0 l     F .text	0000000e chThdGetWorkingAreaX.lto_priv.253
 002016d0 l     F .text	00000024 chThdSleepS
-08004adc l     O .rodata	0000000c __func__.6488
+08004b40 l     O .rodata	0000000c __func__.6488
 00201700 l     F .text	00000050 chThdDoDequeueNextI
-08004ae8 l     O .rodata	00000014 __func__.6500
+08004b4c l     O .rodata	00000014 __func__.6500
 002017d0 l     F .text	00000026 _thread_memfill
 00201800 l     F .text	000000c0 chThdCreateSuspendedI
-08004a90 l     O .rodata	00000016 __func__.7011
+08004af4 l     O .rodata	00000016 __func__.7011
 00201d70 l     F .text	00000036 chRegFindThreadByWorkingArea
-08004ab4 l     O .rodata	0000000c __func__.7024
+08004b18 l     O .rodata	0000000c __func__.7024
 00201920 l     F .text	0000009c chThdRelease
 002023e0 l     F .text	00000110 chHeapFree
 002025b0 l     F .text	0000001e chPoolFree
-08004ac0 l     O .rodata	0000000d __func__.7045
+08004b24 l     O .rodata	0000000d __func__.7045
 002019e0 l     F .text	0000007c chThdExitS
-08004ad0 l     O .rodata	0000000b __func__.7060
+08004b34 l     O .rodata	0000000b __func__.7060
 00201a60 l     F .text	0000001a chThdSleep
 00201a80 l     F .text	00000038 chThdEnqueueTimeoutS
 00201ac0 l     F .text	00000022 chThdDequeueNextI
-00201af0 l     F .text	0000000c port_rt_get_counter_value.lto_priv.250
+00201af0 l     F .text	0000000c port_rt_get_counter_value.lto_priv.257
 00201b00 l     F .text	00000074 tm_stop
 00201bc0 l     F .text	00000034 chTMObjectInit
 00201c00 l     F .text	00000016 chTMStartMeasurementX
 00201c20 l     F .text	00000024 chTMStopMeasurementX
 00201c50 l     F .text	00000014 port_lock.lto_priv.59
 00201c70 l     F .text	00000010 port_unlock.lto_priv.35
-00201c80 l     F .text	0000000c chSysLock.lto_priv.134
-00201c90 l     F .text	00000034 chSysUnlock.lto_priv.98
-08004b14 l     O .rodata	0000000c __func__.6667.lto_priv.190
-00201cd0 l     F .text	0000000e chThdGetWorkingAreaX.lto_priv.247
+00201c80 l     F .text	0000000c chSysLock.lto_priv.143
+00201c90 l     F .text	00000034 chSysUnlock.lto_priv.107
+08004b78 l     O .rodata	0000000c __func__.6667.lto_priv.197
+00201cd0 l     F .text	0000000e chThdGetWorkingAreaX.lto_priv.254
 00201ce0 l     F .text	00000030 chRegFirstThread
 00201d10 l     F .text	0000005c chRegNextThread
-08004b20 l     O .rodata	00000010 __func__.7404
+08004b84 l     O .rodata	00000010 __func__.7404
 00201db0 l     F .text	00000014 port_lock.lto_priv.61
 00201dd0 l     F .text	00000010 port_unlock.lto_priv.37
-00201de0 l     F .text	00000014 queue_init.lto_priv.175
-00201e00 l     F .text	0000001a queue_notempty.lto_priv.240
-00201e20 l     F .text	00000044 queue_prio_insert.lto_priv.236
-00201e70 l     F .text	00000022 queue_fifo_remove.lto_priv.224
-00201ea0 l     F .text	00000020 queue_dequeue.lto_priv.243
-00201ec0 l     F .text	0000000c chSysLock.lto_priv.136
-00201ed0 l     F .text	00000034 chSysUnlock.lto_priv.100
-08004b40 l     O .rodata	0000000c __func__.6266.lto_priv.118
+00201de0 l     F .text	00000014 queue_init.lto_priv.182
+00201e00 l     F .text	0000001a queue_notempty.lto_priv.247
+00201e20 l     F .text	00000044 queue_prio_insert.lto_priv.243
+00201e70 l     F .text	00000022 queue_fifo_remove.lto_priv.231
+00201ea0 l     F .text	00000020 queue_dequeue.lto_priv.250
+00201ec0 l     F .text	0000000c chSysLock.lto_priv.145
+00201ed0 l     F .text	00000034 chSysUnlock.lto_priv.109
+08004ba4 l     O .rodata	0000000c __func__.6266.lto_priv.127
 00201f10 l     F .text	0000001c chMtxQueueNotEmptyS
 00201f30 l     F .text	0000002c chMtxObjectInit
-08004b30 l     O .rodata	00000010 __func__.6997.lto_priv.232
+08004b94 l     O .rodata	00000010 __func__.6997.lto_priv.239
 00201f60 l     F .text	0000001a chMtxLock
 00201f80 l     F .text	000000fc chMtxLockS
-08004b4c l     O .rodata	0000000b __func__.7005.lto_priv.199
+08004bb0 l     O .rodata	0000000b __func__.7005.lto_priv.206
 00202080 l     F .text	000000e4 chMtxUnlock
-08004b58 l     O .rodata	0000000c __func__.7028
+08004bbc l     O .rodata	0000000c __func__.7028
 00202170 l     F .text	00000068 chEvtBroadcastFlagsI
 002021e0 l     F .text	00000070 chEvtSignalI
-08004b64 l     O .rodata	00000015 __func__.7022.lto_priv.231
-08004b7c l     O .rodata	0000000d __func__.7039.lto_priv.213
+08004bc8 l     O .rodata	00000015 __func__.7022.lto_priv.238
+08004be0 l     O .rodata	0000000d __func__.7039.lto_priv.220
 00202250 l     F .text	00000014 port_lock.lto_priv.67
 00202270 l     F .text	00000010 port_unlock.lto_priv.43
-00202280 l     F .text	0000000c chSysLock.lto_priv.142
-00202290 l     F .text	00000034 chSysUnlock.lto_priv.106
-08004bac l     O .rodata	0000000c __func__.6266.lto_priv.124
+00202280 l     F .text	0000000c chSysLock.lto_priv.151
+00202290 l     F .text	00000034 chSysUnlock.lto_priv.115
+08004c10 l     O .rodata	0000000c __func__.6266.lto_priv.133
 20001160 l     O .bss	00000008 ch_memcore
 002022f0 l     F .text	00000088 chCoreAllocAlignedWithOffsetI
-08004b8c l     O .rodata	0000001e __func__.7009.lto_priv.210
+08004bf0 l     O .rodata	0000001e __func__.7009.lto_priv.217
 00202380 l     F .text	00000028 chCoreAllocAlignedWithOffset
 20001168 l     O .bss	0000001c default_heap
-08004bb8 l     O .rodata	0000000b __func__.7027.lto_priv.206
+08004c1c l     O .rodata	0000000b __func__.7027.lto_priv.213
 002024f0 l     F .text	00000014 port_lock.lto_priv.68
 00202510 l     F .text	00000010 port_unlock.lto_priv.44
-00202520 l     F .text	0000000c chSysLock.lto_priv.143
-00202530 l     F .text	00000034 chSysUnlock.lto_priv.107
-08004bc4 l     O .rodata	0000000c __func__.6266.lto_priv.125
+00202520 l     F .text	0000000c chSysLock.lto_priv.152
+00202530 l     F .text	00000034 chSysUnlock.lto_priv.116
+08004c28 l     O .rodata	0000000c __func__.6266.lto_priv.134
 00202570 l     F .text	0000003c chPoolFreeI
-08004bd0 l     O .rodata	0000000c __func__.7023
+08004c34 l     O .rodata	0000000c __func__.7023
 002025d0 l     F .text	00000014 port_lock.lto_priv.69
 002025f0 l     F .text	00000010 port_unlock.lto_priv.45
 00202600 l     F .text	00000008 port_lock_from_isr.lto_priv.27
@@ -451,87 +451,87 @@ SYMBOL TABLE:
 00202ec0 l     F .text	00000008 icuInit
 00203070 l     F .text	00000008 pwmInit
 002034d0 l     F .text	00000008 sdInit
-00204790 l     F .text	00000002 boardInit
+002047f0 l     F .text	00000002 boardInit
 00202770 l     F .text	00000008 stInit
-08004db0 l     O .rodata	00000134 pal_default_config
+08004e20 l     O .rodata	00000134 pal_default_config
 00202700 l     F .text	00000020 st_lld_start_alarm
 00202720 l     F .text	0000000c st_lld_stop_alarm
 00202730 l     F .text	00000014 st_lld_set_alarm
 00202750 l     F .text	0000001c st_lld_is_alarm_active
 00203b60 l     F .text	00000064 st_lld_init
-08004bdc l     O .rodata	0000000d __func__.7748
-08004bec l     O .rodata	0000000b __func__.7755.lto_priv.78
+08004c40 l     O .rodata	0000000d __func__.7749.lto_priv.88
+08004c50 l     O .rodata	0000000b __func__.7756.lto_priv.161
 002027f0 l     F .text	00000014 port_lock.lto_priv.71
 00202810 l     F .text	00000010 port_unlock.lto_priv.47
-00202820 l     F .text	0000000c st_lld_get_counter.lto_priv.189
-00202830 l     F .text	0000000c port_timer_get_time.lto_priv.184
-00202840 l     F .text	00000014 queue_init.lto_priv.179
-00202860 l     F .text	0000000c chSysLock.lto_priv.145
-00202870 l     F .text	00000034 chSysUnlock.lto_priv.109
-08004bf8 l     O .rodata	0000000c __func__.6266.lto_priv.126
-002028b0 l     F .text	0000000c chVTGetSystemTimeX.lto_priv.171
-002028c0 l     F .text	00000012 chThdQueueObjectInit.lto_priv.166
-002028e0 l     F .text	00000008 osalSysLock.lto_priv.90
-002028f0 l     F .text	00000008 osalSysUnlock.lto_priv.84
+00202820 l     F .text	0000000c st_lld_get_counter.lto_priv.196
+00202830 l     F .text	0000000c port_timer_get_time.lto_priv.191
+00202840 l     F .text	00000014 queue_init.lto_priv.186
+00202860 l     F .text	0000000c chSysLock.lto_priv.154
+00202870 l     F .text	00000034 chSysUnlock.lto_priv.118
+08004c5c l     O .rodata	0000000c __func__.6266.lto_priv.135
+002028b0 l     F .text	0000000c chVTGetSystemTimeX.lto_priv.178
+002028c0 l     F .text	00000012 chThdQueueObjectInit.lto_priv.173
+002028e0 l     F .text	00000008 osalSysLock.lto_priv.99
+002028f0 l     F .text	00000008 osalSysUnlock.lto_priv.93
 00202900 l     F .text	0000000c osalOsGetSystemTimeX
-00202910 l     F .text	00000012 osalThreadQueueObjectInit.lto_priv.163
-00202930 l     F .text	0000001a osalThreadEnqueueTimeoutS.lto_priv.161
-00202950 l     F .text	00000016 osalThreadDequeueNextI.lto_priv.159
+00202910 l     F .text	00000012 osalThreadQueueObjectInit.lto_priv.170
+00202930 l     F .text	0000001a osalThreadEnqueueTimeoutS.lto_priv.168
+00202950 l     F .text	00000016 osalThreadDequeueNextI.lto_priv.166
 00202970 l     F .text	00000048 iqObjectInit
 002029c0 l     F .text	0000007c iqPutI
 00202a40 l     F .text	0000007e iqGetTimeout
 00202ac0 l     F .text	000000f8 iqReadTimeout
-08004c04 l     O .rodata	0000000e __func__.7774
+08004c68 l     O .rodata	0000000e __func__.7775
 00202bc0 l     F .text	00000048 oqObjectInit
 00202c10 l     F .text	00000082 oqPutTimeout
 00202ca0 l     F .text	00000078 oqGetI
 00202d20 l     F .text	000000f8 oqWriteTimeout
-08004c14 l     O .rodata	0000000f __func__.7813
+08004c78 l     O .rodata	0000000f __func__.7814
 00202e20 l     F .text	00000014 port_lock.lto_priv.72
 00202e40 l     F .text	00000010 port_unlock.lto_priv.48
-00202e50 l     F .text	0000000c chSysLock.lto_priv.146
-00202e60 l     F .text	00000034 chSysUnlock.lto_priv.110
-08004c30 l     O .rodata	0000000c __func__.6266.lto_priv.127
-00202ea0 l     F .text	00000008 osalSysLock.lto_priv.91
-00202eb0 l     F .text	00000008 osalSysUnlock.lto_priv.85
+00202e50 l     F .text	0000000c chSysLock.lto_priv.155
+00202e60 l     F .text	00000034 chSysUnlock.lto_priv.119
+08004c94 l     O .rodata	0000000c __func__.6266.lto_priv.136
+00202ea0 l     F .text	00000008 osalSysLock.lto_priv.100
+00202eb0 l     F .text	00000008 osalSysUnlock.lto_priv.94
 00203c00 l     F .text	00000018 icu_lld_init
 00202ed0 l     F .text	00000014 icuObjectInit
 00202ef0 l     F .text	00000054 icuStart
 00203c20 l     F .text	00000190 icu_lld_start
-08004c24 l     O .rodata	00000009 __func__.7752.lto_priv.154
+08004c88 l     O .rodata	00000009 __func__.7753.lto_priv.85
 00202f50 l     F .text	00000040 icuStartCapture
 00203db0 l     F .text	00000028 icu_lld_start_capture
-08004c3c l     O .rodata	00000010 __func__.7760
+08004ca0 l     O .rodata	00000010 __func__.7761.lto_priv.80
 00202f90 l     F .text	00000040 icuEnableNotifications
 00203de0 l     F .text	0000007e icu_lld_enable_notifications
-08004c4c l     O .rodata	00000017 __func__.7773
+08004cb0 l     O .rodata	00000017 __func__.7774
 00203900 l     F .text	0000016a _pal_lld_setgroupmode
 00202fd0 l     F .text	00000014 port_lock.lto_priv.73
 00202ff0 l     F .text	00000010 port_unlock.lto_priv.49
-00203000 l     F .text	0000000c chSysLock.lto_priv.147
-00203010 l     F .text	00000034 chSysUnlock.lto_priv.111
-08004c70 l     O .rodata	0000000c __func__.6266.lto_priv.128
-00203050 l     F .text	00000008 osalSysLock.lto_priv.92
-00203060 l     F .text	00000008 osalSysUnlock.lto_priv.86
-00203ff0 l     F .text	00000038 pwm_lld_init
+00203000 l     F .text	0000000c chSysLock.lto_priv.156
+00203010 l     F .text	00000034 chSysUnlock.lto_priv.120
+08004cd4 l     O .rodata	0000000c __func__.6266.lto_priv.137
+00203050 l     F .text	00000008 osalSysLock.lto_priv.101
+00203060 l     F .text	00000008 osalSysUnlock.lto_priv.95
+00204020 l     F .text	00000038 pwm_lld_init
 00203080 l     F .text	00000020 pwmObjectInit
 002030a0 l     F .text	00000064 pwmStart
-00204030 l     F .text	00000224 pwm_lld_start
-08004c64 l     O .rodata	00000009 __func__.7752.lto_priv.155
+00204060 l     F .text	0000025c pwm_lld_start
+08004cc8 l     O .rodata	00000009 __func__.7753.lto_priv.86
 00203110 l     F .text	00000044 pwmChangePeriod
-08004c7c l     O .rodata	00000010 __func__.7761
+08004ce0 l     O .rodata	00000010 __func__.7762
 00203160 l     F .text	00000068 pwmEnableChannel
-00204260 l     F .text	0000003e pwm_lld_enable_channel
-08004c8c l     O .rodata	00000011 __func__.7767
+002042c0 l     F .text	0000003e pwm_lld_enable_channel
+08004cf0 l     O .rodata	00000011 __func__.7768
 002031d0 l     F .text	00000068 pwmDisableChannel
-002042a0 l     F .text	00000058 pwm_lld_disable_channel
-08004ca0 l     O .rodata	00000012 __func__.7772
+00204300 l     F .text	00000058 pwm_lld_disable_channel
+08004d04 l     O .rodata	00000012 __func__.7773
 00203240 l     F .text	00000048 pwmEnablePeriodicNotification
-00204300 l     F .text	00000030 pwm_lld_enable_periodic_notification
-08004cb4 l     O .rodata	0000001e __func__.7776
+00204360 l     F .text	00000030 pwm_lld_enable_periodic_notification
+08004d18 l     O .rodata	0000001e __func__.7777
 00203290 l     F .text	00000084 pwmEnableChannelNotification
-00204330 l     F .text	00000068 pwm_lld_enable_channel_notification
-08004cd4 l     O .rodata	0000001d __func__.7785
+00204390 l     F .text	00000068 pwm_lld_enable_channel_notification
+08004d38 l     O .rodata	0000001d __func__.7786
 00203320 l     F .text	0000000e chEvtObjectInit
 00203330 l     F .text	00000012 osalEventObjectInit
 00203350 l     F .text	00000016 osalEventBroadcastFlagsI.lto_priv.2
@@ -543,11 +543,11 @@ SYMBOL TABLE:
 00203450 l     F .text	0000001e _gett
 00203470 l     F .text	00000026 _writet
 002034a0 l     F .text	00000026 _readt
-08004cf4 l     O .rodata	00000020 vmt
-00204710 l     F .text	00000064 sd_lld_init
+08004d58 l     O .rodata	00000020 vmt
+00204770 l     F .text	00000064 sd_lld_init
 002034e0 l     F .text	00000028 sdObjectInit
 00203510 l     F .text	00000060 sdIncomingDataI
-08004d14 l     O .rodata	00000010 __func__.7800
+08004d78 l     O .rodata	00000010 __func__.7801
 00203570 l     F .text	00000054 nvicEnableVector
 002035d0 l     F .text	00000058 hal_lld_backup_domain_init
 00203690 l     F .text	00000134 stm32_clock_init
@@ -561,43 +561,45 @@ SYMBOL TABLE:
 00203ae0 l     F .text	00000008 osalSysLockFromISR.lto_priv.6
 00203af0 l     F .text	00000008 osalSysUnlockFromISR.lto_priv.4
 00203b00 l     F .text	00000008 osalOsTimerHandlerI
-08004d24 l     O .rodata	0000000a __func__.7745.lto_priv.151
+08004d88 l     O .rodata	0000000a __func__.7746.lto_priv.160
 20001184 l     O .bss	00000018 ICUD2
 00203e60 l     F .text	000000fa icu_lld_serve_interrupt
-08004d30 l     O .rodata	00000009 __func__.7757
-08004d3c l     O .rodata	0000000e __func__.7765.lto_priv.82
+08004d94 l     O .rodata	00000009 __func__.7758
+08004da0 l     O .rodata	0000000e __func__.7766.lto_priv.91
 2000119c l     O .bss	0000001c PWMD1
-200011b8 l     O .bss	0000001c PWMD14
-002043a0 l     F .text	000000c2 pwm_lld_serve_interrupt
-08004d4c l     O .rodata	00000009 __func__.7747
-08004d58 l     O .rodata	00000009 __func__.7751
-08004d64 l     O .rodata	00000009 __func__.7755.lto_priv.80
-08004d70 l     O .rodata	0000000e __func__.7764
-08004d80 l     O .rodata	00000024 __func__.7801
-00204470 l     F .text	00000014 port_lock.lto_priv.77
-00204490 l     F .text	00000010 port_unlock.lto_priv.53
-002044a0 l     F .text	00000008 port_lock_from_isr.lto_priv.29
-002044b0 l     F .text	00000008 port_unlock_from_isr.lto_priv.22
-002044c0 l     F .text	0000000c chSysLockFromISR.lto_priv.15
-002044d0 l     F .text	0000000c chSysUnlockFromISR.lto_priv.11
-002044e0 l     F .text	00000008 osalSysLockFromISR.lto_priv.7
-002044f0 l     F .text	00000008 osalSysUnlockFromISR.lto_priv.5
-00204500 l     F .text	00000016 osalEventBroadcastFlagsI.lto_priv.3
-200011d4 l     O .bss	00000060 SD1
-20001234 l     O .bss	00000010 sd_in_buf1
-20001244 l     O .bss	00000010 sd_out_buf1
-00204520 l     F .text	0000006e set_error
-00204590 l     F .text	00000122 serve_interrupt
-002046c0 l     F .text	00000018 notify1
-08004da4 l     O .rodata	00000009 __func__.7777.lto_priv.1
-002047a0 l     F .text	00000008 pwmpcb
-002047b0 l     F .text	00000008 pwmc1cb
+200011b8 l     O .bss	0000001c PWMD11
+200011d4 l     O .bss	0000001c PWMD12
+00204400 l     F .text	000000c2 pwm_lld_serve_interrupt
+08004db0 l     O .rodata	00000009 __func__.7749.lto_priv.89
+08004dbc l     O .rodata	00000009 __func__.7753.lto_priv.87
+08004dc8 l     O .rodata	00000009 __func__.7757.lto_priv.84
+08004dd4 l     O .rodata	00000009 __func__.7761.lto_priv.81
+08004de0 l     O .rodata	0000000e __func__.7770.lto_priv.79
+08004df0 l     O .rodata	00000024 __func__.7807
+002044d0 l     F .text	00000014 port_lock.lto_priv.77
+002044f0 l     F .text	00000010 port_unlock.lto_priv.53
+00204500 l     F .text	00000008 port_lock_from_isr.lto_priv.29
+00204510 l     F .text	00000008 port_unlock_from_isr.lto_priv.22
+00204520 l     F .text	0000000c chSysLockFromISR.lto_priv.15
+00204530 l     F .text	0000000c chSysUnlockFromISR.lto_priv.11
+00204540 l     F .text	00000008 osalSysLockFromISR.lto_priv.7
+00204550 l     F .text	00000008 osalSysUnlockFromISR.lto_priv.5
+00204560 l     F .text	00000016 osalEventBroadcastFlagsI.lto_priv.3
+200011f0 l     O .bss	00000060 SD1
+20001250 l     O .bss	00000010 sd_in_buf1
+20001260 l     O .bss	00000010 sd_out_buf1
+00204580 l     F .text	0000006e set_error
+002045f0 l     F .text	00000122 serve_interrupt
+00204720 l     F .text	00000018 notify1
+08004e14 l     O .rodata	00000009 __func__.7778.lto_priv.1
+00204800 l     F .text	00000008 pwmpcb
+00204810 l     F .text	00000008 pwmc1cb
 20010000 l     O .data	00000044 pwmcfg
-20001254 l     O .bss	00000004 last_width
-20001258 l     O .bss	00000004 last_period
-002047c0 l     F .text	00000024 icuwidthcb
-002047f0 l     F .text	00000024 icuperiodcb
-00204820 l     F .text	00000008 icuovfcb
+20001270 l     O .bss	00000004 last_width
+20001274 l     O .bss	00000004 last_period
+00204820 l     F .text	00000024 icuwidthcb
+00204850 l     F .text	00000024 icuperiodcb
+00204880 l     F .text	00000008 icuovfcb
 20010044 l     O .data	0000001c icucfg
 00000000 l    df *ABS*	00000000 build/obj/crt0_v7m.o
 00200234 l       .text	00000000 msloop
@@ -620,16 +622,16 @@ e000ed04 l       *ABS*	00000000 SCB_ICSR
 20000800 g       .eth	00000000 __eth_end__
 00000000 g       .rodata	00000000 __ram6_start__
 00200000 g     O .vectors	00000200 _vectors
-00204940 g       .data	00000000 __exidx_end
+002049a4 g       .data	00000000 __exidx_end
 20010060 g       .ram0	00000000 __ram0_free__
 20010060 g       .heap	00000000 __heap_base__
-08004f44 g       *ABS*	00000000 __ram3_init_text__
+08004fb4 g       *ABS*	00000000 __ram3_init_text__
 40025000 g       *ABS*	00000000 __ram5_end__
 40024000 g       .ram5	00000000 __ram5_noinit__
 00001000 g       *ABS*	00000000 __ram5_size__
 00200200 g       .vectors	00000000 __fini_array_end
 20000800 g       .pstack	00000000 __main_thread_stack_end__
-08004ee4 g       .rodata	00000000 __rodata_end__
+08004f54 g       .rodata	00000000 __rodata_end__
 20000800 g       .bss	00000000 _bss_start
 20050000 g       .heap	00000000 __heap_end__
 0003c000 g       *ABS*	00000000 __ram1_size__
@@ -638,18 +640,18 @@ e000ed04 l       *ABS*	00000000 SCB_ICSR
 00004000 g       *ABS*	00000000 __ram4_size__
 2004c000 g       *ABS*	00000000 __ram1_end__
 00004000 g       *ABS*	00000000 __ram4_end__
-00204940 g       .data	00000000 __exidx_start
-08004f44 g       *ABS*	00000000 __ram0_init_text__
-08004f44 g       *ABS*	00000000 __ram1_init_text__
+002049a4 g       .data	00000000 __exidx_start
+08004fb4 g       *ABS*	00000000 __ram0_init_text__
+08004fb4 g       *ABS*	00000000 __ram1_init_text__
 20000800 g       .eth	00000000 __eth_base__
 00040000 g       *ABS*	00000000 __ram0_size__
-08004f44 g       *ABS*	00000000 __ram5_init_text__
-2000125c g       .bss	00000000 _bss_end
+08004fb4 g       *ABS*	00000000 __ram5_init_text__
+20001278 g       .bss	00000000 _bss_end
 00200200 g     F .text	00000000 Reset_Handler
 00000000 g       .ram4	00000000 __ram4_clear__
 40024000 g       .ram5	00000000 __ram5_free__
-08004f44 g       *ABS*	00000000 __ram6_init_text__
-2000125c g       .ram3	00000000 __ram3_clear__
+08004fb4 g       *ABS*	00000000 __ram6_init_text__
+20001278 g       .ram3	00000000 __ram3_clear__
 002003e0 g     F .text	00000002 __default_exit
 00000000 g       *ABS*	00000000 __ram6_end__
 00000000 g       .ram6_init	00000000 __ram6_init__
@@ -676,20 +678,20 @@ e000ed04 l       *ABS*	00000000 SCB_ICSR
 20010000 g       *ABS*	00000000 __ram3_end__
 00004000 g       *ABS*	00000000 __ram2_size__
 20010000 g       .rodata	00000000 __ram1_start__
-08004940 g       .rodata	00000000 __rodata_base__
-00204830 g     F .text	00000110 main
+080049a4 g       .rodata	00000000 __rodata_base__
+00204890 g     F .text	00000114 main
 00000000 g       *ABS*	00000000 __ram6_size__
-08004f44 g       *ABS*	00000000 __ram2_init_text__
-2000125c g       .ram3	00000000 __ram3_free__
+08004fb4 g       *ABS*	00000000 __ram2_init_text__
+20001278 g       .ram3	00000000 __ram3_free__
 00200200 g       .vectors	00000000 __init_array_end
-08004f44 g       *ABS*	00000000 __ram4_init_text__
+08004fb4 g       *ABS*	00000000 __ram4_init_text__
 20010000 g       .ram1	00000000 __ram1_noinit__
 002002e8 g     F .text	00000000 _port_thread_start
 2004c000 g       .ram2_init	00000000 __ram2_init__
 20050000 g       *ABS*	00000000 __ram2_end__
 20000400 g       .pstack	00000000 __process_stack_base__
 20010060 g       .ram0	00000000 __ram0_clear__
-2000125c g       .ram3	00000000 __ram3_noinit__
+20001278 g       .ram3	00000000 __ram3_noinit__
 20010060 g       .ram0	00000000 __ram0_noinit__
 002003f0 g     F .text	00000064 __init_ram_areas
 2004c000 g       .rodata	00000000 __ram2_start__
@@ -698,13 +700,13 @@ e000ed04 l       *ABS*	00000000 SCB_ICSR
 20000400 g       .mstack	00000000 __main_stack_end__
 40024000 g       .ram5_init	00000000 __ram5_init__
 20000400 g       .pstack	00000000 __main_thread_stack_base__
-08004f44 g       *ABS*	00000000 __ram7_init_text__
-2000125c g       .ram3_init	00000000 __ram3_init__
+08004fb4 g       *ABS*	00000000 __ram7_init_text__
+20001278 g       .ram3_init	00000000 __ram3_init__
 20010000 g       .rodata	00000000 __ram0_start__
 00200308 g       .text	00000000 _port_exit_from_isr
 20010000 g       .ram1_init	00000000 __ram1_init__
 00200200 g       .vectors	00000000 __init_array_start
-08004ee4 g       *ABS*	00000000 _textdata_start
+08004f54 g       *ABS*	00000000 _textdata_start
 40024000 g       .rodata	00000000 __ram5_start__
 20000800 g       .nocache	00000000 __nocache_base__
 00200880 g     F .text	00000028 _dbg_check_lock
@@ -715,7 +717,7 @@ e000ed04 l       *ABS*	00000000 SCB_ICSR
 00000400 g       *ABS*	00000000 __main_stack_size__
 00000000 g       .ram7	00000000 __ram7_noinit__
 20000800 g       .pstack	00000000 __process_stack_end__
-00204780 g     F .text	00000008 __early_init
+002047e0 g     F .text	00000008 __early_init
 20000000 g       .rodata	00000000 __ram3_start__
 00000400 g       *ABS*	00000000 __process_stack_size__
 
